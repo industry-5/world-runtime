@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Run Lab</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <header class="hero">
+      <p class="kicker">World Runtime Demo</p>
+      <h1>World Run Lab</h1>
+      <p class="subtitle">Input -> Run -> Policy Gate -> Simulation Delta -> Decision/Results</p>
+    </header>
+
+    <main class="layout">
+      <section id="panel-input" class="panel animate-in">
+        <div class="panel-header">
+          <h2>1. Input</h2>
+          <div class="preset-controls">
+            <label for="preset-select">Demo Preset</label>
+            <select id="preset-select"></select>
+            <button id="apply-preset" type="button">Apply Preset</button>
+          </div>
+        </div>
+        <p class="panel-copy">Edit proposal, policy mode, and simulation payload before running.</p>
+        <div class="field-row">
+          <label for="proposal-json">Proposal JSON</label>
+          <textarea id="proposal-json" rows="11" spellcheck="false"></textarea>
+        </div>
+        <div class="field-row">
+          <label for="simulation-json">Simulation JSON</label>
+          <textarea id="simulation-json" rows="8" spellcheck="false"></textarea>
+        </div>
+        <div class="field-row">
+          <label for="policy-json">Policy JSON (optional)</label>
+          <textarea id="policy-json" rows="9" spellcheck="false"></textarea>
+        </div>
+      </section>
+
+      <section id="panel-run" class="panel animate-in delay-1">
+        <div class="panel-header">
+          <h2>2. Run</h2>
+          <div class="run-actions">
+            <button id="run-demo" type="button">Run Demo</button>
+            <button id="clear-results" type="button" class="ghost">Clear</button>
+          </div>
+        </div>
+        <div class="settings">
+          <div>
+            <label for="api-base">API Base URL</label>
+            <input id="api-base" type="text" value="/api" />
+          </div>
+          <div>
+            <label for="api-token">Bearer Token (optional)</label>
+            <input id="api-token" type="password" placeholder="WORLD_RUNTIME_API_TOKEN" />
+          </div>
+        </div>
+        <div class="status-strip" id="step-strip"></div>
+        <p id="run-message" class="run-message">Ready.</p>
+      </section>
+
+      <section id="panel-policy-gate" class="panel animate-in delay-2">
+        <h2>3. Policy Gate</h2>
+        <div id="policy-gate-card" class="gate-card gate-unknown">
+          <p class="gate-title">Not run yet</p>
+          <p class="gate-detail">Submit a run to evaluate policy outcomes.</p>
+        </div>
+      </section>
+
+      <section id="panel-simulation-delta" class="panel animate-in delay-3">
+        <h2>4. Simulation Delta</h2>
+        <div id="simulation-delta-summary" class="summary-grid"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Changed Path</th>
+                <th>Base</th>
+                <th>Simulated</th>
+              </tr>
+            </thead>
+            <tbody id="simulation-delta-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="panel-results-timeline" class="panel animate-in delay-4">
+        <h2>5. Results Timeline</h2>
+        <ol id="results-timeline" class="timeline"></ol>
+      </section>
+
+      <details class="panel raw-panel animate-in delay-5">
+        <summary>Raw JSON</summary>
+        <pre id="raw-json" class="raw-json">{}</pre>
+      </details>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

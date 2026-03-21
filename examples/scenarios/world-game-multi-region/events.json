@@ -1,0 +1,28 @@
+[
+  {
+    "event_id": "evt.world-game-multi-region.baseline.0001",
+    "event_type": "wg_baseline_loaded",
+    "occurred_at": "2026-03-11T00:00:00Z",
+    "payload": {
+      "scenario_id": "world-game-multi-region",
+      "baseline_version": "wg-multi-region.v1"
+    }
+  },
+  {
+    "event_id": "evt.world-game-multi-region.strategy.0001",
+    "event_type": "wg_strategy_proposed",
+    "occurred_at": "2026-03-11T00:00:00Z",
+    "payload": {
+      "strategy_id": "strategy.distributed-resilience-build"
+    }
+  },
+  {
+    "event_id": "evt.world-game-multi-region.outcome.0001",
+    "event_type": "wg_outcome_projected",
+    "occurred_at": "2026-03-11T00:00:00Z",
+    "payload": {
+      "comparison_id": "cmp.world-game-multi-region.seed",
+      "composite_score": 55.8
+    }
+  }
+]

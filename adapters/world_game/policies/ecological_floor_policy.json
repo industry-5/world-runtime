@@ -1,0 +1,66 @@
+{
+  "policy_id": "policy.world-game.ecological-floor.v1",
+  "policy_name": "world_game_ecological_floor",
+  "policy_type": "safety",
+  "rules": [
+    {
+      "rule_id": "rule.world-game.ecological.deny-water-collapse",
+      "rule_name": "Deny severe water collapse",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.projected_indicator_scores.water_security",
+        "operator": "<",
+        "value": 20
+      },
+      "outcome": "deny",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-11T00:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.world-game.ecological.deny-resilience-collapse",
+      "rule_name": "Deny severe resilience collapse",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.projected_indicator_scores.food_resilience",
+        "operator": "<",
+        "value": 15
+      },
+      "outcome": "deny",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-11T00:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.world-game.ecological.require-approval-emissions",
+      "rule_name": "Require approval for poor emissions trajectory",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.projected_indicator_scores.emissions_intensity",
+        "operator": "<",
+        "value": 45
+      },
+      "outcome": "require_approval",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-11T00:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.world-game.ecological.warn-water-band",
+      "rule_name": "Warn low water security",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.projected_indicator_scores.water_security",
+        "operator": "<",
+        "value": 35
+      },
+      "outcome": "warn",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-11T00:00:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-11T00:00:00Z",
+  "version": 1
+}

@@ -1,0 +1,89 @@
+{
+  "milestone": "M25",
+  "gate": "v1.0-release-candidate",
+  "started_at": "2026-03-13T05:18:45Z",
+  "mode": "fast",
+  "rc_version": "1.0.0-rc.test",
+  "security_findings": [
+    {
+      "id": "STB-001",
+      "boundary": "Connector outbound effect boundary",
+      "severity": "high",
+      "status": "resolved",
+      "disposition": "fixed",
+      "owner": "runtime maintainers",
+      "evidence": "`tests/test_connector_policy_guardrails.py`",
+      "notes": "Provider-aware deny/approval enforcement and durable decision records verified."
+    },
+    {
+      "id": "STB-002",
+      "boundary": "Approval actor authorization boundary",
+      "severity": "high",
+      "status": "resolved",
+      "disposition": "fixed",
+      "owner": "runtime maintainers",
+      "evidence": "`tests/test_app_server.py`",
+      "notes": "Actor capability checks and approval-chain attribution verified."
+    },
+    {
+      "id": "STB-003",
+      "boundary": "Provenance/audit export boundary",
+      "severity": "medium",
+      "status": "resolved",
+      "disposition": "fixed",
+      "owner": "runtime maintainers",
+      "evidence": "`tests/test_provenance.py`",
+      "notes": "Redaction and deterministic fingerprinting preserved for exports."
+    }
+  ],
+  "command_results": [
+    {
+      "group": "milestone",
+      "label": "schema-check",
+      "command": "make schemas",
+      "returncode": 0,
+      "stdout_tail": "python3 scripts/check_schemas.py\n[OK]   entity.example.json vs entity.schema.json\n[OK]   relationship.example.json vs relationship.schema.json\n[OK]   event.example.json vs event.schema.json\n[OK]   proposal.example.json vs proposal.schema.json\n[OK]   decision.example.json vs decision.schema.json\n[OK]   simulation.example.json vs simulation.schema.json\n[OK]   policy.example.json vs policy.schema.json\n[OK]   rule.example.json vs rule.schema.json\n[OK]   projection.example.json vs projection.schema.json\n\nSchema validation passed.\n",
+      "stderr_tail": "/Users/robbsmacm3/Library/Mobile Documents/com~apple~CloudDocs/ROBB/Robb_Company/world-runtime.dev/repo/world-runtime/scripts/check_schemas.py:5: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.\n  from jsonschema import Draft202012Validator, RefResolver\n",
+      "status": "passed"
+    },
+    {
+      "group": "milestone",
+      "label": "protocol-compat",
+      "command": "make protocol-compat",
+      "returncode": 0,
+      "stdout_tail": "python3 scripts/check_protocol_compatibility.py\nProtocol compatibility check passed.\n",
+      "stderr_tail": "",
+      "status": "passed"
+    },
+    {
+      "group": "milestone",
+      "label": "public-api-compat",
+      "command": "make public-api-compat",
+      "returncode": 0,
+      "stdout_tail": "python3 scripts/check_public_api_compatibility.py\nPublic API compatibility check passed.\n",
+      "stderr_tail": "",
+      "status": "passed"
+    },
+    {
+      "group": "milestone",
+      "label": "extension-contracts",
+      "command": "make extension-contracts",
+      "returncode": 0,
+      "stdout_tail": "python3 scripts/check_extension_contracts.py\nExtension contract check passed.\n",
+      "stderr_tail": "",
+      "status": "passed"
+    },
+    {
+      "group": "milestone",
+      "label": "rc-artifacts",
+      "command": "python3 scripts/build_release_artifacts.py --version 1.0.0-rc.test --output-dir tmp/releases_fast",
+      "returncode": 0,
+      "stdout_tail": "Release artifacts built in tmp/releases_fast/v1.0.0-rc.test\nRelease archive built in tmp/releases_fast/v1.0.0-rc.test.tar.gz\n",
+      "stderr_tail": "",
+      "status": "passed"
+    }
+  ],
+  "completed_at": "2026-03-13T05:18:46Z",
+  "status": "passed",
+  "errors": []
+}

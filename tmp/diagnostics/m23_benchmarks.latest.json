@@ -1,0 +1,123 @@
+{
+  "benchmark_status": "passed",
+  "workload": {
+    "iterations": 25,
+    "samples": 5,
+    "replay_events": 1200,
+    "profiles": [
+      "local",
+      "dev"
+    ]
+  },
+  "workload_fingerprint": "180b261503515f196fe3a27063eb148237e0bcfc15eb9c358bfc0859817a05f5",
+  "results": {
+    "local": {
+      "replay": {
+        "sample_count": 5,
+        "operations_per_sample": 1,
+        "total_seconds": 0.028226,
+        "avg_seconds": 0.005645,
+        "median_seconds": 0.005698,
+        "min_seconds": 0.005205,
+        "max_seconds": 0.005877,
+        "ops_per_second": 177.14
+      },
+      "policy": {
+        "sample_count": 5,
+        "operations_per_sample": 25,
+        "total_seconds": 0.000544,
+        "avg_seconds": 0.000109,
+        "median_seconds": 0.000111,
+        "min_seconds": 0.0001,
+        "max_seconds": 0.000123,
+        "ops_per_second": 229656.98
+      },
+      "simulation": {
+        "sample_count": 5,
+        "operations_per_sample": 25,
+        "total_seconds": 2.656441,
+        "avg_seconds": 0.531288,
+        "median_seconds": 0.530014,
+        "min_seconds": 0.527289,
+        "max_seconds": 0.53839,
+        "ops_per_second": 47.06
+      },
+      "connectors": {
+        "sample_count": 5,
+        "operations_per_sample": 50,
+        "total_seconds": 0.072399,
+        "avg_seconds": 0.01448,
+        "median_seconds": 0.007274,
+        "min_seconds": 0.007183,
+        "max_seconds": 0.043236,
+        "ops_per_second": 3453.11
+      },
+      "public_api": {
+        "sample_count": 5,
+        "operations_per_sample": 50,
+        "total_seconds": 0.071386,
+        "avg_seconds": 0.014277,
+        "median_seconds": 0.013791,
+        "min_seconds": 0.010384,
+        "max_seconds": 0.019797,
+        "ops_per_second": 3502.09
+      },
+      "store_last_offset": 1226,
+      "connector_state_backend": "SQLiteConnectorStateStore"
+    },
+    "dev": {
+      "replay": {
+        "sample_count": 5,
+        "operations_per_sample": 1,
+        "total_seconds": 0.05445,
+        "avg_seconds": 0.01089,
+        "median_seconds": 0.00558,
+        "min_seconds": 0.005171,
+        "max_seconds": 0.03219,
+        "ops_per_second": 91.83
+      },
+      "policy": {
+        "sample_count": 5,
+        "operations_per_sample": 25,
+        "total_seconds": 0.000538,
+        "avg_seconds": 0.000108,
+        "median_seconds": 0.000112,
+        "min_seconds": 9.8e-05,
+        "max_seconds": 0.000118,
+        "ops_per_second": 232270.34
+      },
+      "simulation": {
+        "sample_count": 5,
+        "operations_per_sample": 25,
+        "total_seconds": 2.709782,
+        "avg_seconds": 0.541956,
+        "median_seconds": 0.540985,
+        "min_seconds": 0.533658,
+        "max_seconds": 0.555165,
+        "ops_per_second": 46.13
+      },
+      "connectors": {
+        "sample_count": 5,
+        "operations_per_sample": 50,
+        "total_seconds": 0.074936,
+        "avg_seconds": 0.014987,
+        "median_seconds": 0.007709,
+        "min_seconds": 0.007147,
+        "max_seconds": 0.044676,
+        "ops_per_second": 3336.19
+      },
+      "public_api": {
+        "sample_count": 5,
+        "operations_per_sample": 50,
+        "total_seconds": 0.078686,
+        "avg_seconds": 0.015737,
+        "median_seconds": 0.013892,
+        "min_seconds": 0.010677,
+        "max_seconds": 0.024908,
+        "ops_per_second": 3177.18
+      },
+      "store_last_offset": 1226,
+      "connector_state_backend": "SQLiteConnectorStateStore"
+    }
+  }
+}

@@ -1,0 +1,554 @@
+{
+  "scenario_id": "world-game-few-advanced-template-studio-1773255347659",
+  "label": "FEW Advanced Baseline Template",
+  "description": "Reusable FEW baseline template pack with selectable indicator profiles and region count.",
+  "baseline_version": "wg-few-advanced-template.v1",
+  "metadata": {
+    "theme": "authoring-template",
+    "pack": "wg.authoring.bundle.few-advanced-baseline.v1",
+    "operator_note": "Instantiated from WG-M10 reusable template pack",
+    "template_bundle_id": "wg.authoring.bundle.few-advanced-baseline.v1",
+    "template_id": "template.wg.few-advanced.baseline.v1",
+    "bundle_version_hash": "sha256:5af21f1b19dbc58615b6b640928510cfedda09b634eb783f7ed1ae321f0e7315",
+    "instantiation_parameters": {
+      "baseline_tag": "v1",
+      "indicator_registry_ref": "registry.wg.authoring.bundle.few-advanced-baseline.v1.full.v1",
+      "intervention_library_ref": "library.wg.authoring.bundle.few-advanced-baseline.v1.interventions.v1",
+      "policy_pack_ref": "adapters/world_game/policies/world_game_policy_pack.json",
+      "region_count": 3,
+      "scenario_suffix": "studio-1773255347659",
+      "shock_library_ref": "library.wg.authoring.bundle.few-advanced-baseline.v1.shocks.v1",
+      "start_year": 2026
+    }
+  },
+  "time_horizon": {
+    "start_year": 2026,
+    "years_per_turn": 5,
+    "turn_count": 4
+  },
+  "regions": [
+    {
+      "region_id": "delta_coast",
+      "label": "Delta Coast"
+    },
+    {
+      "region_id": "interior_agri",
+      "label": "Interior Agri"
+    },
+    {
+      "region_id": "urban_corridor",
+      "label": "Urban Corridor"
+    }
+  ],
+  "indicator_definitions": [
+    {
+      "indicator_id": "electricity_access",
+      "label": "Electricity Access",
+      "description": "Share of population with reliable electricity access.",
+      "unit": "percent",
+      "direction": "higher_is_better",
+      "min_value": 0,
+      "max_value": 100,
+      "weight": 0.22
+    },
+    {
+      "indicator_id": "emissions_intensity",
+      "label": "Emissions Intensity",
+      "description": "Carbon intensity of system output.",
+      "unit": "index",
+      "direction": "lower_is_better",
+      "min_value": 0,
+      "max_value": 100,
+      "weight": 0.16
+    },
+    {
+      "indicator_id": "equity_score",
+      "label": "Distributional Equity",
+      "description": "Relative fairness of outcomes across regions.",
+      "unit": "index",
+      "direction": "higher_is_better",
+      "min_value": 0,
+      "max_value": 100,
+      "weight": 0.14
+    },
+    {
+      "indicator_id": "food_resilience",
+      "label": "Food Resilience",
+      "description": "Food system resilience under stress.",
+      "unit": "index",
+      "direction": "higher_is_better",
+      "min_value": 0,
+      "max_value": 100,
+      "weight": 0.2
+    },
+    {
+      "indicator_id": "system_cost",
+      "label": "System Cost",
+      "description": "Relative cost burden across the system.",
+      "unit": "index",
+      "direction": "lower_is_better",
+      "min_value": 0,
+      "max_value": 100,
+      "weight": 0.1
+    },
+    {
+      "indicator_id": "water_security",
+      "label": "Water Security",
+      "description": "Regional water availability and reliability.",
+      "unit": "index",
+      "direction": "higher_is_better",
+      "min_value": 0,
+      "max_value": 100,
+      "weight": 0.18
+    }
+  ],
+  "baseline_indicators": {
+    "delta_coast": {
+      "electricity_access": 61.0,
+      "emissions_intensity": 67.0,
+      "equity_score": 52.0,
+      "food_resilience": 54.0,
+      "system_cost": 49.0,
+      "water_security": 46.0
+    },
+    "interior_agri": {
+      "electricity_access": 58.0,
+      "emissions_intensity": 63.0,
+      "equity_score": 44.0,
+      "food_resilience": 48.0,
+      "system_cost": 46.0,
+      "water_security": 51.0
+    },
+    "urban_corridor": {
+      "electricity_access": 72.0,
+      "emissions_intensity": 71.0,
+      "equity_score": 47.0,
+      "food_resilience": 45.0,
+      "system_cost": 55.0,
+      "water_security": 40.0
+    }
+  },
+  "interventions": [
+    {
+      "intervention_id": "intervention.desalination-expansion",
+      "label": "Desalination Expansion",
+      "description": "Scale desalination and treatment facilities.",
+      "applicable_regions": [
+        "delta_coast",
+        "urban_corridor"
+      ],
+      "cost": {
+        "amount": 8400,
+        "currency": "USDm"
+      },
+      "prerequisites": [],
+      "latency_turns": 1,
+      "duration_turns": 2,
+      "direct_effects": [
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "food_resilience",
+          "delta": 3
+        },
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "water_security",
+          "delta": 9
+        },
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "system_cost",
+          "delta": 6
+        },
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "water_security",
+          "delta": 7
+        }
+      ],
+      "tradeoffs": [
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "emissions_intensity",
+          "delta": 6,
+          "note": "energy-intensive treatment"
+        }
+      ],
+      "policy_dependencies": [
+        "policy.world-game.ecological-floor.v1"
+      ],
+      "confidence": 0.61
+    },
+    {
+      "intervention_id": "intervention.distributed-solar-rollout",
+      "label": "Distributed Solar Rollout",
+      "description": "Accelerate distributed solar and storage in high-load zones.",
+      "applicable_regions": [
+        "delta_coast",
+        "urban_corridor"
+      ],
+      "cost": {
+        "amount": 6200,
+        "currency": "USDm"
+      },
+      "prerequisites": [],
+      "latency_turns": 0,
+      "duration_turns": 2,
+      "direct_effects": [
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "electricity_access",
+          "delta": 5
+        },
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "emissions_intensity",
+          "delta": -5
+        },
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "system_cost",
+          "delta": 3
+        },
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "electricity_access",
+          "delta": 4
+        },
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "emissions_intensity",
+          "delta": -4
+        }
+      ],
+      "tradeoffs": [
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "equity_score",
+          "delta": -2,
+          "note": "benefits concentrate near high-income districts"
+        }
+      ],
+      "policy_dependencies": [
+        "policy.world-game.equity-guardrail.v1"
+      ],
+      "confidence": 0.75
+    },
+    {
+      "intervention_id": "intervention.fertilizer-logistics-subsidy",
+      "label": "Fertilizer Logistics Subsidy",
+      "description": "Subsidize fertilizer transport to stabilize food production.",
+      "applicable_regions": [
+        "interior_agri",
+        "urban_corridor"
+      ],
+      "cost": {
+        "amount": 3600,
+        "currency": "USDm"
+      },
+      "prerequisites": [],
+      "latency_turns": 0,
+      "duration_turns": 1,
+      "direct_effects": [
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "food_resilience",
+          "delta": 5
+        },
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "system_cost",
+          "delta": 2
+        },
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "food_resilience",
+          "delta": 2
+        }
+      ],
+      "tradeoffs": [
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "emissions_intensity",
+          "delta": 4,
+          "note": "higher transport emissions"
+        }
+      ],
+      "policy_dependencies": [],
+      "confidence": 0.72
+    },
+    {
+      "intervention_id": "intervention.fossil-peaker-buildout",
+      "label": "Fossil Peaker Buildout",
+      "description": "Rapid expansion of fossil peaker capacity for reliability.",
+      "applicable_regions": [
+        "delta_coast",
+        "interior_agri",
+        "urban_corridor"
+      ],
+      "cost": {
+        "amount": 7600,
+        "currency": "USDm"
+      },
+      "prerequisites": [],
+      "latency_turns": 0,
+      "duration_turns": 2,
+      "direct_effects": [
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "electricity_access",
+          "delta": 6
+        },
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "emissions_intensity",
+          "delta": 13
+        },
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "electricity_access",
+          "delta": 4
+        },
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "food_resilience",
+          "delta": -2
+        },
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "electricity_access",
+          "delta": 5
+        },
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "emissions_intensity",
+          "delta": 14
+        }
+      ],
+      "tradeoffs": [
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "equity_score",
+          "delta": -6,
+          "note": "cost pass-through burdens rural users"
+        }
+      ],
+      "policy_dependencies": [
+        "policy.world-game.ecological-floor.v1",
+        "policy.world-game.equity-guardrail.v1"
+      ],
+      "confidence": 0.79
+    },
+    {
+      "intervention_id": "intervention.irrigation-modernization",
+      "label": "Irrigation Modernization",
+      "description": "Upgrade irrigation efficiency and leak detection.",
+      "applicable_regions": [
+        "interior_agri"
+      ],
+      "cost": {
+        "amount": 4100,
+        "currency": "USDm"
+      },
+      "prerequisites": [],
+      "latency_turns": 0,
+      "duration_turns": 2,
+      "direct_effects": [
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "food_resilience",
+          "delta": 6
+        },
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "system_cost",
+          "delta": 2
+        },
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "water_security",
+          "delta": 8
+        }
+      ],
+      "tradeoffs": [],
+      "policy_dependencies": [],
+      "confidence": 0.82
+    },
+    {
+      "intervention_id": "intervention.transmission-buildout",
+      "label": "Transmission Buildout",
+      "description": "Expand inter-regional transmission backbone.",
+      "applicable_regions": [
+        "delta_coast",
+        "interior_agri",
+        "urban_corridor"
+      ],
+      "cost": {
+        "amount": 9800,
+        "currency": "USDm"
+      },
+      "prerequisites": [
+        "intervention.distributed-solar-rollout"
+      ],
+      "latency_turns": 1,
+      "duration_turns": 3,
+      "direct_effects": [
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "electricity_access",
+          "delta": 4
+        },
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "system_cost",
+          "delta": 5
+        },
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "electricity_access",
+          "delta": 6
+        },
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "equity_score",
+          "delta": 4
+        },
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "electricity_access",
+          "delta": 3
+        }
+      ],
+      "tradeoffs": [
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "water_security",
+          "delta": -4,
+          "note": "cooling and construction water demand"
+        }
+      ],
+      "policy_dependencies": [
+        "policy.world-game.approval-thresholds.v1"
+      ],
+      "confidence": 0.67
+    }
+  ],
+  "shocks": [
+    {
+      "shock_id": "shock.drought.moderate",
+      "label": "Moderate Drought",
+      "description": "Two-region drought reducing water security and food resilience.",
+      "applicable_regions": [
+        "delta_coast",
+        "interior_agri"
+      ],
+      "probability": 0.45,
+      "severity": "medium",
+      "effects": [
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "water_security",
+          "delta": -12
+        },
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "food_resilience",
+          "delta": -6
+        },
+        {
+          "region_id": "interior_agri",
+          "indicator_id": "water_security",
+          "delta": -10
+        }
+      ],
+      "duration_turns": 1
+    },
+    {
+      "shock_id": "shock.fuel-import-disruption",
+      "label": "Fuel Import Disruption",
+      "description": "Fuel import interruption raising cost and emissions pressure.",
+      "applicable_regions": [
+        "delta_coast",
+        "urban_corridor"
+      ],
+      "probability": 0.35,
+      "severity": "high",
+      "effects": [
+        {
+          "region_id": "delta_coast",
+          "indicator_id": "system_cost",
+          "delta": 7
+        },
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "emissions_intensity",
+          "delta": 5
+        },
+        {
+          "region_id": "urban_corridor",
+          "indicator_id": "system_cost",
+          "delta": 9
+        }
+      ],
+      "duration_turns": 1
+    }
+  ],
+  "shock_schedule": [
+    [
+      "shock.drought.moderate"
+    ],
+    [],
+    [
+      "shock.fuel-import-disruption"
+    ],
+    []
+  ],
+  "policy_pack_ref": "adapters/world_game/policies/world_game_policy_pack.json",
+  "weights": {
+    "electricity_access": 0.22,
+    "emissions_intensity": 0.16,
+    "equity_score": 0.14,
+    "food_resilience": 0.2,
+    "system_cost": 0.1,
+    "water_security": 0.18
+  },
+  "success_criteria": {
+    "minimum_composite_score": 58,
+    "no_indicator_below": 25
+  },
+  "strategies": [
+    {
+      "strategy_id": "strategy.access-first",
+      "label": "Access First",
+      "description": "Prioritize rapid access gains with heavy infrastructure spending.",
+      "selected_interventions": [
+        "intervention.fossil-peaker-buildout",
+        "intervention.transmission-buildout",
+        "intervention.fertilizer-logistics-subsidy",
+        "intervention.transmission-buildout"
+      ]
+    },
+    {
+      "strategy_id": "strategy.low-carbon-balanced",
+      "label": "Low-Carbon Balanced",
+      "description": "Balance access gains with carbon and equity constraints.",
+      "selected_interventions": [
+        "intervention.distributed-solar-rollout",
+        "intervention.irrigation-modernization",
+        "intervention.transmission-buildout",
+        "intervention.distributed-solar-rollout"
+      ]
+    },
+    {
+      "strategy_id": "strategy.resilience-first",
+      "label": "Resilience First",
+      "description": "Prioritize water and food resilience under shocks.",
+      "selected_interventions": [
+        "intervention.irrigation-modernization",
+        "intervention.desalination-expansion",
+        "intervention.irrigation-modernization",
+        "intervention.distributed-solar-rollout"
+      ]
+    }
+  ]
+}

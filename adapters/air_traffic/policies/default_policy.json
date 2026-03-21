@@ -1,0 +1,90 @@
+{
+  "policy_id": "policy.air-traffic.default",
+  "policy_name": "air_traffic_safety_constraints",
+  "policy_type": "safety",
+  "rules": [
+    {
+      "rule_id": "rule.air-traffic.deny-unsafe-clearance",
+      "rule_name": "Deny unsafe conflict-clearance action",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.action_type",
+        "operator": "equals",
+        "value": "clear_conflict_takeoff_without_separation"
+      },
+      "outcome": "deny",
+      "message_template": "Unsafe takeoff clearance is blocked in the air-traffic domain.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-09T08:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.air-traffic.deny-low-separation",
+      "rule_name": "Deny minimum separation below safe threshold",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.minimum_separation_nm",
+        "operator": "<",
+        "value": 3
+      },
+      "outcome": "deny",
+      "message_template": "Minimum separation below 3nm is not permitted.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-09T08:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.air-traffic.warn-low-fuel-buffer",
+      "rule_name": "Warn when fuel buffer is degraded",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.fuel_buffer_minutes",
+        "operator": "<",
+        "value": 30
+      },
+      "outcome": "warn",
+      "message_template": "Fuel buffer is below preferred safety margin.",
+      "evaluation_mode": "deterministic",
+      "severity": "medium",
+      "created_at": "2026-03-09T08:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.air-traffic.require-approval-closed-runway",
+      "rule_name": "Require approval before rerouting to closed runway",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.action_type",
+        "operator": "equals",
+        "value": "reroute_arrival_to_closed_runway"
+      },
+      "outcome": "require_approval",
+      "message_template": "Supervisor approval is required for closed-runway reroutes.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-09T08:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.air-traffic.require-simulation-evidence",
+      "rule_name": "Require approval if no simulation evidence is attached",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.simulation_completed",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "require_approval",
+      "message_template": "Run and attach simulation evidence before operational action.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-09T08:00:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-09T08:00:00Z",
+  "version": 1
+}

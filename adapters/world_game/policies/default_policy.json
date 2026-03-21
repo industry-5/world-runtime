@@ -1,0 +1,24 @@
+{
+  "policy_id": "policy.world-game.default.v1",
+  "policy_name": "world_game_default_policy",
+  "policy_type": "safety",
+  "rules": [
+    {
+      "rule_id": "rule.world-game.default.warn-low-composite",
+      "rule_name": "Warn when projected composite score is low",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.projected_composite_score",
+        "operator": "<",
+        "value": 45
+      },
+      "outcome": "warn",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-11T00:00:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-11T00:00:00Z",
+  "version": 1
+}

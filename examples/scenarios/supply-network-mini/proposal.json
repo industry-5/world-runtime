@@ -1,0 +1,25 @@
+{
+  "proposal_id": "proposal.reroute.0001",
+  "proposal_type": "operational_response",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.ops-planner-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "shipment.88421",
+      "entity_type": "shipment"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "reroute_shipment",
+    "parameters": {
+      "shipment_id": "shipment.88421",
+      "new_route": "route.alt-texas-02",
+      "cost_delta_percent": 6
+    }
+  },
+  "justification": "Rerouting reduces factory output loss.",
+  "created_at": "2026-03-08T11:20:00Z"
+}

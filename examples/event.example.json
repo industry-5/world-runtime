@@ -1,0 +1,36 @@
+{
+  "event_id": "evt.shipment-delay.0001",
+  "event_type": "shipment_delayed",
+  "occurred_at": "2026-03-08T11:15:00Z",
+  "recorded_at": "2026-03-08T11:16:10Z",
+  "actor": {
+    "actor_id": "service.transport-monitor",
+    "actor_type": "service",
+    "display_name": "Transport Monitor"
+  },
+  "subject_entities": [
+    {
+      "entity_id": "shipment.88421",
+      "entity_type": "shipment"
+    },
+    {
+      "entity_id": "factory.acme.dallas",
+      "entity_type": "factory"
+    }
+  ],
+  "payload": {
+    "shipment_id": "shipment.88421",
+    "delay_hours": 18,
+    "cause": "weather",
+    "expected_arrival": "2026-03-09T14:00:00Z"
+  },
+  "metadata": {
+    "adapter": "supply-network",
+    "severity": "medium"
+  },
+  "causation_id": "cmd.monitor.delay-detected.88421",
+  "correlation_id": "corr.supply-event.20260308.01",
+  "stream_id": "shipment.88421",
+  "sequence": 12,
+  "schema_version": "1.0.0"
+}

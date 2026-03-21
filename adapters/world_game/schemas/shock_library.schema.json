@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/world_game/shock_library.schema.json",
+  "title": "World Game Shock Library",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "library_id": { "type": "string", "minLength": 1 },
+    "label": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "shocks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "shock.schema.json"
+      }
+    }
+  },
+  "required": ["library_id", "label", "shocks"]
+}

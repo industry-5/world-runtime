@@ -1,0 +1,21 @@
+:root {
+  --wg-font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --wg-shell-bg: #071621;
+  --wg-panel-bg: #0d2433;
+  --wg-panel-bg-elevated: #143043;
+  --wg-border: #2d4757;
+  --wg-text-primary: #dbe8ef;
+  --wg-text-muted: #9fb3bf;
+  --wg-accent: #4ec9d6;
+  --wg-accent-strong: #87f0ff;
+  --wg-warn: #ffb366;
+  --wg-error: #ff8a8a;
+  --wg-success: #7ed7a4;
+  --wg-radius: 12px;
+  --wg-shadow: 0 8px 30px rgb(0 0 0 / 22%);
+  --wg-space-1: 0.25rem;
+  --wg-space-2: 0.5rem;
+  --wg-space-3: 0.75rem;
+  --wg-space-4: 1rem;
+  --wg-space-5: 1.5rem;
+}

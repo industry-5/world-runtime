@@ -1,0 +1,10 @@
+{
+  "catalog_id": "catalog.world-game-multi-region.interventions.v1",
+  "interventions": [
+    "intervention.centralized-transmission-buildout",
+    "intervention.distributed-microgrids",
+    "intervention.basin-efficiency-program",
+    "intervention.port-dredging-upgrade",
+    "intervention.emergency-fuel-subsidy"
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "export_version": "1.0",
+  "generated_at": "2026-03-09T17:29:21Z",
+  "scope": {
+    "session_id": "session.f686dab3f5ff",
+    "decision_id": "decision.af9d40d76d92"
+  },
+  "artifacts": {
+    "decisions": [
+      {
+        "decision_id": "decision.af9d40d76d92",
+        "status": "approved",
+        "selected_proposal_id": "proposal.reroute.0001",
+        "selected_action": {
+          "action_type": "reroute_shipment",
+          "parameters": {
+            "shipment_id": "shipment.88421",
+            "new_route": "route.alt-texas-02",
+            "cost_delta_percent": 6
+          }
+        },
+        "policy_results": [
+          {
+            "policy_id": "policy.supply-network.default",
+            "policy_name": "supply_network_default_policy",
+            "rule_id": "rule.reroute-cost-threshold",
+            "rule_name": "Reroute cost soft threshold",
+            "outcome": "warn",
+            "matched": true,
+            "message": null,
+            "severity": null,
+            "evidence": {
+              "field": "proposed_action.parameters.cost_delta_percent",
+              "operator": ">",
+              "expected": 5,
+              "actual": 6
+            }
+          }
+        ],
+        "approval_status": "not_required",
+        "approval_id": null,
+        "approvals": [],
+        "approval_chain": [],
+        "created_at": "2026-03-09T17:29:21Z",
+        "provenance": {
+          "trace": {
+            "session_id": "session.f686dab3f5ff",
+            "decision_id": "decision.af9d40d76d92",
+            "proposal_id": "proposal.reroute.0001",
+            "approval_id": null,
+            "simulation_refs": [],
+            "correlation_id": null
+          },
+          "stages": [
+            {
+              "stage": "proposal",
+              "status": "completed",
+              "ref_id": "proposal.reroute.0001",
+              "at": "2026-03-08T11:20:00Z"
+            },
+            {
+              "stage": "policy_evaluation",
+              "status": "completed",
+              "ref_id": "policy.proposal.reroute.0001",
+              "at": "2026-03-09T17:29:21Z",
+              "attributes": {
+                "final_outcome": "warn"
+              }
+            },
+            {
+              "stage": "execution_outcome",
+              "status": "completed",
+              "ref_id": "decision.af9d40d76d92",
+              "at": "2026-03-09T17:29:21Z",
+              "attributes": {
+                "outcome": "approved"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "evidence_type": "policy_rule",
+              "ref_id": "rule.reroute-cost-threshold",
+              "summary": "Policy rule outcome=warn.",
+              "stage": "policy_evaluation",
+              "attributes": {
+                "evidence": {
+                  "field": "proposed_action.parameters.cost_delta_percent",
+                  "operator": ">",
+                  "expected": 5,
+                  "actual": 6
+                }
+              }
+            }
+          ],
+          "evidence_summary": [
+            "Policy rule outcome=warn."
+          ]
+        }
+      }
+    ],
+    "approvals": [],
+    "connector_policy_decisions": [],
+    "session_events": [
+      {
+        "type": "task.started",
+        "at": "2026-03-09T17:29:21Z",
+        "payload": {
+          "task_id": "task.1c8e7114a2d5",
+          "method": "proposal.submit"
+        },
+        "wire_type": "notification",
+        "protocol_version": "1.0",
+        "method": "task.started",
+        "params": {
+          "task_id": "task.1c8e7114a2d5",
+          "method": "proposal.submit"
+        }
+      },
+      {
+        "type": "task.progress",
+        "at": "2026-03-09T17:29:21Z",
+        "payload": {
+          "task_id": "task.1c8e7114a2d5",
+          "message": "dispatch"
+        },
+        "wire_type": "notification",
+        "protocol_version": "1.0",
+        "method": "task.progress",
+        "params": {
+          "task_id": "task.1c8e7114a2d5",
+          "message": "dispatch"
+        }
+      },
+      {
+        "type": "task.completed",
+        "at": "2026-03-09T17:29:21Z",
+        "payload": {
+          "task_id": "task.1c8e7114a2d5"
+        },
+        "wire_type": "notification",
+        "protocol_version": "1.0",
+        "method": "task.completed",
+        "params": {
+          "task_id": "task.1c8e7114a2d5"
+        }
+      }
+    ],
+    "traces": [
+      {
+        "trace_id": "trace.6cfa3f722a5d",
+        "name": "app_server.task_submit",
+        "component": "app_server",
+        "status": "completed",
+        "started_at": "2026-03-09T17:29:21Z",
+        "ended_at": "2026-03-09T17:29:21Z",
+        "duration_ms": 0,
+        "context": {
+          "session_id": "session.f686dab3f5ff",
+          "method": "proposal.submit"
+        },
+        "events": [
+          {
+            "at": "2026-03-09T17:29:21Z",
+            "event_type": "task.created",
+            "attributes": {
+              "task_id": "task.1c8e7114a2d5"
+            }
+          }
+        ],
+        "error": null
+      }
+    ],
+    "telemetry_events": [
+      {
+        "event_id": "telem.1f7e349b3b6a",
+        "at": "2026-03-09T17:29:21Z",
+        "component": "app_server",
+        "event_type": "session.notification",
+        "severity": "info",
+        "trace_id": null,
+        "session_id": "session.f686dab3f5ff",
+        "task_id": "task.1c8e7114a2d5",
+        "attributes": {
+          "method": "task.progress"
+        }
+      },
+      {
+        "event_id": "telem.2c60156176bb",
+        "at": "2026-03-09T17:29:21Z",
+        "component": "app_server",
+        "event_type": "session.notification",
+        "severity": "info",
+        "trace_id": null,
+        "session_id": "session.f686dab3f5ff",
+        "task_id": "task.1c8e7114a2d5",
+        "attributes": {
+          "method": "task.started"
+        }
+      },
+      {
+        "event_id": "telem.3f402014b890",
+        "at": "2026-03-09T17:29:21Z",
+        "component": "app_server",
+        "event_type": "session.notification",
+        "severity": "info",
+        "trace_id": null,
+        "session_id": "session.f686dab3f5ff",
+        "task_id": "task.1c8e7114a2d5",
+        "attributes": {
+          "method": "task.completed"
+        }
+      }
+    ]
+  },
+  "diagnostics": {
+    "major_decisions": [
+      {
+        "decision_id": "decision.af9d40d76d92",
+        "status": "approved",
+        "stage_count": 3,
+        "missing_stages": [],
+        "end_to_end_traceable": true
+      }
+    ],
+    "connector_decisions": []
+  },
+  "redaction": {
+    "redacted": false,
+    "redaction_token": "[REDACTED]",
+    "redacted_field_names": [],
+    "redacted_paths": [],
+    "redaction_rule_tokens": [
+      "api_key",
+      "authorization",
+      "password",
+      "secret",
+      "secret_access_key",
+      "token"
+    ]
+  },
+  "fingerprint": "sha256:81de346394573f89b2e259c7ad4e5be4ecee75e734f615be8450e3e444b6c265"
+}

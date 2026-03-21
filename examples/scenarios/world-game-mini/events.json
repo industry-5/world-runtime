@@ -1,0 +1,32 @@
+[
+  {
+    "event_id": "evt.world-game.baseline.0001",
+    "event_type": "wg_baseline_loaded",
+    "occurred_at": "2026-03-11T00:00:00Z",
+    "payload": {
+      "scenario_id": "world-game-mini",
+      "baseline_version": "wg-baseline.v1"
+    },
+    "correlation_id": "corr.world-game.baseline.20260311"
+  },
+  {
+    "event_id": "evt.world-game.goal.0001",
+    "event_type": "wg_goal_declared",
+    "occurred_at": "2026-03-11T00:00:00Z",
+    "payload": {
+      "goal_id": "goal.universal-energy-access",
+      "target": 85
+    },
+    "correlation_id": "corr.world-game.goal.20260311"
+  },
+  {
+    "event_id": "evt.world-game.outcome.0001",
+    "event_type": "wg_outcome_projected",
+    "occurred_at": "2026-03-11T00:00:00Z",
+    "payload": {
+      "projection_id": "projection.world-game-mini.0001",
+      "composite_score": 51.0
+    },
+    "correlation_id": "corr.world-game.outcome.20260311"
+  }
+]

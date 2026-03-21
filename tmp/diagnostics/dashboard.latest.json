@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-03-09T17:29:21Z",
+  "cards": {
+    "events": 7,
+    "traces": 2,
+    "errors": 0,
+    "avg_trace_ms": 0
+  },
+  "breakdowns": {
+    "events_by_component": {
+      "operator_workflow": 2,
+      "app_server": 5
+    },
+    "events_by_severity": {
+      "info": 7
+    },
+    "traces_by_status": {
+      "completed": 2
+    }
+  },
+  "slow_traces": [
+    {
+      "trace_id": "trace.38ecf8fecd17",
+      "name": "operator_workflow.proposal_review",
+      "component": "operator_workflow",
+      "duration_ms": 0,
+      "status": "completed"
+    },
+    {
+      "trace_id": "trace.6cfa3f722a5d",
+      "name": "app_server.task_submit",
+      "component": "app_server",
+      "duration_ms": 0,
+      "status": "completed"
+    }
+  ]
+}

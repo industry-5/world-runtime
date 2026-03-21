@@ -1,0 +1,52 @@
+{
+  "policy_id": "policy.world-game.equity-guardrail.v1",
+  "policy_name": "world_game_equity_guardrail",
+  "policy_type": "compliance",
+  "rules": [
+    {
+      "rule_id": "rule.world-game.equity.deny-collapse",
+      "rule_name": "Deny extreme equity collapse",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.projected_indicator_scores.equity_score",
+        "operator": "<",
+        "value": 25
+      },
+      "outcome": "deny",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-11T00:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.world-game.equity.require-approval-low-equity",
+      "rule_name": "Require approval for low equity path",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.projected_indicator_scores.equity_score",
+        "operator": "<",
+        "value": 42
+      },
+      "outcome": "require_approval",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-11T00:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.world-game.equity.warn-soft-floor",
+      "rule_name": "Warn equity soft floor",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.projected_indicator_scores.equity_score",
+        "operator": "<",
+        "value": 55
+      },
+      "outcome": "warn",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-11T00:00:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-11T00:00:00Z",
+  "version": 1
+}

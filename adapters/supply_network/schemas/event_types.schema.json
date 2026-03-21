@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/supply_network/event_types.schema.json",
+  "title": "Supply Network Event Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": ["shipment_delayed", "shipment_rerouted", "supplier_failed"]
+    }
+  },
+  "required": ["event_type"]
+}

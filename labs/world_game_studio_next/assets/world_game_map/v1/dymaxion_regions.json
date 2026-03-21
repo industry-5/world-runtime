@@ -1,0 +1,42 @@
+{
+  "regions": [
+    {
+      "region_id": "upstream_water_basin",
+      "label": "Upstream Water Basin",
+      "face_id": "face_northwest",
+      "seam_tags": ["seam.northwest"],
+      "polygon": [
+        [460, 120],
+        [620, 190],
+        [560, 320],
+        [390, 280]
+      ]
+    },
+    {
+      "region_id": "coastal_import_hub",
+      "label": "Coastal Import Hub",
+      "face_id": "face_southwest",
+      "seam_tags": ["seam.southern_arc"],
+      "polygon": [
+        [210, 300],
+        [390, 280],
+        [370, 470],
+        [180, 500],
+        [130, 390]
+      ]
+    },
+    {
+      "region_id": "manufacturing_belt",
+      "label": "Manufacturing Belt",
+      "face_id": "face_southeast",
+      "seam_tags": ["seam.southern_arc"],
+      "polygon": [
+        [390, 280],
+        [560, 320],
+        [740, 430],
+        [610, 560],
+        [370, 470]
+      ]
+    }
+  ]
+}

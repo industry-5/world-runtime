@@ -1,0 +1,401 @@
+{
+  "bundle_metadata": {
+    "bundle_id": "wg.authoring.bundle.multi-region.v1",
+    "label": "World Game Multi-Region Authoring Bundle v1",
+    "description": "Draft template bundle for deterministic scenario instantiation.",
+    "status": "draft",
+    "template_version": 1,
+    "content_version": "1.0.0",
+    "deterministic_version_seed": "wg-m8-authoring-seed.v1",
+    "deterministic_version_hash": "sha256:342f58fc002615b49f73a4a16c6ffab8919995be76b75085c84aacfc629f671e",
+    "created_at": "2026-03-11T00:00:00Z",
+    "updated_at": "2026-03-11T00:00:00Z",
+    "tags": [
+      "wg-m8",
+      "authoring",
+      "template"
+    ]
+  },
+  "indicator_registries": [
+    {
+      "registry_id": "registry.wg.core.v1",
+      "label": "WG Core Indicator Registry v1",
+      "description": "Core deterministic indicator set for template instantiation.",
+      "indicators": [
+        {
+          "indicator_id": "electricity_access",
+          "label": "Electricity Access",
+          "description": "Share of population with reliable electricity access.",
+          "unit": "percent",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.3
+        },
+        {
+          "indicator_id": "water_security",
+          "label": "Water Security",
+          "description": "Regional water reliability and quality.",
+          "unit": "index",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.25
+        },
+        {
+          "indicator_id": "emissions_intensity",
+          "label": "Emissions Intensity",
+          "description": "Carbon intensity of delivery systems.",
+          "unit": "index",
+          "direction": "lower_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.25
+        },
+        {
+          "indicator_id": "equity_score",
+          "label": "Equity Score",
+          "description": "Distributional fairness across regions.",
+          "unit": "index",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.2
+        }
+      ]
+    }
+  ],
+  "intervention_libraries": [
+    {
+      "library_id": "library.wg.interventions.core.v1",
+      "label": "WG Core Intervention Library v1",
+      "description": "Interventions designed for 2-3 region template instantiation.",
+      "interventions": [
+        {
+          "intervention_id": "intervention.grid-hardening",
+          "label": "Grid Hardening",
+          "description": "Improve transmission reliability and reduce losses.",
+          "applicable_regions": [
+            "alpha_basin",
+            "beta_coast",
+            "gamma_hinterland"
+          ],
+          "cost": {
+            "amount": 4300,
+            "currency": "USDm"
+          },
+          "prerequisites": [],
+          "latency_turns": 0,
+          "duration_turns": 2,
+          "direct_effects": [
+            {
+              "region_id": "alpha_basin",
+              "indicator_id": "electricity_access",
+              "delta": 4
+            },
+            {
+              "region_id": "beta_coast",
+              "indicator_id": "electricity_access",
+              "delta": 5
+            },
+            {
+              "region_id": "gamma_hinterland",
+              "indicator_id": "electricity_access",
+              "delta": 3
+            },
+            {
+              "region_id": "beta_coast",
+              "indicator_id": "emissions_intensity",
+              "delta": -3
+            }
+          ],
+          "tradeoffs": [
+            {
+              "region_id": "alpha_basin",
+              "indicator_id": "water_security",
+              "delta": -1,
+              "note": "construction demand"
+            }
+          ],
+          "policy_dependencies": [
+            "policy.world-game.approval-thresholds.v1"
+          ],
+          "confidence": 0.78
+        },
+        {
+          "intervention_id": "intervention.water-reuse-program",
+          "label": "Water Reuse Program",
+          "description": "Scale industrial and municipal reuse infrastructure.",
+          "applicable_regions": [
+            "alpha_basin",
+            "gamma_hinterland"
+          ],
+          "cost": {
+            "amount": 3800,
+            "currency": "USDm"
+          },
+          "prerequisites": [],
+          "latency_turns": 0,
+          "duration_turns": 2,
+          "direct_effects": [
+            {
+              "region_id": "alpha_basin",
+              "indicator_id": "water_security",
+              "delta": 6
+            },
+            {
+              "region_id": "gamma_hinterland",
+              "indicator_id": "water_security",
+              "delta": 5
+            },
+            {
+              "region_id": "gamma_hinterland",
+              "indicator_id": "equity_score",
+              "delta": 2
+            }
+          ],
+          "tradeoffs": [
+            {
+              "region_id": "alpha_basin",
+              "indicator_id": "emissions_intensity",
+              "delta": 2,
+              "note": "energy demand"
+            }
+          ],
+          "policy_dependencies": [],
+          "confidence": 0.8
+        },
+        {
+          "intervention_id": "intervention.equity-grant-program",
+          "label": "Equity Grant Program",
+          "description": "Fund targeted affordability and service upgrades.",
+          "applicable_regions": [
+            "beta_coast",
+            "gamma_hinterland"
+          ],
+          "cost": {
+            "amount": 2500,
+            "currency": "USDm"
+          },
+          "prerequisites": [
+            "intervention.grid-hardening"
+          ],
+          "latency_turns": 0,
+          "duration_turns": 1,
+          "direct_effects": [
+            {
+              "region_id": "beta_coast",
+              "indicator_id": "equity_score",
+              "delta": 5
+            },
+            {
+              "region_id": "gamma_hinterland",
+              "indicator_id": "equity_score",
+              "delta": 6
+            }
+          ],
+          "tradeoffs": [
+            {
+              "region_id": "beta_coast",
+              "indicator_id": "emissions_intensity",
+              "delta": 1,
+              "note": "diesel backup in remote deployments"
+            }
+          ],
+          "policy_dependencies": [
+            "policy.world-game.equity-guardrail.v1"
+          ],
+          "confidence": 0.84
+        }
+      ]
+    }
+  ],
+  "shock_libraries": [
+    {
+      "library_id": "library.wg.shocks.core.v1",
+      "label": "WG Core Shock Library v1",
+      "description": "Shocks scoped for 2-3 region template instantiation.",
+      "shocks": [
+        {
+          "shock_id": "shock.baseline.drought",
+          "label": "Baseline Drought",
+          "description": "Seasonal drought pressure across basin and coast.",
+          "applicable_regions": [
+            "alpha_basin",
+            "beta_coast"
+          ],
+          "probability": 0.4,
+          "severity": "medium",
+          "effects": [
+            {
+              "region_id": "alpha_basin",
+              "indicator_id": "water_security",
+              "delta": -8
+            },
+            {
+              "region_id": "beta_coast",
+              "indicator_id": "water_security",
+              "delta": -5
+            }
+          ],
+          "duration_turns": 1
+        },
+        {
+          "shock_id": "shock.hinterland.logistics-disruption",
+          "label": "Hinterland Logistics Disruption",
+          "description": "Transport disruption impacting service reliability.",
+          "applicable_regions": [
+            "gamma_hinterland"
+          ],
+          "probability": 0.35,
+          "severity": "high",
+          "effects": [
+            {
+              "region_id": "gamma_hinterland",
+              "indicator_id": "electricity_access",
+              "delta": -6
+            },
+            {
+              "region_id": "gamma_hinterland",
+              "indicator_id": "equity_score",
+              "delta": -4
+            }
+          ],
+          "duration_turns": 1
+        }
+      ]
+    }
+  ],
+  "scenario_templates": [
+    {
+      "template_id": "template.wg.multi-region.core.v1",
+      "label": "WG Multi-Region Core Template",
+      "description": "Reusable deterministic template with parameterized region count and contract references.",
+      "parameter_model": {
+        "parameters": [
+          {
+            "name": "baseline_tag",
+            "type": "string",
+            "default": "v1",
+            "min_length": 2
+          },
+          {
+            "name": "indicator_registry_ref",
+            "type": "string",
+            "default": "registry.wg.core.v1"
+          },
+          {
+            "name": "intervention_library_ref",
+            "type": "string",
+            "default": "library.wg.interventions.core.v1"
+          },
+          {
+            "name": "policy_pack_ref",
+            "type": "string",
+            "default": "adapters/world_game/policies/world_game_policy_pack.json"
+          },
+          {
+            "name": "region_count",
+            "type": "integer",
+            "default": 3,
+            "minimum": 2,
+            "maximum": 3
+          },
+          {
+            "name": "scenario_suffix",
+            "type": "string",
+            "default": "generated",
+            "min_length": 3
+          },
+          {
+            "name": "shock_library_ref",
+            "type": "string",
+            "default": "library.wg.shocks.core.v1"
+          },
+          {
+            "name": "start_year",
+            "type": "integer",
+            "default": 2028,
+            "minimum": 2020,
+            "maximum": 2100
+          }
+        ]
+      },
+      "scenario_id_template": "world-game-template-{{scenario_suffix}}",
+      "baseline_version_template": "wg-template.{{baseline_tag}}",
+      "metadata_template": {
+        "theme": "authoring-template",
+        "seed": "wg-m8",
+        "operator_note": "Instantiated from reusable bundle"
+      },
+      "time_horizon": {
+        "start_year": "{{start_year}}",
+        "years_per_turn": 4,
+        "turn_count": 4
+      },
+      "region_pool": [
+        {
+          "region_id": "alpha_basin",
+          "label": "Alpha Basin",
+          "baseline_indicators": {
+            "electricity_access": 62,
+            "water_security": 57,
+            "emissions_intensity": 60,
+            "equity_score": 49
+          }
+        },
+        {
+          "region_id": "beta_coast",
+          "label": "Beta Coast",
+          "baseline_indicators": {
+            "electricity_access": 70,
+            "water_security": 45,
+            "emissions_intensity": 67,
+            "equity_score": 52
+          }
+        },
+        {
+          "region_id": "gamma_hinterland",
+          "label": "Gamma Hinterland",
+          "baseline_indicators": {
+            "electricity_access": 55,
+            "water_security": 51,
+            "emissions_intensity": 58,
+            "equity_score": 43
+          }
+        }
+      ],
+      "indicator_registry_ref_template": "{{indicator_registry_ref}}",
+      "intervention_library_ref_template": "{{intervention_library_ref}}",
+      "shock_library_ref_template": "{{shock_library_ref}}",
+      "policy_pack_ref_template": "{{policy_pack_ref}}",
+      "shock_schedule_template": [
+        [
+          "shock.baseline.drought"
+        ],
+        [],
+        [
+          "shock.hinterland.logistics-disruption"
+        ],
+        []
+      ],
+      "success_criteria_template": {
+        "minimum_composite_score": 55,
+        "no_indicator_below": 20
+      },
+      "strategy_templates": [
+        {
+          "strategy_id": "strategy.template-balanced",
+          "label": "Template Balanced",
+          "description": "Balanced pathway under template defaults.",
+          "selected_interventions": [
+            "intervention.grid-hardening",
+            "intervention.water-reuse-program",
+            "intervention.equity-grant-program",
+            "intervention.grid-hardening"
+          ]
+        }
+      ]
+    }
+  ]
+}

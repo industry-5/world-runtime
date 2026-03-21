@@ -1,0 +1,25 @@
+{
+  "catalog_id": "catalog.world-game-multi-region.interventions.v1",
+  "interventions": [
+    {
+      "intervention_id": "intervention.centralized-transmission-buildout",
+      "regions": ["coastal_import_hub", "upstream_water_basin", "manufacturing_belt"]
+    },
+    {
+      "intervention_id": "intervention.distributed-microgrids",
+      "regions": ["upstream_water_basin", "manufacturing_belt"]
+    },
+    {
+      "intervention_id": "intervention.basin-efficiency-program",
+      "regions": ["upstream_water_basin", "manufacturing_belt"]
+    },
+    {
+      "intervention_id": "intervention.port-dredging-upgrade",
+      "regions": ["coastal_import_hub", "manufacturing_belt"]
+    },
+    {
+      "intervention_id": "intervention.emergency-fuel-subsidy",
+      "regions": ["coastal_import_hub", "manufacturing_belt"]
+    }
+  ]
+}

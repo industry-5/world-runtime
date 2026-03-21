@@ -1,0 +1,804 @@
+{
+  "bundle_metadata": {
+    "bundle_id": "wg.authoring.bundle.multi-region-stress.v1",
+    "label": "World Game Multi-Region Dependency Stress Pack v1",
+    "description": "Reusable dependency stress-test templates with network propagation fields.",
+    "status": "draft",
+    "template_version": 1,
+    "content_version": "1.0.0",
+    "deterministic_version_seed": "wg-m10-multi-region-stress-seed.v1",
+    "deterministic_version_hash": "sha256:daaf292cd04a69863778ec0ec9bbf0da802c84b212234381d01c3e625ce13e6a",
+    "created_at": "2026-03-11T00:00:00Z",
+    "updated_at": "2026-03-11T00:00:00Z",
+    "tags": [
+      "wg-m10",
+      "template-pack",
+      "multi-region",
+      "dependency-stress"
+    ]
+  },
+  "indicator_registries": [
+    {
+      "registry_id": "registry.wg.authoring.bundle.multi-region-stress.v1.compact.v1",
+      "label": "World Game Multi-Region Dependency Stress Pack v1 Compact Indicator Registry",
+      "description": "Compact indicator profile for lightweight authoring runs.",
+      "indicators": [
+        {
+          "indicator_id": "electricity_access",
+          "label": "Electricity Access",
+          "description": "Reliable electricity service level.",
+          "unit": "percent",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.2
+        },
+        {
+          "indicator_id": "equity_score",
+          "label": "Equity Score",
+          "description": "Distributional fairness across regions.",
+          "unit": "index",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.16
+        },
+        {
+          "indicator_id": "logistics_reliability",
+          "label": "Logistics Reliability",
+          "description": "Corridor continuity and throughput reliability.",
+          "unit": "index",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.16
+        },
+        {
+          "indicator_id": "water_security",
+          "label": "Water Security",
+          "description": "Basin-level water security and allocation reliability.",
+          "unit": "index",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.18
+        }
+      ]
+    },
+    {
+      "registry_id": "registry.wg.authoring.bundle.multi-region-stress.v1.full.v1",
+      "label": "World Game Multi-Region Dependency Stress Pack v1 Full Indicator Registry",
+      "description": "Full indicator profile from canonical scenario baseline.",
+      "indicators": [
+        {
+          "indicator_id": "electricity_access",
+          "label": "Electricity Access",
+          "description": "Reliable electricity service level.",
+          "unit": "percent",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.2
+        },
+        {
+          "indicator_id": "emissions_intensity",
+          "label": "Emissions Intensity",
+          "description": "Energy and transport carbon intensity.",
+          "unit": "index",
+          "direction": "lower_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.14
+        },
+        {
+          "indicator_id": "equity_score",
+          "label": "Equity Score",
+          "description": "Distributional fairness across regions.",
+          "unit": "index",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.16
+        },
+        {
+          "indicator_id": "food_resilience",
+          "label": "Food Resilience",
+          "description": "Food system reliability under disruption.",
+          "unit": "index",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.16
+        },
+        {
+          "indicator_id": "logistics_reliability",
+          "label": "Logistics Reliability",
+          "description": "Corridor continuity and throughput reliability.",
+          "unit": "index",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.16
+        },
+        {
+          "indicator_id": "water_security",
+          "label": "Water Security",
+          "description": "Basin-level water security and allocation reliability.",
+          "unit": "index",
+          "direction": "higher_is_better",
+          "min_value": 0,
+          "max_value": 100,
+          "weight": 0.18
+        }
+      ]
+    }
+  ],
+  "intervention_libraries": [
+    {
+      "library_id": "library.wg.authoring.bundle.multi-region-stress.v1.interventions.v1",
+      "label": "World Game Multi-Region Dependency Stress Pack v1 Intervention Library",
+      "description": "Reusable interventions derived from canonical scenario fixtures.",
+      "interventions": [
+        {
+          "intervention_id": "intervention.basin-efficiency-program",
+          "label": "Basin Efficiency Program",
+          "description": "Basin-wide efficiency investments for irrigation and industrial reuse.",
+          "applicable_regions": [
+            "manufacturing_belt",
+            "upstream_water_basin"
+          ],
+          "cost": {
+            "amount": 5200,
+            "currency": "USDm"
+          },
+          "prerequisites": [],
+          "latency_turns": 0,
+          "duration_turns": 2,
+          "direct_effects": [
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "food_resilience",
+              "delta": 4
+            },
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "water_security",
+              "delta": 6
+            },
+            {
+              "region_id": "upstream_water_basin",
+              "indicator_id": "water_security",
+              "delta": 9
+            }
+          ],
+          "tradeoffs": [
+            {
+              "region_id": "coastal_import_hub",
+              "indicator_id": "logistics_reliability",
+              "delta": -2,
+              "note": "construction disruptions"
+            }
+          ],
+          "policy_dependencies": [],
+          "confidence": 0.83
+        },
+        {
+          "intervention_id": "intervention.centralized-transmission-buildout",
+          "label": "Centralized Transmission Buildout",
+          "description": "Build large centralized transmission and generation corridors.",
+          "applicable_regions": [
+            "coastal_import_hub",
+            "manufacturing_belt",
+            "upstream_water_basin"
+          ],
+          "cost": {
+            "amount": 11200,
+            "currency": "USDm"
+          },
+          "prerequisites": [],
+          "latency_turns": 1,
+          "duration_turns": 3,
+          "direct_effects": [
+            {
+              "region_id": "coastal_import_hub",
+              "indicator_id": "electricity_access",
+              "delta": 4
+            },
+            {
+              "region_id": "coastal_import_hub",
+              "indicator_id": "emissions_intensity",
+              "delta": 3
+            },
+            {
+              "region_id": "coastal_import_hub",
+              "indicator_id": "logistics_reliability",
+              "delta": 3
+            },
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "electricity_access",
+              "delta": 6
+            },
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "logistics_reliability",
+              "delta": 4
+            }
+          ],
+          "tradeoffs": [
+            {
+              "region_id": "upstream_water_basin",
+              "indicator_id": "equity_score",
+              "delta": -5,
+              "note": "benefits exported downstream"
+            },
+            {
+              "region_id": "upstream_water_basin",
+              "indicator_id": "water_security",
+              "delta": -7,
+              "note": "cooling demand and basin extraction"
+            }
+          ],
+          "policy_dependencies": [
+            "policy.world-game.approval-thresholds.v1",
+            "policy.world-game.equity-guardrail.v1"
+          ],
+          "confidence": 0.64
+        },
+        {
+          "intervention_id": "intervention.distributed-microgrids",
+          "label": "Distributed Microgrids",
+          "description": "Deploy distributed microgrids and local storage.",
+          "applicable_regions": [
+            "manufacturing_belt",
+            "upstream_water_basin"
+          ],
+          "cost": {
+            "amount": 7200,
+            "currency": "USDm"
+          },
+          "prerequisites": [],
+          "latency_turns": 0,
+          "duration_turns": 2,
+          "direct_effects": [
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "electricity_access",
+              "delta": 4
+            },
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "emissions_intensity",
+              "delta": -3
+            },
+            {
+              "region_id": "upstream_water_basin",
+              "indicator_id": "electricity_access",
+              "delta": 5
+            },
+            {
+              "region_id": "upstream_water_basin",
+              "indicator_id": "emissions_intensity",
+              "delta": -4
+            },
+            {
+              "region_id": "upstream_water_basin",
+              "indicator_id": "equity_score",
+              "delta": 3
+            }
+          ],
+          "tradeoffs": [
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "equity_score",
+              "delta": -2,
+              "note": "upfront capex burden"
+            }
+          ],
+          "policy_dependencies": [],
+          "confidence": 0.79
+        },
+        {
+          "intervention_id": "intervention.emergency-fuel-subsidy",
+          "label": "Emergency Fuel Subsidy",
+          "description": "Emergency subsidy to stabilize short-term energy prices.",
+          "applicable_regions": [
+            "coastal_import_hub",
+            "manufacturing_belt"
+          ],
+          "cost": {
+            "amount": 4600,
+            "currency": "USDm"
+          },
+          "prerequisites": [],
+          "latency_turns": 0,
+          "duration_turns": 1,
+          "direct_effects": [
+            {
+              "region_id": "coastal_import_hub",
+              "indicator_id": "electricity_access",
+              "delta": 4
+            },
+            {
+              "region_id": "coastal_import_hub",
+              "indicator_id": "equity_score",
+              "delta": 2
+            },
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "electricity_access",
+              "delta": 5
+            }
+          ],
+          "tradeoffs": [
+            {
+              "region_id": "coastal_import_hub",
+              "indicator_id": "emissions_intensity",
+              "delta": 8,
+              "note": "fossil lock-in"
+            },
+            {
+              "region_id": "upstream_water_basin",
+              "indicator_id": "equity_score",
+              "delta": -4,
+              "note": "subsidy benefits skip upstream basin"
+            }
+          ],
+          "policy_dependencies": [
+            "policy.world-game.equity-guardrail.v1"
+          ],
+          "confidence": 0.81
+        },
+        {
+          "intervention_id": "intervention.port-dredging-upgrade",
+          "label": "Port Dredging Upgrade",
+          "description": "Expand coastal hub throughput to reduce import bottlenecks.",
+          "applicable_regions": [
+            "coastal_import_hub",
+            "manufacturing_belt"
+          ],
+          "cost": {
+            "amount": 6500,
+            "currency": "USDm"
+          },
+          "prerequisites": [],
+          "latency_turns": 0,
+          "duration_turns": 1,
+          "direct_effects": [
+            {
+              "region_id": "coastal_import_hub",
+              "indicator_id": "logistics_reliability",
+              "delta": 8
+            },
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "food_resilience",
+              "delta": 2
+            },
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "logistics_reliability",
+              "delta": 6
+            }
+          ],
+          "tradeoffs": [
+            {
+              "region_id": "coastal_import_hub",
+              "indicator_id": "emissions_intensity",
+              "delta": 4,
+              "note": "construction and shipping intensity"
+            }
+          ],
+          "policy_dependencies": [],
+          "confidence": 0.74
+        }
+      ]
+    }
+  ],
+  "shock_libraries": [
+    {
+      "library_id": "library.wg.authoring.bundle.multi-region-stress.v1.shocks.v1",
+      "label": "World Game Multi-Region Dependency Stress Pack v1 Shock Library",
+      "description": "Reusable shock library derived from canonical scenario fixtures.",
+      "shocks": [
+        {
+          "shock_id": "shock.coastal-port-disruption",
+          "label": "Coastal Port Disruption",
+          "description": "Port outage shock cascading through manufacturing supply chains.",
+          "applicable_regions": [
+            "coastal_import_hub",
+            "manufacturing_belt"
+          ],
+          "probability": 0.35,
+          "severity": "high",
+          "effects": [
+            {
+              "region_id": "coastal_import_hub",
+              "indicator_id": "logistics_reliability",
+              "delta": -14
+            },
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "food_resilience",
+              "delta": -4
+            },
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "logistics_reliability",
+              "delta": -11
+            }
+          ],
+          "duration_turns": 1
+        },
+        {
+          "shock_id": "shock.upstream-drought-severe",
+          "label": "Severe Upstream Drought",
+          "description": "Severe drought in upstream basin with downstream spillover.",
+          "applicable_regions": [
+            "manufacturing_belt",
+            "upstream_water_basin"
+          ],
+          "probability": 0.4,
+          "severity": "high",
+          "effects": [
+            {
+              "region_id": "manufacturing_belt",
+              "indicator_id": "water_security",
+              "delta": -8
+            },
+            {
+              "region_id": "upstream_water_basin",
+              "indicator_id": "food_resilience",
+              "delta": -9
+            },
+            {
+              "region_id": "upstream_water_basin",
+              "indicator_id": "water_security",
+              "delta": -16
+            }
+          ],
+          "duration_turns": 1
+        }
+      ]
+    }
+  ],
+  "scenario_templates": [
+    {
+      "template_id": "template.wg.multi-region.dependency-stress.v1",
+      "label": "Multi-Region Dependency Stress Template",
+      "description": "Reusable multi-region dependency stress template with optional compact indicator profile.",
+      "parameter_model": {
+        "parameters": [
+          {
+            "name": "baseline_tag",
+            "type": "string",
+            "default": "v1",
+            "min_length": 2
+          },
+          {
+            "name": "indicator_registry_ref",
+            "type": "string",
+            "default": "registry.wg.authoring.bundle.multi-region-stress.v1.full.v1",
+            "enum": [
+              "registry.wg.authoring.bundle.multi-region-stress.v1.full.v1",
+              "registry.wg.authoring.bundle.multi-region-stress.v1.compact.v1"
+            ]
+          },
+          {
+            "name": "intervention_library_ref",
+            "type": "string",
+            "default": "library.wg.authoring.bundle.multi-region-stress.v1.interventions.v1",
+            "enum": [
+              "library.wg.authoring.bundle.multi-region-stress.v1.interventions.v1"
+            ]
+          },
+          {
+            "name": "policy_pack_ref",
+            "type": "string",
+            "default": "adapters/world_game/policies/world_game_policy_pack.json"
+          },
+          {
+            "name": "region_count",
+            "type": "integer",
+            "default": 3,
+            "minimum": 2,
+            "maximum": 3
+          },
+          {
+            "name": "scenario_suffix",
+            "type": "string",
+            "default": "generated",
+            "min_length": 3
+          },
+          {
+            "name": "shock_library_ref",
+            "type": "string",
+            "default": "library.wg.authoring.bundle.multi-region-stress.v1.shocks.v1",
+            "enum": [
+              "library.wg.authoring.bundle.multi-region-stress.v1.shocks.v1"
+            ]
+          },
+          {
+            "name": "start_year",
+            "type": "integer",
+            "default": 2027,
+            "minimum": 2020,
+            "maximum": 2100
+          }
+        ]
+      },
+      "scenario_id_template": "world-game-multi-region-stress-template-{{scenario_suffix}}",
+      "baseline_version_template": "wg-multi-region-stress-template.{{baseline_tag}}",
+      "metadata_template": {
+        "theme": "authoring-template",
+        "pack": "wg.authoring.bundle.multi-region-stress.v1",
+        "operator_note": "Instantiated from WG-M10 reusable template pack"
+      },
+      "time_horizon": {
+        "start_year": "{{start_year}}",
+        "years_per_turn": 4,
+        "turn_count": 4
+      },
+      "region_pool": [
+        {
+          "region_id": "coastal_import_hub",
+          "label": "Coastal Import Hub",
+          "baseline_indicators": {
+            "electricity_access": 74,
+            "water_security": 42,
+            "food_resilience": 49,
+            "emissions_intensity": 69,
+            "equity_score": 50,
+            "logistics_reliability": 63
+          }
+        },
+        {
+          "region_id": "manufacturing_belt",
+          "label": "Manufacturing Belt",
+          "baseline_indicators": {
+            "electricity_access": 66,
+            "water_security": 45,
+            "food_resilience": 44,
+            "emissions_intensity": 73,
+            "equity_score": 43,
+            "logistics_reliability": 57
+          }
+        },
+        {
+          "region_id": "upstream_water_basin",
+          "label": "Upstream Water Basin",
+          "baseline_indicators": {
+            "electricity_access": 59,
+            "water_security": 61,
+            "food_resilience": 55,
+            "emissions_intensity": 58,
+            "equity_score": 46,
+            "logistics_reliability": 47
+          }
+        }
+      ],
+      "indicator_registry_ref_template": "{{indicator_registry_ref}}",
+      "intervention_library_ref_template": "{{intervention_library_ref}}",
+      "shock_library_ref_template": "{{shock_library_ref}}",
+      "policy_pack_ref_template": "{{policy_pack_ref}}",
+      "weights_template": {
+        "electricity_access": 0.2,
+        "water_security": 0.18,
+        "food_resilience": 0.16,
+        "emissions_intensity": 0.14,
+        "equity_score": 0.16,
+        "logistics_reliability": 0.16
+      },
+      "success_criteria_template": {
+        "minimum_composite_score": 56,
+        "no_indicator_below": 24
+      },
+      "shock_schedule_template": [
+        [
+          "shock.upstream-drought-severe"
+        ],
+        [],
+        [
+          "shock.coastal-port-disruption"
+        ],
+        []
+      ],
+      "strategy_templates": [
+        {
+          "strategy_id": "strategy.centralized-infrastructure-build",
+          "label": "Centralized Infrastructure Build",
+          "description": "Prioritize large centralized capacity investments.",
+          "selected_interventions": [
+            "intervention.centralized-transmission-buildout",
+            "intervention.port-dredging-upgrade",
+            "intervention.centralized-transmission-buildout",
+            "intervention.emergency-fuel-subsidy"
+          ]
+        },
+        {
+          "strategy_id": "strategy.distributed-resilience-build",
+          "label": "Distributed Resilience Build",
+          "description": "Prioritize local resilience and basin efficiency.",
+          "selected_interventions": [
+            "intervention.distributed-microgrids",
+            "intervention.basin-efficiency-program",
+            "intervention.distributed-microgrids",
+            "intervention.port-dredging-upgrade"
+          ]
+        },
+        {
+          "strategy_id": "strategy.emergency-response-short-term",
+          "label": "Emergency Response Short-Term",
+          "description": "Short-term stabilization with higher long-run risk.",
+          "selected_interventions": [
+            "intervention.emergency-fuel-subsidy",
+            "intervention.port-dredging-upgrade",
+            "intervention.emergency-fuel-subsidy",
+            "intervention.centralized-transmission-buildout"
+          ]
+        }
+      ],
+      "dependency_graph_template": {
+        "nodes": [
+          {
+            "node_id": "node.coastal_import_hub",
+            "region_id": "coastal_import_hub",
+            "label": "Coastal Hub Node"
+          },
+          {
+            "node_id": "node.upstream_water_basin",
+            "region_id": "upstream_water_basin",
+            "label": "Upstream Basin Node"
+          },
+          {
+            "node_id": "node.manufacturing_belt",
+            "region_id": "manufacturing_belt",
+            "label": "Manufacturing Node"
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "edge.upstream_to_coastal",
+            "from_node_id": "node.upstream_water_basin",
+            "to_node_id": "node.coastal_import_hub",
+            "capacity": 15,
+            "latency_turns": 0
+          },
+          {
+            "edge_id": "edge.upstream_to_manufacturing",
+            "from_node_id": "node.upstream_water_basin",
+            "to_node_id": "node.manufacturing_belt",
+            "capacity": 18,
+            "latency_turns": 0
+          },
+          {
+            "edge_id": "edge.coastal_to_manufacturing",
+            "from_node_id": "node.coastal_import_hub",
+            "to_node_id": "node.manufacturing_belt",
+            "capacity": 14,
+            "latency_turns": 0
+          }
+        ]
+      },
+      "resource_stocks_template": [
+        {
+          "stock_id": "stock.water.upstream",
+          "node_id": "node.upstream_water_basin",
+          "region_id": "upstream_water_basin",
+          "indicator_id": "water_security",
+          "baseline": 82,
+          "min_bound": 20,
+          "max_bound": 120,
+          "regen_rate": 6,
+          "demand_rate": 3,
+          "response_factor": 0.12
+        },
+        {
+          "stock_id": "stock.water.coastal",
+          "node_id": "node.coastal_import_hub",
+          "region_id": "coastal_import_hub",
+          "indicator_id": "water_security",
+          "baseline": 44,
+          "min_bound": 15,
+          "max_bound": 110,
+          "regen_rate": 2,
+          "demand_rate": 4,
+          "response_factor": 0.08
+        },
+        {
+          "stock_id": "stock.water.manufacturing",
+          "node_id": "node.manufacturing_belt",
+          "region_id": "manufacturing_belt",
+          "indicator_id": "water_security",
+          "baseline": 40,
+          "min_bound": 15,
+          "max_bound": 105,
+          "regen_rate": 1,
+          "demand_rate": 5,
+          "response_factor": 0.09
+        }
+      ],
+      "resource_flows_template": [
+        {
+          "flow_id": "flow.water.upstream_to_coastal",
+          "source_stock_id": "stock.water.upstream",
+          "target_stock_id": "stock.water.coastal",
+          "from_node_id": "node.upstream_water_basin",
+          "to_node_id": "node.coastal_import_hub",
+          "capacity": 11,
+          "loss_factor": 0.08,
+          "indicator_conversion": 0.35
+        },
+        {
+          "flow_id": "flow.water.upstream_to_manufacturing",
+          "source_stock_id": "stock.water.upstream",
+          "target_stock_id": "stock.water.manufacturing",
+          "from_node_id": "node.upstream_water_basin",
+          "to_node_id": "node.manufacturing_belt",
+          "capacity": 10,
+          "loss_factor": 0.05,
+          "indicator_conversion": 0.4
+        },
+        {
+          "flow_id": "flow.water.coastal_to_manufacturing",
+          "source_stock_id": "stock.water.coastal",
+          "target_stock_id": "stock.water.manufacturing",
+          "from_node_id": "node.coastal_import_hub",
+          "to_node_id": "node.manufacturing_belt",
+          "capacity": 7,
+          "loss_factor": 0.04,
+          "indicator_conversion": 0.25
+        }
+      ],
+      "spillover_rules_template": [
+        {
+          "rule_id": "spillover.water.upstream_to_manufacturing_food",
+          "from_node_id": "node.upstream_water_basin",
+          "to_node_id": "node.manufacturing_belt",
+          "source_indicator_id": "water_security",
+          "target_indicator_id": "food_resilience",
+          "coefficient": 0.24,
+          "max_abs_transfer": 6
+        },
+        {
+          "rule_id": "spillover.logistics.coastal_to_manufacturing_food",
+          "edge_id": "edge.coastal_to_manufacturing",
+          "source_indicator_id": "logistics_reliability",
+          "target_indicator_id": "food_resilience",
+          "coefficient": 0.18,
+          "max_abs_transfer": 4
+        }
+      ],
+      "equity_dimensions_template": {
+        "region_weights": {
+          "coastal_import_hub": 1.0,
+          "upstream_water_basin": 1.25,
+          "manufacturing_belt": 1.1
+        },
+        "groups": [
+          {
+            "group_id": "group.upstream_communities",
+            "region_ids": [
+              "upstream_water_basin"
+            ],
+            "weight": 0.55,
+            "baseline_target": 48
+          },
+          {
+            "group_id": "group.downstream_consumers",
+            "region_ids": [
+              "coastal_import_hub",
+              "manufacturing_belt"
+            ],
+            "weight": 0.45,
+            "baseline_target": 52
+          }
+        ],
+        "baseline_targets": {
+          "disparity_spread": 11,
+          "weighted_variance": 48
+        }
+      }
+    }
+  ]
+}
