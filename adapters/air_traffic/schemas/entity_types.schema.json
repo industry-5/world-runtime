@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/air_traffic/entity_types.schema.json",
+  "title": "Air Traffic Entity Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "enum": ["airport", "runway", "flight", "control_sector"]
+    }
+  },
+  "required": ["entity_type"]
+}

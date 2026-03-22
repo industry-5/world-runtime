@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/air_traffic/event_types.schema.json",
+  "title": "Air Traffic Event Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "weather_alert_issued",
+        "runway_incursion_detected",
+        "flight_holding_pattern_assigned"
+      ]
+    }
+  },
+  "required": ["event_type"]
+}

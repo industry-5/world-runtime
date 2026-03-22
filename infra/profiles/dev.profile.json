@@ -1,0 +1,14 @@
+{
+  "profile_id": "profile.dev",
+  "environment": "dev",
+  "persistence_config": "infra/config/persistence.dev.json",
+  "llm_config": "infra/config/llm.dev.json",
+  "adapters": [
+    "adapter-supply-network",
+    "adapter-air-traffic"
+  ],
+  "bootstrap_scenarios": [
+    "examples/scenarios/supply-network-mini",
+    "examples/scenarios/air-traffic-mini"
+  ]
+}
