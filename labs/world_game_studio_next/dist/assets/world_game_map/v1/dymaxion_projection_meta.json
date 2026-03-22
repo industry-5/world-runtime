@@ -1,0 +1,29 @@
+{
+  "package_id": "world_game_map",
+  "version": "1.0.0",
+  "projection": "dymaxion_schematic",
+  "viewport": {
+    "width": 1000,
+    "height": 620,
+    "default": {
+      "zoom": 1,
+      "x": 0,
+      "y": 0
+    },
+    "min_zoom": 1,
+    "max_zoom": 3.5
+  },
+  "seams": [
+    {
+      "seam_id": "seam.northwest",
+      "from_face_id": "face_northwest",
+      "to_face_id": "face_northeast"
+    },
+    {
+      "seam_id": "seam.southern_arc",
+      "from_face_id": "face_southwest",
+      "to_face_id": "face_southeast"
+    }
+  ],
+  "notes": "WG-P3 schematic geometry package for world_game_studio_next canvas interactions."
+}

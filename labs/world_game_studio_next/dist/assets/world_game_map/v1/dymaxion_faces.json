@@ -1,0 +1,36 @@
+{
+  "faces": [
+    {
+      "face_id": "face_northwest",
+      "polygon": [
+        [70, 250],
+        [420, 90],
+        [500, 320]
+      ]
+    },
+    {
+      "face_id": "face_northeast",
+      "polygon": [
+        [420, 90],
+        [860, 190],
+        [500, 320]
+      ]
+    },
+    {
+      "face_id": "face_southwest",
+      "polygon": [
+        [70, 250],
+        [500, 320],
+        [270, 600]
+      ]
+    },
+    {
+      "face_id": "face_southeast",
+      "polygon": [
+        [500, 320],
+        [860, 190],
+        [760, 590]
+      ]
+    }
+  ]
+}
