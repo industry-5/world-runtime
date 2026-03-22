@@ -1,7 +1,0 @@
-{
-  "catalog_id": "catalog.world-game-multi-region.shocks.v1",
-  "shocks": [
-    "shock.upstream-drought-severe",
-    "shock.coastal-port-disruption"
-  ]
-}
