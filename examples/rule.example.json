@@ -1,0 +1,23 @@
+{
+  "rule_id": "rule.approval-required-for-schema-migration",
+  "rule_name": "Schema migration requires approval",
+  "description": "Any schema migration proposal must trigger explicit approval.",
+  "rule_type": "approval_trigger",
+  "condition": {
+    "field": "proposed_action.action_type",
+    "operator": "equals",
+    "value": "apply_schema_migration"
+  },
+  "outcome": "require_approval",
+  "message_template": "Schema migration must be approved by an authorized human operator.",
+  "severity": "high",
+  "priority": 10,
+  "enabled": true,
+  "evaluation_mode": "deterministic",
+  "metadata": {
+    "adapter": "core"
+  },
+  "created_at": "2026-03-08T10:00:00Z",
+  "updated_at": "2026-03-08T10:00:00Z",
+  "version": 1
+}

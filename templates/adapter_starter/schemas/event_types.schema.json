@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/__ADAPTER_SLUG__/schemas/event_types.schema.json",
+  "title": "__ADAPTER_NAME__ Event Types",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "event_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "__ADAPTER_SLUG__.resource.updated",
+          "__ADAPTER_SLUG__.action.requested"
+        ]
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["event_types"]
+}

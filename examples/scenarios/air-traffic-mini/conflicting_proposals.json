@@ -1,0 +1,54 @@
+[
+  {
+    "proposal_id": "proposal.air-traffic.unsafe.0001",
+    "proposal_type": "operational_response",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.atc-assistant-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "flight.ual2187",
+        "entity_type": "flight"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "clear_conflict_takeoff_without_separation",
+      "parameters": {
+        "flight_id": "flight.ual2187",
+        "minimum_separation_nm": 2,
+        "fuel_buffer_minutes": 19,
+        "simulation_completed": false
+      }
+    },
+    "justification": "Minimize queue length immediately.",
+    "created_at": "2026-03-09T08:12:05Z"
+  },
+  {
+    "proposal_id": "proposal.air-traffic.safe.0002",
+    "proposal_type": "operational_response",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.atc-assistant-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "flight.ual2187",
+        "entity_type": "flight"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "hold_and_meter_arrivals",
+      "parameters": {
+        "flight_id": "flight.ual2187",
+        "minimum_separation_nm": 6,
+        "fuel_buffer_minutes": 28,
+        "simulation_completed": true
+      }
+    },
+    "justification": "Maintain separation while weather window is unstable.",
+    "created_at": "2026-03-09T08:12:06Z"
+  }
+]

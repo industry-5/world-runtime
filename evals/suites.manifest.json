@@ -1,0 +1,21 @@
+{
+  "suite_id": "world-runtime-v0.1",
+  "minimum_pass_rate": 1.0,
+  "categories": [
+    "functional",
+    "policy",
+    "simulation",
+    "reasoning",
+    "safety",
+    "regression"
+  ],
+  "eval_ids": [
+    "eval.smoke.runtime",
+    "eval.smoke.policy",
+    "eval.smoke.simulation",
+    "eval.reasoning.evidence",
+    "eval.safety.non_mutating_reasoning",
+    "eval.safety.air_traffic_constraints",
+    "eval.regression.replay_determinism"
+  ]
+}

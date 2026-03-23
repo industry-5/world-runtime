@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/schemas/rule.schema.json",
+  "title": "World Runtime Rule",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "rule_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "rule_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "rule_type": {
+      "type": "string",
+      "enum": ["condition", "constraint", "approval_trigger", "advisory", "derived_check"]
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Declarative condition object to be interpreted by the runtime or adapter."
+    },
+    "outcome": {
+      "$ref": "common.schema.json#/$defs/policyOutcome"
+    },
+    "message_template": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "low", "medium", "high", "critical"]
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 100
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "evaluation_mode": {
+      "type": "string",
+      "enum": ["deterministic", "adapter_defined", "hybrid"]
+    },
+    "metadata": {
+      "$ref": "common.schema.json#/$defs/metadata"
+    },
+    "created_at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "updated_at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "rule_id",
+    "rule_name",
+    "rule_type",
+    "condition",
+    "outcome",
+    "evaluation_mode",
+    "created_at",
+    "version"
+  ]
+}
