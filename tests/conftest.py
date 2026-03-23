@@ -50,9 +50,15 @@ def air_traffic_scenario_dir(examples_dir: Path) -> Path:
 
 @pytest.fixture
 def world_game_mini_scenario_dir(examples_dir: Path) -> Path:
-    return examples_dir / "scenarios" / "world-game-mini"
+    path = examples_dir / "scenarios" / "world-game-mini"
+    if not path.exists():
+        pytest.skip("world_game mini scenario is not present in this repo build")
+    return path
 
 
 @pytest.fixture
 def world_game_multi_region_scenario_dir(examples_dir: Path) -> Path:
-    return examples_dir / "scenarios" / "world-game-multi-region"
+    path = examples_dir / "scenarios" / "world-game-multi-region"
+    if not path.exists():
+        pytest.skip("world_game multi-region scenario is not present in this repo build")
+    return path
