@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "evt.lab-science.batch-registered.0001",
+    "event_type": "sample_batch_registered",
+    "occurred_at": "2026-03-23T12:05:00Z",
+    "recorded_at": "2026-03-23T12:05:03Z",
+    "payload": {
+      "batch_id": "batch.qpcr.20260323.07",
+      "program_id": "program.gxp.assay",
+      "sample_count": 48
+    },
+    "correlation_id": "corr.lab-science.20260323.01"
+  },
+  {
+    "event_id": "evt.lab-science.control-drift.0002",
+    "event_type": "control_drift_detected",
+    "occurred_at": "2026-03-23T12:06:00Z",
+    "recorded_at": "2026-03-23T12:06:04Z",
+    "payload": {
+      "run_id": "run.qpcr.20260323.07",
+      "control_drift_score": 4.6,
+      "threshold": 4
+    },
+    "correlation_id": "corr.lab-science.20260323.01"
+  },
+  {
+    "event_id": "evt.lab-science.deviation-review.0003",
+    "event_type": "deviation_review_requested",
+    "occurred_at": "2026-03-23T12:07:00Z",
+    "recorded_at": "2026-03-23T12:07:05Z",
+    "payload": {
+      "batch_id": "batch.qpcr.20260323.07",
+      "deviation_id": "dev.lab-science.0007",
+      "review_board_id": "board.quality.release"
+    },
+    "correlation_id": "corr.lab-science.20260323.01"
+  }
+]

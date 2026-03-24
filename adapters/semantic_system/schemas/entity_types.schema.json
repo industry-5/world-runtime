@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/semantic_system/entity_types.schema.json",
+  "title": "Semantic System Entity Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "semantic_term",
+        "semantic_definition",
+        "semantic_mapping",
+        "governance_board"
+      ]
+    }
+  },
+  "required": [
+    "entity_type"
+  ]
+}

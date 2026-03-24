@@ -1,0 +1,56 @@
+{
+  "decision_id": "decision.supply-ops.0001",
+  "status": "approved",
+  "selected_proposal_id": "proposal.supply-ops.0001",
+  "selected_action": {
+    "action_type": "rebalance_inventory_and_expedite_commitment",
+    "parameters": {
+      "commitment_id": "commitment.retailer-4821",
+      "source_inventory_id": "inventory.dallas.dc.widget-alpha",
+      "reserve_capacity_id": "capacity.dallas.packout.2026-03-23",
+      "lane_id": "lane.dallas-atl.expedited"
+    }
+  },
+  "alternatives_considered": [
+    {
+      "proposal_id": "proposal.supply-ops.defer.0002",
+      "disposition": "rejected",
+      "reason": "Deferral missed the promised date for the customer commitment."
+    }
+  ],
+  "policy_results": [
+    {
+      "policy_name": "supply_ops_default_policy",
+      "outcome": "require_approval",
+      "message": "Supervisor approval required because the expedite premium exceeds the default threshold."
+    }
+  ],
+  "approval_status": "approved",
+  "approval_id": "approval.supply-ops.0001",
+  "approvals": [
+    {
+      "approver": {
+        "actor_id": "human.supply-ops-manager-01",
+        "actor_type": "human",
+        "roles": ["operator", "supervisor"],
+        "capabilities": ["approval.respond", "proposal.approve"]
+      },
+      "status": "approved"
+    }
+  ],
+  "approval_chain": [
+    {
+      "sequence": 1,
+      "action": "approved",
+      "actor": {
+        "actor_id": "human.supply-ops-manager-01",
+        "actor_type": "human",
+        "roles": ["operator", "supervisor"],
+        "capabilities": ["approval.respond", "proposal.approve"]
+      },
+      "at": "2026-03-22T09:12:00Z"
+    }
+  ],
+  "rationale": "Recovery action was accepted after simulation review and supervisor sign-off despite the high expedite premium.",
+  "created_at": "2026-03-22T09:11:45Z"
+}

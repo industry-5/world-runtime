@@ -1,0 +1,14 @@
+{
+  "rule_id": "rule.lab-science.require-approval-open-deviation",
+  "rule_name": "Require approval for release while a protocol deviation is open",
+  "rule_type": "approval_trigger",
+  "condition": {
+    "field": "proposed_action.parameters.deviation_open",
+    "operator": "equals",
+    "value": true
+  },
+  "outcome": "require_approval",
+  "evaluation_mode": "deterministic",
+  "created_at": "2026-03-23T12:00:00Z",
+  "version": 1
+}

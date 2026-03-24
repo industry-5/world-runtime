@@ -1,0 +1,25 @@
+{
+  "simulation_id": "sim.autonomous-vehicle.0001",
+  "simulation_type": "occlusion_maneuver_analysis",
+  "status": "completed",
+  "scenario_name": "Urban occlusion teleassist intervention",
+  "assumptions": [
+    "road friction remains stable during the intervention window",
+    "the remote supervisor can confirm the crossing zone within forty-five seconds"
+  ],
+  "inputs": {
+    "vehicle_id": "vehicle.av.17",
+    "conflicting_proposals": [
+      "proposal.autonomous-vehicle.0001",
+      "proposal.autonomous-vehicle.unsafe.0002",
+      "proposal.autonomous-vehicle.yield.0003"
+    ]
+  },
+  "outcomes": {
+    "recommended_proposal_id": "proposal.autonomous-vehicle.yield.0003",
+    "projected_near_miss_risk_reduction_percent": 24,
+    "projected_clearance_margin_meters": 2.6,
+    "projected_schedule_delay_seconds": 42
+  },
+  "created_at": "2026-03-23T13:19:55Z"
+}

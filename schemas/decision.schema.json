@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/schemas/decision.schema.json",
+  "title": "World Runtime Decision Record",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "decision_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/decisionStatus"
+    },
+    "selected_proposal_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "selected_action": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": true,
+          "default": {}
+        }
+      },
+      "required": ["action_type"]
+    },
+    "alternatives_considered": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "proposal_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "disposition": {
+            "type": "string",
+            "enum": ["accepted", "rejected", "deferred", "not_selected"]
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": ["proposal_id", "disposition"]
+      },
+      "default": []
+    },
+    "policy_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "policy_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "outcome": {
+            "$ref": "common.schema.json#/$defs/policyOutcome"
+          },
+          "message": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": ["policy_name", "outcome"]
+      },
+      "default": []
+    },
+    "approval_status": {
+      "$ref": "common.schema.json#/$defs/approvalStatus"
+    },
+    "approval_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "approvals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "approver": {
+            "$ref": "common.schema.json#/$defs/actorRef"
+          },
+          "status": {
+            "$ref": "common.schema.json#/$defs/approvalStatus"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "decided_at": {
+            "$ref": "common.schema.json#/$defs/timestamp"
+          }
+        },
+        "required": ["approver", "status"]
+      },
+      "default": []
+    },
+    "approval_chain": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "action": {
+            "$ref": "common.schema.json#/$defs/approvalStatus"
+          },
+          "actor": {
+            "$ref": "common.schema.json#/$defs/actorRef"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "at": {
+            "$ref": "common.schema.json#/$defs/timestamp"
+          }
+        },
+        "required": ["sequence", "action", "actor", "at"]
+      },
+      "default": []
+    },
+    "simulation_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "default": []
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "created_at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "approved_at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "executed_at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "metadata": {
+      "$ref": "common.schema.json#/$defs/metadata"
+    },
+    "correlation_id": {
+      "$ref": "common.schema.json#/$defs/correlationRef"
+    },
+    "provenance": {
+      "$ref": "common.schema.json#/$defs/provenanceEnvelope"
+    },
+    "connector_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "connector_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["inbound", "outbound"]
+        },
+        "idempotency_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "required": ["connector_id", "direction", "idempotency_key"]
+    }
+  },
+  "required": [
+    "decision_id",
+    "status",
+    "selected_action",
+    "approval_status",
+    "created_at"
+  ]
+}

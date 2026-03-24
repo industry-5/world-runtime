@@ -1,0 +1,68 @@
+[
+  {
+    "proposal_id": "proposal.city-ops.unsafe.0002",
+    "proposal_type": "incident_coordination",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.city-ops-coordinator-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "corridor.loop-blue-line",
+        "entity_type": "transit_corridor"
+      },
+      {
+        "entity_id": "zone.loop-west",
+        "entity_type": "response_zone"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "close_corridor_without_access_plan",
+      "parameters": {
+        "incident_id": "incident.city-ops.0001",
+        "unified_command_established": false,
+        "hospital_access_routes_open": false,
+        "affected_residents": 7000,
+        "transit_detour_minutes": 18,
+        "shelter_activation_count": 0,
+        "boil_water_advisory_required": false
+      }
+    },
+    "justification": "Close the corridor quickly and let each agency manage its own workstream.",
+    "created_at": "2026-03-23T11:18:10Z"
+  },
+  {
+    "proposal_id": "proposal.city-ops.targeted.0003",
+    "proposal_type": "incident_coordination",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.city-ops-coordinator-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "agency.chicago-emergency-management",
+        "entity_type": "city_agency"
+      },
+      {
+        "entity_id": "corridor.loop-blue-line",
+        "entity_type": "transit_corridor"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "stage_bus_bridge_and_targeted_repairs",
+      "parameters": {
+        "incident_id": "incident.city-ops.0001",
+        "unified_command_established": true,
+        "hospital_access_routes_open": true,
+        "affected_residents": 4500,
+        "transit_detour_minutes": 24,
+        "shelter_activation_count": 0,
+        "boil_water_advisory_required": false
+      }
+    },
+    "justification": "Run a tighter bus bridge and utility isolation plan if contamination remains localized.",
+    "created_at": "2026-03-23T11:18:20Z"
+  }
+]

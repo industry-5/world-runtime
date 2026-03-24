@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/multiplayer_game/entity_types.schema.json",
+  "title": "Multiplayer Game Entity Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "game_shard",
+        "match_instance",
+        "player_party",
+        "consistency_guard"
+      ]
+    }
+  },
+  "required": [
+    "entity_type"
+  ]
+}

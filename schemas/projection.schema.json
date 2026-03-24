@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/schemas/projection.schema.json",
+  "title": "World Runtime Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "projection_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "projection_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "projection_type": {
+      "type": "string",
+      "enum": ["state", "view", "index", "summary", "derived"]
+    },
+    "projection_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_event_offset": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_event_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "materialized_state_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": []
+        },
+        "event_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": []
+        },
+        "adapter": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["building", "ready", "stale", "failed", "archived"]
+    },
+    "statistics": {
+      "type": "object",
+      "additionalProperties": true,
+      "default": {}
+    },
+    "built_at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "updated_at": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "metadata": {
+      "$ref": "common.schema.json#/$defs/metadata"
+    }
+  },
+  "required": [
+    "projection_id",
+    "projection_name",
+    "projection_type",
+    "projection_version",
+    "status"
+  ]
+}

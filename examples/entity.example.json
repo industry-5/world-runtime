@@ -1,0 +1,19 @@
+{
+  "entity_id": "factory.acme.dallas",
+  "entity_type": "factory",
+  "attributes": {
+    "name": "Acme Dallas Factory",
+    "location": "Dallas, TX",
+    "capacity_per_day": 1200,
+    "primary_product": "widget.standard"
+  },
+  "metadata": {
+    "source": "bootstrap_fixture",
+    "adapter": "supply-network"
+  },
+  "tags": ["manufacturing", "critical-node"],
+  "created_at": "2026-03-08T10:00:00Z",
+  "updated_at": "2026-03-08T10:00:00Z",
+  "version": 1,
+  "status": "active"
+}

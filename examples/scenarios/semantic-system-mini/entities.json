@@ -1,0 +1,57 @@
+[
+  {
+    "entity_id": "term.customer_status",
+    "entity_type": "semantic_term",
+    "attributes": {
+      "display_name": "customer_status",
+      "canonical_system": "crm"
+    },
+    "created_at": "2026-03-23T10:01:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "definition.customer_status.v1",
+    "entity_type": "semantic_definition",
+    "attributes": {
+      "term_id": "term.customer_status",
+      "version": "v1",
+      "meaning": "billing_and_service_state",
+      "status": "active"
+    },
+    "created_at": "2026-03-23T10:01:10Z",
+    "version": 1
+  },
+  {
+    "entity_id": "definition.customer_status.v2",
+    "entity_type": "semantic_definition",
+    "attributes": {
+      "term_id": "term.customer_status",
+      "version": "v2",
+      "meaning": "service_entitlement_state",
+      "status": "candidate"
+    },
+    "created_at": "2026-03-23T10:01:20Z",
+    "version": 1
+  },
+  {
+    "entity_id": "mapping.crm.customer_status",
+    "entity_type": "semantic_mapping",
+    "attributes": {
+      "field_path": "crm.customer_status",
+      "current_definition_id": "definition.customer_status.v1",
+      "downstream_system_count": 3
+    },
+    "created_at": "2026-03-23T10:01:30Z",
+    "version": 1
+  },
+  {
+    "entity_id": "board.data-governance",
+    "entity_type": "governance_board",
+    "attributes": {
+      "name": "Data Governance Council",
+      "jurisdiction": "customer semantics"
+    },
+    "created_at": "2026-03-23T10:01:40Z",
+    "version": 1
+  }
+]

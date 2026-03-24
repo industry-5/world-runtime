@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "evt.digital-twin.binding-established.0001",
+    "event_type": "host_binding_established",
+    "occurred_at": "2026-03-23T12:06:00Z",
+    "recorded_at": "2026-03-23T12:06:05Z",
+    "payload": {
+      "binding_id": "binding.digital-twin.power-grid.0001",
+      "host_adapter_id": "adapter-power-grid",
+      "proof_sequence": 1
+    },
+    "correlation_id": "corr.digital-twin.20260323.01"
+  },
+  {
+    "event_id": "evt.digital-twin.telemetry-refresh.0002",
+    "event_type": "telemetry_snapshot_ingested",
+    "occurred_at": "2026-03-23T12:07:00Z",
+    "recorded_at": "2026-03-23T12:07:05Z",
+    "payload": {
+      "feed_id": "feed.digital-twin.metro-mesh",
+      "host_adapter_id": "adapter-power-grid",
+      "freshness_lag_minutes": 4
+    },
+    "correlation_id": "corr.digital-twin.20260323.01"
+  },
+  {
+    "event_id": "evt.digital-twin.overlay-risk.0003",
+    "event_type": "overlay_risk_projected",
+    "occurred_at": "2026-03-23T12:08:00Z",
+    "recorded_at": "2026-03-23T12:08:05Z",
+    "payload": {
+      "overlay_entity_id": "overlay.digital-twin.city-ops",
+      "host_adapter_id": "adapter-city-ops",
+      "projected_resident_impact": 4800
+    },
+    "correlation_id": "corr.digital-twin.20260323.01"
+  }
+]

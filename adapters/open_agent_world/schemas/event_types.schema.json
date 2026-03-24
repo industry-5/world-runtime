@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/open_agent_world/event_types.schema.json",
+  "title": "Open Agent World Event Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "agent_cohort_admitted",
+        "commons_conflict_detected",
+        "intervention_plan_submitted"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

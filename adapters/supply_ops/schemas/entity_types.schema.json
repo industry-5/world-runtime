@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/supply_ops/entity_types.schema.json",
+  "title": "Supply Ops Entity Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "order_commitment",
+        "inventory_position",
+        "capacity_bucket",
+        "fulfillment_lane"
+      ]
+    }
+  },
+  "required": ["entity_type"]
+}

@@ -1,0 +1,144 @@
+{
+  "decision_id": "decision.ops.0001",
+  "status": "approved",
+  "selected_proposal_id": "proposal.reroute.0001",
+  "selected_action": {
+    "action_type": "reroute_shipment",
+    "parameters": {
+      "shipment_id": "shipment.88421",
+      "new_route": "route.alt-texas-02"
+    }
+  },
+  "alternatives_considered": [
+    {
+      "proposal_id": "proposal.wait.0002",
+      "disposition": "not_selected",
+      "reason": "Delay impact on production was too high."
+    }
+  ],
+  "policy_results": [
+    {
+      "policy_name": "reroute_requires_cost_check",
+      "outcome": "warn",
+      "message": "Transport cost increase accepted within tolerance.",
+      "evidence": {
+        "field": "proposed_action.parameters.cost_delta_percent",
+        "operator": ">",
+        "expected": 5,
+        "actual": 8
+      }
+    }
+  ],
+  "approval_status": "approved",
+  "approval_id": "approval.ops.0001",
+  "approvals": [
+    {
+      "approver": {
+        "actor_id": "human.ops-manager-01",
+        "actor_type": "human",
+        "display_name": "Operations Manager",
+        "roles": ["operator"],
+        "capabilities": ["approval.respond", "proposal.approve"]
+      },
+      "status": "approved",
+      "comment": "Approved to protect factory throughput.",
+      "decided_at": "2026-03-08T11:24:00Z"
+    }
+  ],
+  "approval_chain": [
+    {
+      "sequence": 1,
+      "action": "approved",
+      "actor": {
+        "actor_id": "human.ops-manager-01",
+        "actor_type": "human",
+        "display_name": "Operations Manager",
+        "roles": ["operator"],
+        "capabilities": ["approval.respond", "proposal.approve"]
+      },
+      "comment": "Approved to protect factory throughput.",
+      "at": "2026-03-08T11:24:00Z"
+    }
+  ],
+  "simulation_refs": [
+    "sim.delay-response.0001"
+  ],
+  "rationale": "Selected best balance of service continuity and cost impact.",
+  "created_at": "2026-03-08T11:23:30Z",
+  "approved_at": "2026-03-08T11:24:00Z",
+  "provenance": {
+    "trace": {
+      "session_id": "session.ops.0001",
+      "decision_id": "decision.ops.0001",
+      "proposal_id": "proposal.reroute.0001",
+      "approval_id": "approval.ops.0001",
+      "simulation_refs": ["sim.delay-response.0001"],
+      "correlation_id": "corr.supply-event.20260308.01"
+    },
+    "stages": [
+      {
+        "stage": "proposal",
+        "status": "completed",
+        "ref_id": "proposal.reroute.0001",
+        "at": "2026-03-08T11:20:00Z"
+      },
+      {
+        "stage": "policy_evaluation",
+        "status": "completed",
+        "ref_id": "policy.proposal.reroute.0001",
+        "at": "2026-03-08T11:22:00Z",
+        "attributes": {"final_outcome": "warn"}
+      },
+      {
+        "stage": "approval",
+        "status": "completed",
+        "ref_id": "approval.ops.0001",
+        "at": "2026-03-08T11:24:00Z"
+      },
+      {
+        "stage": "execution_outcome",
+        "status": "completed",
+        "ref_id": "decision.ops.0001",
+        "at": "2026-03-08T11:24:10Z",
+        "attributes": {"outcome": "approved"}
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_type": "event",
+        "ref_id": "evt.shipment-delay.0001",
+        "summary": "Delay event used in proposal justification.",
+        "stage": "proposal"
+      },
+      {
+        "evidence_type": "policy_rule",
+        "ref_id": "default_outcome",
+        "summary": "Policy rule outcome=warn.",
+        "stage": "policy_evaluation",
+        "attributes": {
+          "evidence": {
+            "field": "proposed_action.parameters.cost_delta_percent",
+            "operator": ">",
+            "expected": 5,
+            "actual": 8
+          }
+        }
+      }
+    ],
+    "evidence_summary": [
+      "Delay event used in proposal justification.",
+      "Policy rule outcome=warn."
+    ]
+  },
+  "connector_decision": {
+    "connector_id": "connector.integration.egress",
+    "direction": "outbound",
+    "idempotency_key": "outbound:connector.integration.egress:act-700",
+    "provider": "mock.webhook",
+    "source": "control_plane"
+  },
+  "metadata": {
+    "adapter": "supply-network"
+  },
+  "correlation_id": "corr.supply-event.20260308.01"
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "entity_id": "agency.chicago-emergency-management",
+    "entity_type": "city_agency",
+    "attributes": {
+      "name": "Chicago Emergency Management",
+      "command_role": "lead"
+    },
+    "created_at": "2026-03-23T11:11:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "corridor.loop-blue-line",
+    "entity_type": "transit_corridor",
+    "attributes": {
+      "mode": "rail",
+      "status": "suspended"
+    },
+    "created_at": "2026-03-23T11:11:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "asset.water-main.wacker-18in",
+    "entity_type": "utility_asset",
+    "attributes": {
+      "asset_type": "water_main",
+      "status": "ruptured"
+    },
+    "created_at": "2026-03-23T11:12:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "zone.loop-west",
+    "entity_type": "response_zone",
+    "attributes": {
+      "population": 24000,
+      "critical_facility": "hospital.north-river"
+    },
+    "created_at": "2026-03-23T11:12:00Z",
+    "version": 1
+  }
+]

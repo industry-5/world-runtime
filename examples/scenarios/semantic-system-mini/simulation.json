@@ -1,0 +1,25 @@
+{
+  "simulation_id": "sim.semantic-system.0001",
+  "simulation_type": "semantic_change_impact_analysis",
+  "status": "completed",
+  "scenario_name": "Governed semantic meaning change",
+  "assumptions": [
+    "downstream systems can stage alias mappings for seven days",
+    "provenance evidence is available for both definitions"
+  ],
+  "inputs": {
+    "term_id": "term.customer_status",
+    "conflicting_proposals": [
+      "proposal.semantic-system.0001",
+      "proposal.semantic-system.unsafe.0001",
+      "proposal.semantic-system.alias.0002"
+    ]
+  },
+  "outcomes": {
+    "recommended_proposal_id": "proposal.semantic-system.alias.0002",
+    "projected_conflict_reduction_percent": 91,
+    "projected_breaking_change_scope": "high",
+    "governance_window_required": true
+  },
+  "created_at": "2026-03-23T10:06:45Z"
+}

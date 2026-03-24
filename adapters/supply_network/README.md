@@ -1,22 +1,45 @@
-# Supply Network
+# Supply Network Public Adapter Package
 
 _Last updated: 2026-03-23 (America/Chicago)_
 
-`adapter-supply-network` shows how World Runtime fits disruption-heavy operational systems where teams need to reason about shipments, inventory pressure, reroutes, and cascading downstream effects.
+`adapter-supply-network` is the public supply-network package in the World Runtime public domain adapter scenario program.
 
-## What This Track Demonstrates
+## Purpose
 
-- disruption handling under time pressure
-- replayable evidence for logistics decisions
-- projection of downstream impact before committing to action
-- simulation of alternate reroute or mitigation choices
+- prove disruption handling, replay, projection, and simulation under operational pressure
+- serve as one of the implemented public proof paths in the foundation trio
 
-## Why It Matters
+## Current State
 
-Supply networks are a strong fit for explicit world state because local decisions often create non-local consequences. A reroute that helps one facility can delay another, consume capacity elsewhere, or create new policy exceptions that need to be visible.
+- current state: promotion-hardened public `SN-M4` slice with adapter contract, schemas, default/scenario policy, replay/simulation bundle artifacts, alternate reroute proofs, package-local docs, and playbook guidance
+- package assets on disk include:
+  - `adapter.py`
+  - `schemas/`
+  - `policies/default_policy.json`
+  - `examples/scenarios/supply-network-mini/`
+  - `playbooks/adapter-supply-network.md`
+- `reroute_options.json` now carries package-local alternate tradeoffs on top of the shared bundle baseline
+
+## Working Defaults
+
+- adapter id: `adapter-supply-network`
+- package path: `adapters/supply_network`
+- scenario path: `examples/scenarios/supply-network-mini`
+- milestone code: `SN`
+
+## Contributor Validation Path
+
+Use this package-local bundle when touching the supply-network path:
+
+- `python3 scripts/check_adapters.py`
+- `python3 scripts/check_examples.py`
+- `python3 -m pytest -q tests/test_adapters.py tests/test_scenario_bundles.py tests/test_supply_network_domain.py tests/test_operator_workflows.py`
+- contributor/operator guidance lives in `playbooks/adapter-supply-network.md`
 
 ## Boundaries
 
-- this public page describes the domain story only
-- it does not publish the private build-process materials behind the track
-- it stays distinct from internal `supply_ops` work
+- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- root docs should keep only rollup pointers for this track
+- adapter implementation stays inside the stable `adapters.base.DomainAdapter` contract
+- no stable App Server, HTTP API, or SDK surface is widened by this package
+- the supply-network track should remain distinct from `adapter-supply-ops`

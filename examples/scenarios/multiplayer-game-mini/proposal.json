@@ -1,0 +1,38 @@
+{
+  "proposal_id": "proposal.multiplayer-game.0001",
+  "proposal_type": "conflict_resolution_plan",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.sync-director-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "match.control-point.0088",
+      "entity_type": "match_instance"
+    },
+    {
+      "entity_id": "shard.omega.12",
+      "entity_type": "game_shard"
+    },
+    {
+      "entity_id": "guard.match.0088",
+      "entity_type": "consistency_guard"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "stage_authoritative_reconciliation",
+    "parameters": {
+      "match_id": "match.control-point.0088",
+      "shard_id": "shard.omega.12",
+      "consistency_guard_id": "guard.match.0088",
+      "contested_players_count": 11,
+      "rollback_players_count": 5,
+      "projected_tick_drift_ms": 44,
+      "authoritative_lock_acquired": true,
+      "queue_window_ms": 140
+    }
+  },
+  "justification": "A bounded rollback keeps the match live while closing the divergence before the overtime capture resolves incorrectly.",
+  "created_at": "2026-03-23T13:11:30Z"
+}

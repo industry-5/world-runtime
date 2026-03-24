@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "evt.supply-ops.commitment-risk.0001",
+    "event_type": "commitment_risk_detected",
+    "occurred_at": "2026-03-22T09:05:00Z",
+    "recorded_at": "2026-03-22T09:05:10Z",
+    "payload": {
+      "commitment_id": "commitment.retailer-4821",
+      "at_risk_units": 180,
+      "reason": "inventory_shortfall"
+    },
+    "correlation_id": "corr.supply-ops.20260322.01"
+  },
+  {
+    "event_id": "evt.supply-ops.rebalance-plan.0002",
+    "event_type": "inventory_rebalance_planned",
+    "occurred_at": "2026-03-22T09:07:00Z",
+    "recorded_at": "2026-03-22T09:07:15Z",
+    "payload": {
+      "inventory_position_id": "inventory.dallas.dc.widget-alpha",
+      "reallocated_units": 180,
+      "destination_commitment_id": "commitment.retailer-4821"
+    },
+    "correlation_id": "corr.supply-ops.20260322.01"
+  },
+  {
+    "event_id": "evt.supply-ops.capacity-request.0003",
+    "event_type": "capacity_reservation_requested",
+    "occurred_at": "2026-03-22T09:08:00Z",
+    "recorded_at": "2026-03-22T09:08:20Z",
+    "payload": {
+      "capacity_bucket_id": "capacity.dallas.packout.2026-03-23",
+      "commitment_id": "commitment.retailer-4821",
+      "requested_units": 180
+    },
+    "correlation_id": "corr.supply-ops.20260322.01"
+  }
+]

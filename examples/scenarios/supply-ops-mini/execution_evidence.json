@@ -1,0 +1,166 @@
+{
+  "evidence_id": "exec-evidence.supply-ops.0001",
+  "adapter_id": "adapter-supply-ops",
+  "decision_id": "decision.supply-ops.0001",
+  "selected_proposal_id": "proposal.supply-ops.0001",
+  "status": "prepared",
+  "ingress": {
+    "envelope_id": "ingress.supply-ops.0001",
+    "envelope_type": "supply_ops_connector_signal",
+    "schema_version": "so-m4.ingress.v1",
+    "received_at": "2026-03-22T09:08:35Z",
+    "connector_id": "connector.supply-ops.erp-wms-ingress",
+    "direction": "inbound",
+    "provider": "fixture.erp-wms-gateway",
+    "source": "erp_wms_control_tower",
+    "external_message_id": "msg.erp-wms.0001",
+    "correlation_id": "corr.supply-ops.20260322.01",
+    "governance": {
+      "translation_required": true,
+      "mutates_runtime_state": false,
+      "translation_boundary": "proposal_only"
+    }
+  },
+  "policy": {
+    "final_outcome": "require_approval",
+    "requires_approval": true,
+    "denied": false,
+    "evaluations": [
+      {
+        "policy_id": "policy.supply-ops.default",
+        "policy_name": "supply_ops_default_policy",
+        "rule_id": "rule.supply-ops.warn-low-inventory-cover",
+        "rule_name": "Warn when post-action inventory cover is low",
+        "outcome": "warn",
+        "matched": true,
+        "message": "Projected inventory cover falls below three days after the action.",
+        "severity": "medium",
+        "evidence": {
+          "field": "proposed_action.parameters.projected_post_action_inventory_days",
+          "operator": "<",
+          "expected": 3,
+          "actual": 2
+        }
+      },
+      {
+        "policy_id": "policy.supply-ops.default",
+        "policy_name": "supply_ops_default_policy",
+        "rule_id": "rule.supply-ops.require-approval-expedite-premium",
+        "rule_name": "Require approval for high expedite premium",
+        "outcome": "require_approval",
+        "matched": true,
+        "message": "Supervisor approval is required when expedite premium exceeds 12%.",
+        "severity": "high",
+        "evidence": {
+          "field": "proposed_action.parameters.expedite_cost_delta_percent",
+          "operator": ">",
+          "expected": 12,
+          "actual": 14
+        }
+      }
+    ]
+  },
+  "approval": {
+    "approval_status": "approved",
+    "approval_id": "approval.supply-ops.0001",
+    "approved_at": "2026-03-22T09:12:00Z",
+    "approvals": [
+      {
+        "approver": {
+          "actor_id": "human.supply-ops-manager-01",
+          "actor_type": "human",
+          "roles": [
+            "operator",
+            "supervisor"
+          ],
+          "capabilities": [
+            "approval.respond",
+            "proposal.approve"
+          ]
+        },
+        "status": "approved"
+      }
+    ],
+    "approval_chain": [
+      {
+        "sequence": 1,
+        "action": "approved",
+        "actor": {
+          "actor_id": "human.supply-ops-manager-01",
+          "actor_type": "human",
+          "roles": [
+            "operator",
+            "supervisor"
+          ],
+          "capabilities": [
+            "approval.respond",
+            "proposal.approve"
+          ]
+        },
+        "at": "2026-03-22T09:12:00Z"
+      }
+    ]
+  },
+  "simulation": {
+    "simulation_id": "sim.supply-ops.0001",
+    "simulation_completed": true
+  },
+  "execution_plan": {
+    "submission_mode": "approved_connector_handoff_preparation",
+    "target_surface": {
+      "surface_method": "connector.outbound.run",
+      "connector_id": "connector.supply-ops.fulfillment-execution",
+      "direction": "outbound",
+      "provider": "fixture.fulfillment-control",
+      "source": "supply_ops_control_plane",
+      "idempotency_key": "outbound:connector.supply-ops.fulfillment-execution:decision.supply-ops.0001"
+    },
+    "action": {
+      "action_type": "rebalance_inventory_and_expedite_commitment",
+      "parameters": {
+        "commitment_id": "commitment.retailer-4821",
+        "source_inventory_id": "inventory.dallas.dc.widget-alpha",
+        "reserve_capacity_id": "capacity.dallas.packout.2026-03-23",
+        "lane_id": "lane.dallas-atl.expedited",
+        "reallocation_units": 180,
+        "projected_fill_rate_percent": 98,
+        "projected_post_action_inventory_days": 2,
+        "expedite_cost_delta_percent": 14,
+        "simulation_completed": true,
+        "simulation_id": "sim.supply-ops.0001"
+      }
+    },
+    "replay_safe_hypothetical_events": [
+      {
+        "event_id": "evt.supply-ops.inventory-rebalance.proposal.supply-ops.0001",
+        "event_type": "inventory_rebalance_planned",
+        "occurred_at": "2026-03-22T09:09:00Z",
+        "recorded_at": "2026-03-22T09:09:00Z",
+        "payload": {
+          "inventory_position_id": "inventory.dallas.dc.widget-alpha",
+          "reallocated_units": 180,
+          "destination_commitment_id": "commitment.retailer-4821"
+        },
+        "correlation_id": "corr.proposal.supply-ops.0001"
+      },
+      {
+        "event_id": "evt.supply-ops.capacity-request.proposal.supply-ops.0001",
+        "event_type": "capacity_reservation_requested",
+        "occurred_at": "2026-03-22T09:09:00Z",
+        "recorded_at": "2026-03-22T09:09:00Z",
+        "payload": {
+          "capacity_bucket_id": "capacity.dallas.packout.2026-03-23",
+          "commitment_id": "commitment.retailer-4821",
+          "requested_units": 180
+        },
+        "correlation_id": "corr.proposal.supply-ops.0001"
+      }
+    ]
+  },
+  "evidence_summary": [
+    "Inbound connector-shaped envelope stays translation-only before action.",
+    "Policy outcomes remain visible before execution preparation: warn, require_approval.",
+    "Approval status is approved for decision.supply-ops.0001.",
+    "Execution handoff remains replay-safe through hypothetical recovery events."
+  ]
+}

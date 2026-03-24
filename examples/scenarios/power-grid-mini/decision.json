@@ -1,0 +1,72 @@
+{
+  "decision_id": "decision.power-grid.0001",
+  "status": "approved",
+  "selected_proposal_id": "proposal.power-grid.0001",
+  "selected_action": {
+    "action_type": "controlled_load_shed",
+    "parameters": {
+      "balancing_authority_id": "ba.ercot.north",
+      "affected_substation_id": "substation.oak-138",
+      "operator_bridge_id": "bridge.power-grid.0001"
+    }
+  },
+  "alternatives_considered": [
+    {
+      "proposal_id": "proposal.power-grid.unsafe.0002",
+      "disposition": "rejected",
+      "reason": "Rejected because it lacked a completed contingency model and projected an unsafe frequency floor."
+    },
+    {
+      "proposal_id": "proposal.power-grid.imports.0003",
+      "disposition": "candidate",
+      "reason": "Preferred in the simulation branch, but slower to stabilize the threatened substation."
+    }
+  ],
+  "policy_results": [
+    {
+      "policy_name": "power_grid_contingency_controls",
+      "outcome": "require_approval",
+      "message": "Large interruption contingencies require operator approval after the cascade risk is reviewed."
+    }
+  ],
+  "approval_status": "approved",
+  "approval_id": "approval.power-grid.0001",
+  "approvals": [
+    {
+      "approver": {
+        "actor_id": "human.grid-supervisor-01",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "grid_supervisor"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "status": "approved"
+    }
+  ],
+  "approval_chain": [
+    {
+      "sequence": 1,
+      "action": "approved",
+      "actor": {
+        "actor_id": "human.grid-supervisor-01",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "grid_supervisor"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "at": "2026-03-23T11:09:00Z"
+    }
+  ],
+  "rationale": "Operators accepted the least-bad load-shed path because it arrested the contingency faster than the cleaner import branch.",
+  "created_at": "2026-03-23T11:08:45Z"
+}

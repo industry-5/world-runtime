@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/autonomous_vehicle/event_types.schema.json",
+  "title": "Autonomous Vehicle Event Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "occlusion_detected",
+        "fallback_path_scored",
+        "teleassist_plan_submitted"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

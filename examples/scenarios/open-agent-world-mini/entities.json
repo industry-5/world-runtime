@@ -1,0 +1,42 @@
+[
+  {
+    "entity_id": "zone.commons.delta",
+    "entity_type": "world_zone",
+    "attributes": {
+      "region_count": 3,
+      "stability_tier": "contested"
+    },
+    "created_at": "2026-03-23T14:09:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "cohort.foragers.07",
+    "entity_type": "agent_cohort",
+    "attributes": {
+      "population": 48,
+      "strategy": "resource_seeking"
+    },
+    "created_at": "2026-03-23T14:09:20Z",
+    "version": 1
+  },
+  {
+    "entity_id": "beacon.governance.delta",
+    "entity_type": "governance_beacon",
+    "attributes": {
+      "operator_mode": "human_steward",
+      "failover": "manual"
+    },
+    "created_at": "2026-03-23T14:09:40Z",
+    "version": 1
+  },
+  {
+    "entity_id": "pool.energy.delta",
+    "entity_type": "resource_pool",
+    "attributes": {
+      "resource_type": "energy",
+      "quota_floor_percent": 35
+    },
+    "created_at": "2026-03-23T14:10:00Z",
+    "version": 1
+  }
+]

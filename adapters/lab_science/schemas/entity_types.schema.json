@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/lab_science/entity_types.schema.json",
+  "title": "Lab Science Entity Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "lab_program",
+        "sample_batch",
+        "instrument_run",
+        "quality_review_board"
+      ]
+    }
+  },
+  "required": [
+    "entity_type"
+  ]
+}

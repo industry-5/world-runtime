@@ -1,0 +1,55 @@
+{
+  "envelope_id": "ingress.supply-ops.warn.0002",
+  "envelope_type": "supply_ops_connector_signal",
+  "schema_version": "so-m4.ingress.v1",
+  "received_at": "2026-03-22T10:04:20Z",
+  "connector": {
+    "connector_id": "connector.supply-ops.erp-wms-ingress",
+    "direction": "inbound",
+    "provider": "fixture.erp-wms-gateway",
+    "source": "erp_wms_control_tower"
+  },
+  "governance": {
+    "translation_required": true,
+    "mutates_runtime_state": false,
+    "translation_boundary": "proposal_only"
+  },
+  "trace": {
+    "external_message_id": "msg.erp-wms.warn.0002",
+    "correlation_id": "corr.supply-ops.warn.0002"
+  },
+  "signal_bundle": {
+    "translation_context": {
+      "proposal_suffix": "warn.0002",
+      "proposal_type": "commitment_recovery",
+      "proposer_actor_id": "agent.supply-ops-planner-01",
+      "proposer_actor_type": "agent",
+      "created_at": "2026-03-22T10:05:00Z"
+    },
+    "order_signal": {
+      "commitment_id": "commitment.retailer-warn-0002",
+      "requested_units": 300,
+      "at_risk_units": 90
+    },
+    "inventory_signal": {
+      "inventory_position_id": "inventory.dallas.dc.widget-beta",
+      "on_hand_units": 180,
+      "allocatable_units": 90,
+      "daily_demand_units": 45
+    },
+    "capacity_signal": {
+      "capacity_bucket_id": "capacity.dallas.packout.2026-03-24",
+      "available_units": 120
+    },
+    "lane_signal": {
+      "lane_id": "lane.dallas-atl.standard",
+      "service_level": "standard",
+      "expedite_cost_delta_percent": 6
+    },
+    "simulation_signal": {
+      "simulation_id": "sim.supply-ops.warn.0002",
+      "completed": true
+    },
+    "justification": "Recover the commitment with a standard lane, accepting low residual inventory cover but avoiding premium shipping."
+  }
+}

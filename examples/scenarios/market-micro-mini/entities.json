@@ -1,0 +1,45 @@
+[
+  {
+    "entity_id": "venue.chi.mini",
+    "entity_type": "market_venue",
+    "attributes": {
+      "name": "CHI Mini Futures Venue",
+      "matching_mode": "continuous"
+    },
+    "created_at": "2026-03-23T12:21:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "firm.delta-one.03",
+    "entity_type": "trading_firm",
+    "attributes": {
+      "desk": "index-arb",
+      "risk_tier": "high-touch"
+    },
+    "created_at": "2026-03-23T12:21:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "book.es.nq.cross",
+    "entity_type": "instrument_book",
+    "attributes": {
+      "symbols": [
+        "ESM6",
+        "NQM6"
+      ],
+      "inventory_skew": "long_es_short_nq"
+    },
+    "created_at": "2026-03-23T12:22:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "limit.delta-one.03.primary",
+    "entity_type": "risk_limit",
+    "attributes": {
+      "hard_limit_percent": 100,
+      "warning_threshold_percent": 75
+    },
+    "created_at": "2026-03-23T12:22:00Z",
+    "version": 1
+  }
+]

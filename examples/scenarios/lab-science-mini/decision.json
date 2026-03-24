@@ -1,0 +1,72 @@
+{
+  "decision_id": "decision.lab-science.0001",
+  "status": "approved",
+  "selected_proposal_id": "proposal.lab-science.0001",
+  "selected_action": {
+    "action_type": "release_batch_with_review_holdpoints",
+    "parameters": {
+      "batch_id": "batch.qpcr.20260323.07",
+      "deviation_id": "dev.lab-science.0007",
+      "quality_bridge_id": "bridge.lab-science.0001"
+    }
+  },
+  "alternatives_considered": [
+    {
+      "proposal_id": "proposal.lab-science.unsafe.0002",
+      "disposition": "rejected",
+      "reason": "Rejected because it lacked a complete evidence chain and fell below the integrity floor."
+    },
+    {
+      "proposal_id": "proposal.lab-science.retest.0003",
+      "disposition": "candidate",
+      "reason": "Preferred in the safer simulation branch, but slower than a supervised release with holdpoints."
+    }
+  ],
+  "policy_results": [
+    {
+      "policy_name": "lab_science_release_controls",
+      "outcome": "require_approval",
+      "message": "Open deviation releases require quality-board approval after review."
+    }
+  ],
+  "approval_status": "approved",
+  "approval_id": "approval.lab-science.0001",
+  "approvals": [
+    {
+      "approver": {
+        "actor_id": "human.quality-chair-01",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "quality_lead"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "status": "approved"
+    }
+  ],
+  "approval_chain": [
+    {
+      "sequence": 1,
+      "action": "approved",
+      "actor": {
+        "actor_id": "human.quality-chair-01",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "quality_lead"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "at": "2026-03-23T12:09:00Z"
+    }
+  ],
+  "rationale": "The quality board accepted the supervised release because the evidence chain was complete and the retest holdpoints were explicit.",
+  "created_at": "2026-03-23T12:08:45Z"
+}

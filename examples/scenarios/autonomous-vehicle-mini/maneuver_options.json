@@ -1,0 +1,68 @@
+[
+  {
+    "proposal_id": "proposal.autonomous-vehicle.unsafe.0002",
+    "proposal_type": "motion_intervention_plan",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.motion-supervisor-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "vehicle.av.17",
+        "entity_type": "autonomous_vehicle"
+      },
+      {
+        "entity_id": "road.segment.river.12",
+        "entity_type": "road_segment"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "maintain_speed_through_occlusion",
+      "parameters": {
+        "vehicle_id": "vehicle.av.17",
+        "road_segment_id": "road.segment.river.12",
+        "planned_speed_kph": 24,
+        "minimum_clearance_meters": 0.9,
+        "occluded_crosswalk_probability_percent": 61,
+        "remote_supervisor_connected": false,
+        "fallback_stop_distance_meters": 19
+      }
+    },
+    "justification": "Hold the current trajectory and depend on perception recovery before the conflict point.",
+    "created_at": "2026-03-23T13:19:35Z"
+  },
+  {
+    "proposal_id": "proposal.autonomous-vehicle.yield.0003",
+    "proposal_type": "motion_intervention_plan",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.motion-supervisor-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "vehicle.av.17",
+        "entity_type": "autonomous_vehicle"
+      },
+      {
+        "entity_id": "supervisor.remote.02",
+        "entity_type": "remote_supervisor"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "controlled_stop_and_yield",
+      "parameters": {
+        "vehicle_id": "vehicle.av.17",
+        "remote_supervisor_id": "supervisor.remote.02",
+        "planned_speed_kph": 0,
+        "minimum_clearance_meters": 2.6,
+        "occluded_crosswalk_probability_percent": 18,
+        "remote_supervisor_connected": true,
+        "fallback_stop_distance_meters": 4
+      }
+    },
+    "justification": "Pause before the occluded crossing and resume only after the supervisor confirms the lane is clear.",
+    "created_at": "2026-03-23T13:19:50Z"
+  }
+]

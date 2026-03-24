@@ -1,0 +1,25 @@
+{
+  "simulation_id": "sim.power-grid.0001",
+  "simulation_type": "contingency_stability_analysis",
+  "status": "completed",
+  "scenario_name": "Heat-wave transmission contingency",
+  "assumptions": [
+    "neighboring imports remain available for up to 90 minutes",
+    "substation.oak-138 can sustain critical load for 12 minutes before cascade risk becomes unacceptable"
+  ],
+  "inputs": {
+    "balancing_authority_id": "ba.ercot.north",
+    "conflicting_proposals": [
+      "proposal.power-grid.0001",
+      "proposal.power-grid.unsafe.0002",
+      "proposal.power-grid.imports.0003"
+    ]
+  },
+  "outcomes": {
+    "recommended_proposal_id": "proposal.power-grid.imports.0003",
+    "projected_unserved_energy_mwh": 18,
+    "projected_stability_window_minutes": 52,
+    "customer_interruptions_avoided": 12500
+  },
+  "created_at": "2026-03-23T11:08:30Z"
+}

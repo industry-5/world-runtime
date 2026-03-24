@@ -1,0 +1,42 @@
+[
+  {
+    "entity_id": "shard.omega.12",
+    "entity_type": "game_shard",
+    "attributes": {
+      "region": "us-central",
+      "tick_rate_hz": 30
+    },
+    "created_at": "2026-03-23T13:06:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "match.control-point.0088",
+    "entity_type": "match_instance",
+    "attributes": {
+      "mode": "control_point",
+      "phase": "overtime"
+    },
+    "created_at": "2026-03-23T13:06:30Z",
+    "version": 1
+  },
+  {
+    "entity_id": "party.crimson.01",
+    "entity_type": "player_party",
+    "attributes": {
+      "side": "contesting_attackers",
+      "size": 6
+    },
+    "created_at": "2026-03-23T13:07:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "guard.match.0088",
+    "entity_type": "consistency_guard",
+    "attributes": {
+      "lock_mode": "zonal_authoritative",
+      "rollback_policy": "player_bounded"
+    },
+    "created_at": "2026-03-23T13:07:30Z",
+    "version": 1
+  }
+]

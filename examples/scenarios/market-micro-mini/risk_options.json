@@ -1,0 +1,74 @@
+[
+  {
+    "proposal_id": "proposal.market-micro.unsafe.0002",
+    "proposal_type": "risk_reduction_plan",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.risk-router-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "firm.delta-one.03",
+        "entity_type": "trading_firm"
+      },
+      {
+        "entity_id": "book.es.nq.cross",
+        "entity_type": "instrument_book"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "hold_aggressive_quotes_open",
+      "parameters": {
+        "firm_id": "firm.delta-one.03",
+        "book_id": "book.es.nq.cross",
+        "venue_id": "venue.chi.mini",
+        "projected_limit_utilization_percent": 111,
+        "maker_imbalance_percent": 88,
+        "kill_switch_armed": false,
+        "hedge_latency_ms": 87,
+        "quote_throttle_enabled": false
+      }
+    },
+    "justification": "Keep quoting aggressively and trust the next burst to flatten the book naturally.",
+    "created_at": "2026-03-23T12:28:15Z"
+  },
+  {
+    "proposal_id": "proposal.market-micro.derisk.0003",
+    "proposal_type": "risk_reduction_plan",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.risk-router-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "firm.delta-one.03",
+        "entity_type": "trading_firm"
+      },
+      {
+        "entity_id": "book.es.nq.cross",
+        "entity_type": "instrument_book"
+      },
+      {
+        "entity_id": "limit.delta-one.03.primary",
+        "entity_type": "risk_limit"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "de_risk_and_widen_quotes",
+      "parameters": {
+        "firm_id": "firm.delta-one.03",
+        "book_id": "book.es.nq.cross",
+        "venue_id": "venue.chi.mini",
+        "projected_limit_utilization_percent": 68,
+        "maker_imbalance_percent": 58,
+        "kill_switch_armed": true,
+        "hedge_latency_ms": 28,
+        "quote_throttle_enabled": true
+      }
+    },
+    "justification": "Reduce quoting aggression and rebalance more slowly to restore comfortable inventory headroom.",
+    "created_at": "2026-03-23T12:28:30Z"
+  }
+]

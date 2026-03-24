@@ -1,0 +1,34 @@
+{
+  "translation_context": {
+    "proposal_suffix": "warn.0002",
+    "proposal_type": "commitment_recovery",
+    "proposer_actor_id": "agent.supply-ops-planner-01",
+    "proposer_actor_type": "agent",
+    "created_at": "2026-03-22T10:05:00Z"
+  },
+  "order_signal": {
+    "commitment_id": "commitment.retailer-warn-0002",
+    "requested_units": 300,
+    "at_risk_units": 90
+  },
+  "inventory_signal": {
+    "inventory_position_id": "inventory.dallas.dc.widget-beta",
+    "on_hand_units": 180,
+    "allocatable_units": 90,
+    "daily_demand_units": 45
+  },
+  "capacity_signal": {
+    "capacity_bucket_id": "capacity.dallas.packout.2026-03-24",
+    "available_units": 120
+  },
+  "lane_signal": {
+    "lane_id": "lane.dallas-atl.standard",
+    "service_level": "standard",
+    "expedite_cost_delta_percent": 6
+  },
+  "simulation_signal": {
+    "simulation_id": "sim.supply-ops.warn.0002",
+    "completed": true
+  },
+  "justification": "Recover the commitment with a standard lane, accepting low residual inventory cover but avoiding premium shipping."
+}

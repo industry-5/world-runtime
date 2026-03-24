@@ -1,0 +1,14 @@
+{
+  "rule_id": "rule.semantic-system.require-approval-breaking-change",
+  "rule_name": "Breaking semantic changes require approval",
+  "rule_type": "approval_trigger",
+  "condition": {
+    "field": "proposed_action.parameters.breaking_change",
+    "operator": "equals",
+    "value": true
+  },
+  "outcome": "require_approval",
+  "evaluation_mode": "deterministic",
+  "created_at": "2026-03-23T10:00:00Z",
+  "version": 1
+}

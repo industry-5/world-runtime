@@ -1,0 +1,37 @@
+{
+  "proposal_id": "proposal.city-ops.0001",
+  "proposal_type": "incident_coordination",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.city-ops-coordinator-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "agency.chicago-emergency-management",
+      "entity_type": "city_agency"
+    },
+    {
+      "entity_id": "corridor.loop-blue-line",
+      "entity_type": "transit_corridor"
+    },
+    {
+      "entity_id": "zone.loop-west",
+      "entity_type": "response_zone"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "activate_unified_command_and_precautionary_shelters",
+    "parameters": {
+      "incident_id": "incident.city-ops.0001",
+      "unified_command_established": true,
+      "hospital_access_routes_open": true,
+      "affected_residents": 18000,
+      "transit_detour_minutes": 42,
+      "shelter_activation_count": 2,
+      "boil_water_advisory_required": true
+    }
+  },
+  "justification": "Open shelters and a joint command structure while utility, transit, and public-safety teams stabilize the flooded corridor.",
+  "created_at": "2026-03-23T11:18:00Z"
+}

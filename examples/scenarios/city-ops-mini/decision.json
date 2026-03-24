@@ -1,0 +1,71 @@
+{
+  "decision_id": "decision.city-ops.0001",
+  "status": "approved",
+  "selected_proposal_id": "proposal.city-ops.0001",
+  "selected_action": {
+    "action_type": "activate_unified_command_and_precautionary_shelters",
+    "parameters": {
+      "incident_id": "incident.city-ops.0001",
+      "command_channel_id": "channel.city-ops.0001"
+    }
+  },
+  "alternatives_considered": [
+    {
+      "proposal_id": "proposal.city-ops.unsafe.0002",
+      "disposition": "rejected",
+      "reason": "Rejected because it removed hospital access and bypassed unified command."
+    },
+    {
+      "proposal_id": "proposal.city-ops.targeted.0003",
+      "disposition": "candidate",
+      "reason": "Preferred in the cleaner branch, but insufficient once contamination uncertainty expanded."
+    }
+  ],
+  "policy_results": [
+    {
+      "policy_name": "city_ops_incident_coordination_controls",
+      "outcome": "require_approval",
+      "message": "The resident impact of the coordinated response requires operator approval."
+    }
+  ],
+  "approval_status": "approved",
+  "approval_id": "approval.city-ops.0001",
+  "approvals": [
+    {
+      "approver": {
+        "actor_id": "human.city-duty-director-01",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "city_director"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "status": "approved"
+    }
+  ],
+  "approval_chain": [
+    {
+      "sequence": 1,
+      "action": "approved",
+      "actor": {
+        "actor_id": "human.city-duty-director-01",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "city_director"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "at": "2026-03-23T11:19:00Z"
+    }
+  ],
+  "rationale": "The city accepted the broader response because the larger shelter and advisory posture best protected residents while utility conditions were still uncertain.",
+  "created_at": "2026-03-23T11:18:45Z"
+}

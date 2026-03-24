@@ -1,0 +1,72 @@
+{
+  "decision_id": "decision.open-agent-world.0001",
+  "status": "approved",
+  "selected_proposal_id": "proposal.open-agent-world.0001",
+  "selected_action": {
+    "action_type": "stage_governed_quota_shift",
+    "parameters": {
+      "zone_id": "zone.commons.delta",
+      "governance_beacon_id": "beacon.governance.delta",
+      "intervention_window_id": "window.open-agent-world.0001"
+    }
+  },
+  "alternatives_considered": [
+    {
+      "proposal_id": "proposal.open-agent-world.unsafe.0002",
+      "disposition": "rejected",
+      "reason": "Rejected because it exceeded the replication ceiling and attempted an intervention with the beacon offline."
+    },
+    {
+      "proposal_id": "proposal.open-agent-world.bounded.0003",
+      "disposition": "candidate",
+      "reason": "Preferred in the simulation branch, but it reduces the intervention radius and slows the quota rebalance."
+    }
+  ],
+  "policy_results": [
+    {
+      "policy_name": "open_agent_world_governance_controls",
+      "outcome": "require_approval",
+      "message": "Wide-area interventions require a human steward before the sandbox can rebalance."
+    }
+  ],
+  "approval_status": "approved",
+  "approval_id": "approval.open-agent-world.0001",
+  "approvals": [
+    {
+      "approver": {
+        "actor_id": "human.world-steward-02",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "world_steward"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "status": "approved"
+    }
+  ],
+  "approval_chain": [
+    {
+      "sequence": 1,
+      "action": "approved",
+      "actor": {
+        "actor_id": "human.world-steward-02",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "world_steward"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "at": "2026-03-23T14:14:10Z"
+    }
+  ],
+  "rationale": "The steward approved the broader intervention because it keeps the governance beacon online while reducing the hottest conflicts across the commons.",
+  "created_at": "2026-03-23T14:14:00Z"
+}

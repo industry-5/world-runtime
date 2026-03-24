@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/digital_twin/event_types.schema.json",
+  "title": "Digital Twin Event Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "host_binding_established",
+        "telemetry_snapshot_ingested",
+        "overlay_risk_projected"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

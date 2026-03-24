@@ -1,0 +1,14 @@
+{
+  "rule_id": "rule.digital-twin.require-approval-cross-host-overlay",
+  "rule_name": "Require approval for cross-host overlay expansion",
+  "rule_type": "approval_trigger",
+  "condition": {
+    "field": "proposed_action.parameters.cross_host_binding_count",
+    "operator": ">",
+    "value": 1
+  },
+  "outcome": "require_approval",
+  "evaluation_mode": "deterministic",
+  "created_at": "2026-03-23T12:00:00Z",
+  "version": 1
+}

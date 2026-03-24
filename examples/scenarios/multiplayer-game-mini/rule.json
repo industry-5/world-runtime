@@ -1,0 +1,14 @@
+{
+  "rule_id": "rule.multiplayer-game.require-approval-rollback-radius",
+  "rule_name": "Require approval when a reconciliation plan rolls back too many players",
+  "rule_type": "approval_trigger",
+  "condition": {
+    "field": "proposed_action.parameters.rollback_players_count",
+    "operator": ">",
+    "value": 4
+  },
+  "outcome": "require_approval",
+  "evaluation_mode": "deterministic",
+  "created_at": "2026-03-23T13:05:00Z",
+  "version": 1
+}

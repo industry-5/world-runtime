@@ -1,0 +1,44 @@
+[
+  {
+    "relationship_id": "rel.firm.operates.book.es.nq.cross",
+    "relationship_type": "operates",
+    "from_entity": {
+      "entity_id": "firm.delta-one.03",
+      "entity_type": "trading_firm"
+    },
+    "to_entity": {
+      "entity_id": "book.es.nq.cross",
+      "entity_type": "instrument_book"
+    },
+    "created_at": "2026-03-23T12:23:00Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.venue.lists.book.es.nq.cross",
+    "relationship_type": "lists",
+    "from_entity": {
+      "entity_id": "venue.chi.mini",
+      "entity_type": "market_venue"
+    },
+    "to_entity": {
+      "entity_id": "book.es.nq.cross",
+      "entity_type": "instrument_book"
+    },
+    "created_at": "2026-03-23T12:23:00Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.limit.constrains.firm.delta-one.03",
+    "relationship_type": "constrains",
+    "from_entity": {
+      "entity_id": "limit.delta-one.03.primary",
+      "entity_type": "risk_limit"
+    },
+    "to_entity": {
+      "entity_id": "firm.delta-one.03",
+      "entity_type": "trading_firm"
+    },
+    "created_at": "2026-03-23T12:23:00Z",
+    "version": 1
+  }
+]

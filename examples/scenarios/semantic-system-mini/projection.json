@@ -1,0 +1,9 @@
+{
+  "projection_id": "projection.semantic-system-state.0001",
+  "projection_name": "semantic_system_state",
+  "projection_type": "state",
+  "projection_version": "1.0.0",
+  "source_event_offset": 2,
+  "materialized_state_ref": "state://semantic_system/current/1",
+  "status": "ready"
+}

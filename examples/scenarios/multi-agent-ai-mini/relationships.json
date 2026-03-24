@@ -1,0 +1,44 @@
+[
+  {
+    "relationship_id": "rel.team.pursues.goal.22",
+    "relationship_type": "pursues",
+    "from_entity": {
+      "entity_id": "agent-team.orchestrator.01",
+      "entity_type": "agent_team"
+    },
+    "to_entity": {
+      "entity_id": "goal.customer-escalation.22",
+      "entity_type": "coordination_goal"
+    },
+    "created_at": "2026-03-23T14:04:20Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.team.uses.context.09",
+    "relationship_type": "uses",
+    "from_entity": {
+      "entity_id": "agent-team.orchestrator.01",
+      "entity_type": "agent_team"
+    },
+    "to_entity": {
+      "entity_id": "context.shared-workspace.09",
+      "entity_type": "shared_context"
+    },
+    "created_at": "2026-03-23T14:04:20Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.board.governs.goal.22",
+    "relationship_type": "governs",
+    "from_entity": {
+      "entity_id": "board.agent-governance.01",
+      "entity_type": "review_board"
+    },
+    "to_entity": {
+      "entity_id": "goal.customer-escalation.22",
+      "entity_type": "coordination_goal"
+    },
+    "created_at": "2026-03-23T14:04:20Z",
+    "version": 1
+  }
+]

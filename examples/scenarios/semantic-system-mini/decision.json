@@ -1,0 +1,72 @@
+{
+  "decision_id": "decision.semantic-system.0001",
+  "status": "approved",
+  "selected_proposal_id": "proposal.semantic-system.0001",
+  "selected_action": {
+    "action_type": "promote_semantic_definition_change",
+    "parameters": {
+      "term_id": "term.customer_status",
+      "candidate_definition_id": "definition.customer_status.v2",
+      "governance_ticket_id": "gov.semantic-system.0001"
+    }
+  },
+  "alternatives_considered": [
+    {
+      "proposal_id": "proposal.semantic-system.unsafe.0001",
+      "disposition": "rejected",
+      "reason": "Rejected because the meaning change was not provenance-complete."
+    },
+    {
+      "proposal_id": "proposal.semantic-system.alias.0002",
+      "disposition": "candidate",
+      "reason": "Lower-risk alias path remained a valid fallback."
+    }
+  ],
+  "policy_results": [
+    {
+      "policy_name": "semantic_system_change_controls",
+      "outcome": "require_approval",
+      "message": "Breaking semantic changes require governance approval after impact review."
+    }
+  ],
+  "approval_status": "approved",
+  "approval_id": "approval.semantic-system.0001",
+  "approvals": [
+    {
+      "approver": {
+        "actor_id": "human.data-governance-chair-01",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "governance_lead"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "status": "approved"
+    }
+  ],
+  "approval_chain": [
+    {
+      "sequence": 1,
+      "action": "approved",
+      "actor": {
+        "actor_id": "human.data-governance-chair-01",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "governance_lead"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "at": "2026-03-23T10:07:30Z"
+    }
+  ],
+  "rationale": "The governance board accepted the breaking change because provenance was complete and the impact window was simulated.",
+  "created_at": "2026-03-23T10:07:00Z"
+}

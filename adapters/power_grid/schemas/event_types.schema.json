@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/power_grid/event_types.schema.json",
+  "title": "Power Grid Event Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "demand_spike_detected",
+        "transmission_line_derated",
+        "reserve_dispatch_committed"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

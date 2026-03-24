@@ -1,0 +1,26 @@
+[
+  {
+    "event_id": "evt.air-traffic.weather-alert.0001",
+    "event_type": "weather_alert_issued",
+    "occurred_at": "2026-03-09T08:10:00Z",
+    "recorded_at": "2026-03-09T08:10:05Z",
+    "payload": {
+      "airport_id": "airport.kord",
+      "wind_shear": true,
+      "severity": "high"
+    },
+    "correlation_id": "corr.air-traffic.20260309.01"
+  },
+  {
+    "event_id": "evt.air-traffic.holding.0002",
+    "event_type": "flight_holding_pattern_assigned",
+    "occurred_at": "2026-03-09T08:11:00Z",
+    "recorded_at": "2026-03-09T08:11:05Z",
+    "payload": {
+      "flight_id": "flight.ual2187",
+      "pattern": "KORD.NORTH.STACK.A",
+      "estimated_delay_minutes": 22
+    },
+    "correlation_id": "corr.air-traffic.20260309.01"
+  }
+]

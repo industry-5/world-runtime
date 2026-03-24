@@ -1,0 +1,9 @@
+{
+  "projection_id": "projection.open-agent-world-state.0001",
+  "projection_name": "open_agent_world_state",
+  "projection_type": "state",
+  "projection_version": "1.0.0",
+  "source_event_offset": 2,
+  "materialized_state_ref": "state://open_agent_world/current/1",
+  "status": "ready"
+}

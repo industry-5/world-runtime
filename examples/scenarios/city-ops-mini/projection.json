@@ -1,0 +1,9 @@
+{
+  "projection_id": "projection.city-ops-state.0001",
+  "projection_name": "city_ops_state",
+  "projection_type": "state",
+  "projection_version": "1.0.0",
+  "source_event_offset": 2,
+  "materialized_state_ref": "state://city_ops/current/1",
+  "status": "ready"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/city_ops/entity_types.schema.json",
+  "title": "City Ops Entity Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "city_agency",
+        "transit_corridor",
+        "utility_asset",
+        "response_zone"
+      ]
+    }
+  },
+  "required": [
+    "entity_type"
+  ]
+}

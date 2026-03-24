@@ -1,0 +1,38 @@
+{
+  "proposal_id": "proposal.lab-science.0001",
+  "proposal_type": "batch_release_decision",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.lab-review-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "batch.qpcr.20260323.07",
+      "entity_type": "sample_batch"
+    },
+    {
+      "entity_id": "run.qpcr.20260323.07",
+      "entity_type": "instrument_run"
+    },
+    {
+      "entity_id": "board.quality.release",
+      "entity_type": "quality_review_board"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "release_batch_with_review_holdpoints",
+    "parameters": {
+      "batch_id": "batch.qpcr.20260323.07",
+      "run_id": "run.qpcr.20260323.07",
+      "evidence_chain_complete": true,
+      "sample_integrity_score": 96,
+      "control_drift_score": 4.6,
+      "deviation_open": true,
+      "retest_window_hours": 8,
+      "release_under_supervision": true
+    }
+  },
+  "justification": "Release can proceed under supervised holdpoints because evidence is complete and the deviation has a defined retest window.",
+  "created_at": "2026-03-23T12:08:00Z"
+}

@@ -1,0 +1,29 @@
+name: Docs or help request
+description: Ask for documentation clarification or setup guidance
+title: "[Docs/Help]: "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reaching out.
+
+        Before filing, please check `README.md`, `docs/developer-quickstart.md`, and `docs/SUPPORT_POLICY.md`.
+  - type: textarea
+    id: question
+    attributes:
+      label: What is unclear?
+      description: Tell us what you were trying to do and where the docs or workflow got confusing.
+    validations:
+      required: true
+  - type: input
+    id: doc_path
+    attributes:
+      label: Related doc or file
+      description: If relevant, paste the file path or URL that confused you
+  - type: textarea
+    id: attempted
+    attributes:
+      label: What you already tried
+      description: Commands, docs, or steps you already followed

@@ -1,0 +1,58 @@
+{
+  "policy_id": "policy.semantic-system.default",
+  "policy_name": "semantic_system_change_controls",
+  "policy_type": "governance",
+  "rules": [
+    {
+      "rule_id": "rule.semantic-system.deny-missing-provenance",
+      "rule_name": "Deny semantic changes without provenance evidence",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.provenance_complete",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "deny",
+      "message_template": "Semantic changes must retain provenance before promotion.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T10:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.semantic-system.warn-high-conflict-score",
+      "rule_name": "Warn when semantic conflict score is elevated",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.conflict_score",
+        "operator": ">",
+        "value": 70
+      },
+      "outcome": "warn",
+      "message_template": "The meaning change affects a high-conflict term and should be reviewed carefully.",
+      "evaluation_mode": "deterministic",
+      "severity": "medium",
+      "created_at": "2026-03-23T10:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.semantic-system.require-approval-breaking-change",
+      "rule_name": "Require approval for breaking semantic changes",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.breaking_change",
+        "operator": "equals",
+        "value": true
+      },
+      "outcome": "require_approval",
+      "message_template": "Breaking semantic changes require governance approval.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-23T10:00:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-23T10:00:00Z",
+  "version": 1
+}

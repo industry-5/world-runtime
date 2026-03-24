@@ -1,0 +1,25 @@
+{
+  "simulation_id": "sim.multiplayer-game.0001",
+  "simulation_type": "concurrency_resolution_analysis",
+  "status": "completed",
+  "scenario_name": "Overtime control-point conflict resolution",
+  "assumptions": [
+    "regional latency remains below 60 ms during the reconciliation window",
+    "players tolerate a brief serialized update window better than a full match reset"
+  ],
+  "inputs": {
+    "match_id": "match.control-point.0088",
+    "conflicting_proposals": [
+      "proposal.multiplayer-game.0001",
+      "proposal.multiplayer-game.unsafe.0002",
+      "proposal.multiplayer-game.serialized.0003"
+    ]
+  },
+  "outcomes": {
+    "recommended_proposal_id": "proposal.multiplayer-game.serialized.0003",
+    "projected_desync_players_avoided": 7,
+    "projected_input_delay_ms": 180,
+    "projected_state_divergence_closed": true
+  },
+  "created_at": "2026-03-23T13:12:05Z"
+}

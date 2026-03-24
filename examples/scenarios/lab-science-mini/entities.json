@@ -1,0 +1,42 @@
+[
+  {
+    "entity_id": "program.gxp.assay",
+    "entity_type": "lab_program",
+    "attributes": {
+      "name": "GxP Stability Assay",
+      "regulatory_profile": "validated_release"
+    },
+    "created_at": "2026-03-23T12:01:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "batch.qpcr.20260323.07",
+    "entity_type": "sample_batch",
+    "attributes": {
+      "sample_count": 48,
+      "release_status": "pending_quality_review"
+    },
+    "created_at": "2026-03-23T12:01:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "run.qpcr.20260323.07",
+    "entity_type": "instrument_run",
+    "attributes": {
+      "instrument_id": "qpcr-west-02",
+      "control_drift_score": 4.6
+    },
+    "created_at": "2026-03-23T12:02:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "board.quality.release",
+    "entity_type": "quality_review_board",
+    "attributes": {
+      "quorum_required": 2,
+      "review_window_hours": 8
+    },
+    "created_at": "2026-03-23T12:02:00Z",
+    "version": 1
+  }
+]

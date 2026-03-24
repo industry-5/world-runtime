@@ -1,0 +1,25 @@
+{
+  "simulation_id": "sim.lab-science.0001",
+  "simulation_type": "regulated_release_analysis",
+  "status": "completed",
+  "scenario_name": "Deviation-aware batch release",
+  "assumptions": [
+    "quality-board quorum is available inside the eight-hour review window",
+    "the retest queue can absorb one additional six-hour hold without losing the program slot"
+  ],
+  "inputs": {
+    "batch_id": "batch.qpcr.20260323.07",
+    "conflicting_proposals": [
+      "proposal.lab-science.0001",
+      "proposal.lab-science.unsafe.0002",
+      "proposal.lab-science.retest.0003"
+    ]
+  },
+  "outcomes": {
+    "recommended_proposal_id": "proposal.lab-science.retest.0003",
+    "projected_release_delay_hours": 6,
+    "projected_data_reliability_score": 99,
+    "projected_regulatory_risk": "low"
+  },
+  "created_at": "2026-03-23T12:08:40Z"
+}

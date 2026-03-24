@@ -1,0 +1,44 @@
+[
+  {
+    "relationship_id": "rel.shard.hosts.match.0088",
+    "relationship_type": "hosts",
+    "from_entity": {
+      "entity_id": "shard.omega.12",
+      "entity_type": "game_shard"
+    },
+    "to_entity": {
+      "entity_id": "match.control-point.0088",
+      "entity_type": "match_instance"
+    },
+    "created_at": "2026-03-23T13:08:00Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.party.contests.match.0088",
+    "relationship_type": "contests",
+    "from_entity": {
+      "entity_id": "party.crimson.01",
+      "entity_type": "player_party"
+    },
+    "to_entity": {
+      "entity_id": "match.control-point.0088",
+      "entity_type": "match_instance"
+    },
+    "created_at": "2026-03-23T13:08:00Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.guard.protects.match.0088",
+    "relationship_type": "protects",
+    "from_entity": {
+      "entity_id": "guard.match.0088",
+      "entity_type": "consistency_guard"
+    },
+    "to_entity": {
+      "entity_id": "match.control-point.0088",
+      "entity_type": "match_instance"
+    },
+    "created_at": "2026-03-23T13:08:00Z",
+    "version": 1
+  }
+]

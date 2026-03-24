@@ -1,0 +1,68 @@
+[
+  {
+    "proposal_id": "proposal.multiplayer-game.unsafe.0002",
+    "proposal_type": "conflict_resolution_plan",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.sync-director-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "match.control-point.0088",
+        "entity_type": "match_instance"
+      },
+      {
+        "entity_id": "shard.omega.12",
+        "entity_type": "game_shard"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "force_merge_inputs",
+      "parameters": {
+        "match_id": "match.control-point.0088",
+        "shard_id": "shard.omega.12",
+        "contested_players_count": 14,
+        "rollback_players_count": 9,
+        "projected_tick_drift_ms": 148,
+        "authoritative_lock_acquired": false,
+        "queue_window_ms": 35
+      }
+    },
+    "justification": "Merge both input streams immediately and trust client smoothing to hide the divergence.",
+    "created_at": "2026-03-23T13:11:45Z"
+  },
+  {
+    "proposal_id": "proposal.multiplayer-game.serialized.0003",
+    "proposal_type": "conflict_resolution_plan",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.sync-director-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "match.control-point.0088",
+        "entity_type": "match_instance"
+      },
+      {
+        "entity_id": "guard.match.0088",
+        "entity_type": "consistency_guard"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "serialize_zone_resolution",
+      "parameters": {
+        "match_id": "match.control-point.0088",
+        "consistency_guard_id": "guard.match.0088",
+        "contested_players_count": 6,
+        "rollback_players_count": 2,
+        "projected_tick_drift_ms": 26,
+        "authoritative_lock_acquired": true,
+        "queue_window_ms": 180
+      }
+    },
+    "justification": "Serialize the contested zone briefly to contain the divergence with a smaller rollback footprint.",
+    "created_at": "2026-03-23T13:12:00Z"
+  }
+]

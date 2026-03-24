@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supply Ops Decision Explorer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-glow" aria-hidden="true"></div>
+    <nav class="lab-nav" aria-label="Lab routes">
+      <a class="nav-link" href="/">SO-P3 Operator Route</a>
+      <a class="nav-link nav-link-active" href="/decision-explorer">SO-P4 Decision Explorer</a>
+    </nav>
+    <header class="hero">
+      <p class="eyebrow">Supply Ops Lab</p>
+      <h1>Decision Explorer</h1>
+      <p class="subtitle">
+        Parallel concept surface for one curated Supply Ops commitment: inspect the commitment,
+        compare three proposals assembled into two plans, then see how server-authored weighting
+        shifts the selected plan and policy posture.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="panel panel-primary">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">SO-P4</p>
+            <h2>Curated Comparison Surface</h2>
+          </div>
+          <div class="button-row">
+            <button id="explorer-reset-defaults" class="button-secondary" type="button">
+              Reset Defaults
+            </button>
+            <button id="explorer-apply-service-heavy" type="button">Apply Service-Heavy</button>
+          </div>
+        </div>
+        <p id="explorer-status-banner" class="status-banner">Loading Decision Explorer...</p>
+        <ul id="explorer-boundary-notes" class="note-list"></ul>
+        <ul id="explorer-truth-notes" class="note-list truth-list"></ul>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Commitment</p>
+            <h2>At-Risk Recovery Anchor</h2>
+          </div>
+        </div>
+        <div id="explorer-commitment-summary" class="summary-grid"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Proposals</p>
+            <h2>Curated Proposal Legs</h2>
+          </div>
+        </div>
+        <div id="explorer-proposal-cards" class="explorer-grid"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Controls</p>
+            <h2>Policy Weights And Simulation Mode</h2>
+          </div>
+        </div>
+        <div id="explorer-weight-controls" class="control-grid"></div>
+        <div id="explorer-simulation-controls" class="toggle-row"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Plans</p>
+            <h2>Server-Authored Comparison</h2>
+          </div>
+        </div>
+        <div id="explorer-plan-cards" class="explorer-grid"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Decision</p>
+            <h2>Selected Plan And Policy Shift</h2>
+          </div>
+        </div>
+        <div id="explorer-decision-card" class="gate-card gate-neutral">
+          <p class="gate-title">Waiting for evaluation</p>
+          <p class="gate-copy">The selected plan will appear after bootstrap loads.</p>
+        </div>
+        <div class="decision-grid">
+          <div>
+            <h3>Why Selected</h3>
+            <ul id="explorer-why-selected" class="note-list"></ul>
+          </div>
+          <div>
+            <h3>Why Not Selected</h3>
+            <ul id="explorer-why-not-selected" class="note-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <details class="panel">
+        <summary>Raw Decision Explorer Payload</summary>
+        <pre id="explorer-raw-json" class="json-block">{}</pre>
+      </details>
+    </main>
+
+    <script src="./decision-explorer.js" type="module"></script>
+  </body>
+</html>

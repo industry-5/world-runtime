@@ -1,0 +1,30 @@
+[
+  {
+    "relationship_id": "rel.kord.contains.runway-10c-28c",
+    "relationship_type": "contains",
+    "from_entity": {
+      "entity_id": "airport.kord",
+      "entity_type": "airport"
+    },
+    "to_entity": {
+      "entity_id": "runway.kord.10c-28c",
+      "entity_type": "runway"
+    },
+    "created_at": "2026-03-09T08:03:00Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.ual2187.managed-by.arrival-north",
+    "relationship_type": "managed_by",
+    "from_entity": {
+      "entity_id": "flight.ual2187",
+      "entity_type": "flight"
+    },
+    "to_entity": {
+      "entity_id": "sector.kord.arrival-north",
+      "entity_type": "control_sector"
+    },
+    "created_at": "2026-03-09T08:03:00Z",
+    "version": 1
+  }
+]

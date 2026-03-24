@@ -1,0 +1,56 @@
+{
+  "envelope_id": "ingress.supply-ops.0001",
+  "envelope_type": "supply_ops_connector_signal",
+  "schema_version": "so-m4.ingress.v1",
+  "received_at": "2026-03-22T09:08:35Z",
+  "connector": {
+    "connector_id": "connector.supply-ops.erp-wms-ingress",
+    "direction": "inbound",
+    "provider": "fixture.erp-wms-gateway",
+    "source": "erp_wms_control_tower"
+  },
+  "governance": {
+    "translation_required": true,
+    "mutates_runtime_state": false,
+    "translation_boundary": "proposal_only"
+  },
+  "trace": {
+    "external_message_id": "msg.erp-wms.0001",
+    "correlation_id": "corr.supply-ops.20260322.01"
+  },
+  "signal_bundle": {
+    "translation_context": {
+      "proposal_suffix": "0001",
+      "proposal_type": "commitment_recovery",
+      "proposer_actor_id": "agent.supply-ops-planner-01",
+      "proposer_actor_type": "agent",
+      "created_at": "2026-03-22T09:09:00Z"
+    },
+    "order_signal": {
+      "commitment_id": "commitment.retailer-4821",
+      "requested_units": 180,
+      "at_risk_units": 180
+    },
+    "inventory_signal": {
+      "inventory_position_id": "inventory.dallas.dc.widget-alpha",
+      "on_hand_units": 240,
+      "allocatable_units": 180,
+      "daily_demand_units": 30
+    },
+    "capacity_signal": {
+      "capacity_bucket_id": "capacity.dallas.packout.2026-03-23",
+      "available_units": 220
+    },
+    "lane_signal": {
+      "lane_id": "lane.dallas-atl.expedited",
+      "service_level": "expedited",
+      "expedite_cost_delta_percent": 14
+    },
+    "simulation_signal": {
+      "simulation_id": "sim.supply-ops.0001",
+      "completed": true,
+      "projected_fill_rate_percent": 98
+    },
+    "justification": "Rebalance available inventory and reserve packout capacity to recover the at-risk commitment before the promised date."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "projection_id": "projection.multi-agent-ai-state.0001",
+  "projection_name": "multi_agent_ai_state",
+  "projection_type": "state",
+  "projection_version": "1.0.0",
+  "source_event_offset": 2,
+  "materialized_state_ref": "state://multi_agent_ai/current/1",
+  "status": "ready"
+}
