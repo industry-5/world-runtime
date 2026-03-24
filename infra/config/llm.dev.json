@@ -1,8 +1,0 @@
-{
-  "provider": "openai",
-  "model": "gpt-5.4",
-  "api_key_env": "OPENAI_API_KEY",
-  "temperature": 0.2,
-  "max_tokens": 1024,
-  "notes": "Reference provider config for shared dev environments"
-}
