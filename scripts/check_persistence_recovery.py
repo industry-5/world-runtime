@@ -11,6 +11,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from core.connectors import ConnectorRuntime, OutboundConnectorConfig, RetryPolicy
 from core.migrations import apply_sqlite_migrations
+from core.path_utils import display_repo_path, resolve_writable_repo_path
 from core.persistence_recovery import backup_sqlite_database, restore_sqlite_database, sqlite_table_counts
 from core.sqlite_event_store import SQLiteEventStore
 
@@ -107,8 +108,8 @@ def _backup_restore_check(database_path: Path, workspace: Path) -> Dict[str, Any
         "restored_counts": restored_counts,
         "backup_bytes": backup_info["bytes"],
         "restored_bytes": restore_info["bytes"],
-        "backup_path": str(backup_path.relative_to(REPO_ROOT)),
-        "restored_path": str(restored_path.relative_to(REPO_ROOT)),
+        "backup_path": display_repo_path(REPO_ROOT, backup_path),
+        "restored_path": display_repo_path(REPO_ROOT, restored_path),
     }
 
 
@@ -153,7 +154,7 @@ def _migration_volume_check(workspace: Path, event_count: int) -> Dict[str, Any]
         "migration_first": first,
         "migration_second": second,
         "counts": counts,
-        "database_path": str(volume_db_path.relative_to(REPO_ROOT)),
+        "database_path": display_repo_path(REPO_ROOT, volume_db_path),
     }
 
 
@@ -166,7 +167,7 @@ def main() -> int:
     if args.event_count < 100:
         raise SystemExit("--event-count must be >= 100")
 
-    workspace = REPO_ROOT / "tmp" / "m23"
+    workspace = resolve_writable_repo_path(REPO_ROOT, Path("tmp/m23"))
     if workspace.exists():
         shutil.rmtree(workspace)
     workspace.mkdir(parents=True, exist_ok=True)
@@ -188,7 +189,7 @@ def main() -> int:
         "migration_volume": migration_volume,
     }
 
-    output_path = REPO_ROOT / args.output
+    output_path = resolve_writable_repo_path(REPO_ROOT, args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     print(json.dumps(payload, indent=2))

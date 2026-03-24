@@ -13,6 +13,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from api.runtime_api import PublicRuntimeAPI
 from core.deployment import DeploymentLoader
+from core.path_utils import resolve_writable_repo_path
 
 
 def _metric(samples: List[float], operations: int) -> Dict[str, Any]:
@@ -236,7 +237,7 @@ def main() -> int:
         "results": results,
     }
 
-    output_path = REPO_ROOT / args.output
+    output_path = resolve_writable_repo_path(REPO_ROOT, args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     print(json.dumps(payload, indent=2))

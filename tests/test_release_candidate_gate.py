@@ -7,9 +7,8 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_release_candidate_gate_fast_mode_passes():
-    output_rel = "tmp/diagnostics/test_m25_release_candidate_gate.json"
-    output_path = REPO_ROOT / output_rel
+def test_release_candidate_gate_fast_mode_passes(tmp_path: Path):
+    output_path = tmp_path / "test_m25_release_candidate_gate.json"
     if output_path.exists():
         output_path.unlink()
 
@@ -21,7 +20,7 @@ def test_release_candidate_gate_fast_mode_passes():
             "--release-version",
             "1.0.0-test",
             "--output",
-            output_rel,
+            str(output_path),
         ],
         cwd=REPO_ROOT,
         text=True,

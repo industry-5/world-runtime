@@ -8,6 +8,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from core.eval_harness import EvalHarness
 from core.event_store import InMemoryEventStore
+from core.path_utils import resolve_writable_repo_path
 from core.policy_engine import DeterministicPolicyEngine
 from core.projector import SimpleProjector
 from core.reasoning_adapter import ReasoningAdapter
@@ -46,10 +47,15 @@ def build_harness() -> EvalHarness:
 
 
 def write_reports(report: dict) -> None:
-    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    latest = REPORTS_DIR / "latest.json"
+    latest = resolve_writable_repo_path(REPO_ROOT, Path("evals/reports/latest.json"))
     timestamp = report["ran_at"].replace(":", "-")
-    stamped = REPORTS_DIR / ("report-%s.json" % timestamp)
+    stamped = resolve_writable_repo_path(
+        REPO_ROOT,
+        Path("evals/reports") / ("report-%s.json" % timestamp),
+    )
+
+    latest.parent.mkdir(parents=True, exist_ok=True)
+    stamped.parent.mkdir(parents=True, exist_ok=True)
 
     with latest.open("w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)

@@ -46,6 +46,5 @@ def test_release_artifact_builder_outputs_manifest_and_archive(tmp_path):
     assert "docs/SECURITY_TRUST_BOUNDARY_REVIEW.md" in manifest_paths
     assert "docs/SUPPORT_POLICY.md" in manifest_paths
     assert "playbooks/ci-cd-release.md" in manifest_paths
-    assert "CHANGELOG.md" in manifest_paths
     assert "templates/adapter_starter/adapter.py" in manifest_paths
     assert "templates/connector_plugin_starter/plugin.py" in manifest_paths

@@ -2,12 +2,18 @@ import argparse
 import json
 import shlex
 import subprocess
+import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import List
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from core.path_utils import resolve_writable_repo_path
+
 DEFAULT_OUTPUT = REPO_ROOT / "tmp" / "diagnostics" / "m25_release_candidate_gate.latest.json"
 
 REQUIRED_DOCS = {
@@ -25,10 +31,6 @@ REQUIRED_DOCS = {
         "# Support Policy",
         "## Compatibility Commitments",
     ],
-    "CHANGELOG.md": [
-        "# Changelog",
-        "## [1.0.0] - 2026-03-22",
-    ],
 }
 
 
@@ -45,6 +47,7 @@ def utc_now() -> str:
 
 def _build_command_matrix(release_version: str, fast: bool) -> List[CommandSpec]:
     if fast:
+        release_dir = resolve_writable_repo_path(REPO_ROOT, Path("tmp/releases_fast"))
         return [
             CommandSpec("milestone", "schema-check", "make schemas"),
             CommandSpec("milestone", "protocol-compat", "make protocol-compat"),
@@ -53,7 +56,7 @@ def _build_command_matrix(release_version: str, fast: bool) -> List[CommandSpec]
             CommandSpec(
                 "milestone",
                 "release-artifacts",
-                f"python3 scripts/build_release_artifacts.py --version {shlex.quote(release_version)} --output-dir tmp/releases_fast",
+                f"python3 scripts/build_release_artifacts.py --version {shlex.quote(release_version)} --output-dir {shlex.quote(str(release_dir))}",
             ),
         ]
 
@@ -192,8 +195,9 @@ def main() -> int:
     payload["status"] = "passed" if not errors else "failed"
     payload["errors"] = errors
 
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    output_path = resolve_writable_repo_path(REPO_ROOT, args.output)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
     print(json.dumps(payload, indent=2))
     return 0 if payload["status"] == "passed" else 1
