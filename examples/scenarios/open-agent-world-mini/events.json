@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "evt.open-agent-world.admit.0001",
+    "event_type": "agent_cohort_admitted",
+    "occurred_at": "2026-03-23T14:11:00Z",
+    "recorded_at": "2026-03-23T14:11:03Z",
+    "payload": {
+      "cohort_id": "cohort.foragers.07",
+      "zone_id": "zone.commons.delta",
+      "population": 48
+    },
+    "correlation_id": "corr.open-agent-world.20260323.01"
+  },
+  {
+    "event_id": "evt.open-agent-world.conflict.0002",
+    "event_type": "commons_conflict_detected",
+    "occurred_at": "2026-03-23T14:12:00Z",
+    "recorded_at": "2026-03-23T14:12:05Z",
+    "payload": {
+      "zone_id": "zone.commons.delta",
+      "cross_cohort_conflicts_count": 5,
+      "replication_budget_percent": 42
+    },
+    "correlation_id": "corr.open-agent-world.20260323.01"
+  },
+  {
+    "event_id": "evt.open-agent-world.intervention.0003",
+    "event_type": "intervention_plan_submitted",
+    "occurred_at": "2026-03-23T14:13:00Z",
+    "recorded_at": "2026-03-23T14:13:04Z",
+    "payload": {
+      "proposal_id": "proposal.open-agent-world.0001",
+      "regions_under_intervention": 3,
+      "governance_beacon_online": true
+    },
+    "correlation_id": "corr.open-agent-world.20260323.01"
+  }
+]

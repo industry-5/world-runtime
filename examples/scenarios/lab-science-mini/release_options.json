@@ -1,0 +1,74 @@
+[
+  {
+    "proposal_id": "proposal.lab-science.unsafe.0002",
+    "proposal_type": "batch_release_decision",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.lab-review-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "batch.qpcr.20260323.07",
+        "entity_type": "sample_batch"
+      },
+      {
+        "entity_id": "run.qpcr.20260323.07",
+        "entity_type": "instrument_run"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "release_batch_immediately",
+      "parameters": {
+        "batch_id": "batch.qpcr.20260323.07",
+        "run_id": "run.qpcr.20260323.07",
+        "evidence_chain_complete": false,
+        "sample_integrity_score": 84,
+        "control_drift_score": 5.3,
+        "deviation_open": false,
+        "retest_window_hours": 0,
+        "release_under_supervision": false
+      }
+    },
+    "justification": "Ship the batch immediately to keep the downstream queue on time.",
+    "created_at": "2026-03-23T12:08:15Z"
+  },
+  {
+    "proposal_id": "proposal.lab-science.retest.0003",
+    "proposal_type": "batch_release_decision",
+    "status": "submitted",
+    "proposer": {
+      "actor_id": "agent.lab-review-01",
+      "actor_type": "agent"
+    },
+    "target_entities": [
+      {
+        "entity_id": "batch.qpcr.20260323.07",
+        "entity_type": "sample_batch"
+      },
+      {
+        "entity_id": "run.qpcr.20260323.07",
+        "entity_type": "instrument_run"
+      },
+      {
+        "entity_id": "board.quality.release",
+        "entity_type": "quality_review_board"
+      }
+    ],
+    "proposed_action": {
+      "action_type": "hold_batch_for_retest",
+      "parameters": {
+        "batch_id": "batch.qpcr.20260323.07",
+        "run_id": "run.qpcr.20260323.07",
+        "evidence_chain_complete": true,
+        "sample_integrity_score": 97,
+        "control_drift_score": 2.1,
+        "deviation_open": false,
+        "retest_window_hours": 6,
+        "release_under_supervision": false
+      }
+    },
+    "justification": "Hold the batch for a short retest cycle to clear the deviation before release.",
+    "created_at": "2026-03-23T12:08:30Z"
+  }
+]

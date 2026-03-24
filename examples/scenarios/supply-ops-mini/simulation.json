@@ -1,0 +1,22 @@
+{
+  "simulation_id": "sim.supply-ops.0001",
+  "simulation_type": "commitment_recovery_tradeoff",
+  "status": "completed",
+  "scenario_name": "Recover at-risk retailer commitment",
+  "assumptions": [
+    "expedited lane remains available for same-day handoff",
+    "packout capacity can be reserved without displacing higher-priority work"
+  ],
+  "inputs": {
+    "commitment_id": "commitment.retailer-4821",
+    "recovery_units": 180
+  },
+  "outcomes": {
+    "recommended_proposal_id": "proposal.supply-ops.0001",
+    "baseline_late_units": 180,
+    "projected_late_units_after_action": 0,
+    "projected_margin_delta_percent": -6,
+    "projected_post_action_inventory_days": 2
+  },
+  "created_at": "2026-03-22T09:08:45Z"
+}

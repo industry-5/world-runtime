@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "evt.multiplayer-game.window-opened.0001",
+    "event_type": "simultaneous_action_window_opened",
+    "occurred_at": "2026-03-23T13:09:00Z",
+    "recorded_at": "2026-03-23T13:09:02Z",
+    "payload": {
+      "match_id": "match.control-point.0088",
+      "shard_id": "shard.omega.12",
+      "contested_players_count": 11
+    },
+    "correlation_id": "corr.multiplayer-game.20260323.01"
+  },
+  {
+    "event_id": "evt.multiplayer-game.divergence.0002",
+    "event_type": "state_divergence_detected",
+    "occurred_at": "2026-03-23T13:10:00Z",
+    "recorded_at": "2026-03-23T13:10:03Z",
+    "payload": {
+      "match_id": "match.control-point.0088",
+      "projected_tick_drift_ms": 44,
+      "authoritative_lock_acquired": true
+    },
+    "correlation_id": "corr.multiplayer-game.20260323.01"
+  },
+  {
+    "event_id": "evt.multiplayer-game.plan.0003",
+    "event_type": "reconciliation_plan_submitted",
+    "occurred_at": "2026-03-23T13:11:00Z",
+    "recorded_at": "2026-03-23T13:11:05Z",
+    "payload": {
+      "proposal_id": "proposal.multiplayer-game.0001",
+      "rollback_players_count": 5,
+      "contested_players_count": 11
+    },
+    "correlation_id": "corr.multiplayer-game.20260323.01"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "event_id": "evt.semantic-system.term-registered.0001",
+    "event_type": "semantic_term_registered",
+    "occurred_at": "2026-03-23T10:03:00Z",
+    "recorded_at": "2026-03-23T10:03:05Z",
+    "payload": {
+      "term_id": "term.customer_status",
+      "definition_id": "definition.customer_status.v1"
+    },
+    "correlation_id": "corr.semantic-system.20260323.01"
+  },
+  {
+    "event_id": "evt.semantic-system.mapping-conflict.0002",
+    "event_type": "mapping_conflict_detected",
+    "occurred_at": "2026-03-23T10:04:00Z",
+    "recorded_at": "2026-03-23T10:04:05Z",
+    "payload": {
+      "mapping_id": "mapping.crm.customer_status",
+      "term_id": "term.customer_status",
+      "conflict_score": 82
+    },
+    "correlation_id": "corr.semantic-system.20260323.01"
+  },
+  {
+    "event_id": "evt.semantic-system.meaning-change-requested.0003",
+    "event_type": "meaning_change_requested",
+    "occurred_at": "2026-03-23T10:05:00Z",
+    "recorded_at": "2026-03-23T10:05:05Z",
+    "payload": {
+      "term_id": "term.customer_status",
+      "candidate_definition_id": "definition.customer_status.v2",
+      "requested_by": "agent.semantic-steward-01"
+    },
+    "correlation_id": "corr.semantic-system.20260323.01"
+  }
+]

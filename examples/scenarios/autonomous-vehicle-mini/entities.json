@@ -1,0 +1,42 @@
+[
+  {
+    "entity_id": "vehicle.av.17",
+    "entity_type": "autonomous_vehicle",
+    "attributes": {
+      "autonomy_level": 4,
+      "mission_profile": "urban_delivery"
+    },
+    "created_at": "2026-03-23T13:15:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "road.segment.river.12",
+    "entity_type": "road_segment",
+    "attributes": {
+      "speed_limit_kph": 35,
+      "lane_state": "right_lane_blocked"
+    },
+    "created_at": "2026-03-23T13:15:20Z",
+    "version": 1
+  },
+  {
+    "entity_id": "hazard.zone.occlusion.04",
+    "entity_type": "hazard_zone",
+    "attributes": {
+      "hazard_type": "cyclist_occlusion",
+      "work_zone": true
+    },
+    "created_at": "2026-03-23T13:15:40Z",
+    "version": 1
+  },
+  {
+    "entity_id": "supervisor.remote.02",
+    "entity_type": "remote_supervisor",
+    "attributes": {
+      "shift_status": "active",
+      "coverage": "urban_core"
+    },
+    "created_at": "2026-03-23T13:16:00Z",
+    "version": 1
+  }
+]

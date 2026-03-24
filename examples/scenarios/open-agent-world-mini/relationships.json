@@ -1,0 +1,44 @@
+[
+  {
+    "relationship_id": "rel.cohort.occupies.delta",
+    "relationship_type": "occupies",
+    "from_entity": {
+      "entity_id": "cohort.foragers.07",
+      "entity_type": "agent_cohort"
+    },
+    "to_entity": {
+      "entity_id": "zone.commons.delta",
+      "entity_type": "world_zone"
+    },
+    "created_at": "2026-03-23T14:10:20Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.beacon.governs.delta",
+    "relationship_type": "governs",
+    "from_entity": {
+      "entity_id": "beacon.governance.delta",
+      "entity_type": "governance_beacon"
+    },
+    "to_entity": {
+      "entity_id": "zone.commons.delta",
+      "entity_type": "world_zone"
+    },
+    "created_at": "2026-03-23T14:10:20Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.pool.powers.delta",
+    "relationship_type": "powers",
+    "from_entity": {
+      "entity_id": "pool.energy.delta",
+      "entity_type": "resource_pool"
+    },
+    "to_entity": {
+      "entity_id": "zone.commons.delta",
+      "entity_type": "world_zone"
+    },
+    "created_at": "2026-03-23T14:10:20Z",
+    "version": 1
+  }
+]

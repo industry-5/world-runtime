@@ -1,36 +1,38 @@
-# Public Domain Adapter Portfolio
+# Public Domain Adapter Program
 
 _Last updated: 2026-03-23 (America/Chicago)_
 
-This directory maps the public domain adapter portfolio for World Runtime.
+This directory now carries the public domain adapter scenario program for `world-runtime`.
 
-The portfolio shows how the same runtime model can be applied to very different decision-heavy systems while keeping explicit state, replayable evidence, policy-visible decisions, and simulation-before-action as the common foundation.
+The public export keeps the runtime-facing package docs and portfolio story, but omits the internal milestone ledgers and thread handoff materials used to build the series.
 
 ## In-Scope Public Tracks
 
-- [adapter-supply-network](supply_network/README.md)
-- [adapter-air-traffic](air_traffic/README.md)
-- [adapter-semantic-system](semantic_system/README.md)
-- [adapter-power-grid](power_grid/README.md)
-- [adapter-city-ops](city_ops/README.md)
-- [adapter-lab-science](lab_science/README.md)
-- [adapter-market-micro](market_micro/README.md)
-- [adapter-multiplayer-game](multiplayer_game/README.md)
-- [adapter-autonomous-vehicle](autonomous_vehicle/README.md)
-- [adapter-multi-agent-ai](multi_agent_ai/README.md)
-- [adapter-open-agent-world](open_agent_world/README.md)
-- [adapter-digital-twin](digital_twin/README.md)
+- `adapter-supply-network` (`SN`)
+- `adapter-air-traffic` (`AT`)
+- `adapter-semantic-system` (`SS`)
+- `adapter-power-grid` (`PG`)
+- `adapter-city-ops` (`CO`)
+- `adapter-lab-science` (`LS`)
+- `adapter-market-micro` (`MM`)
+- `adapter-multiplayer-game` (`MPG`)
+- `adapter-autonomous-vehicle` (`AV`)
+- `adapter-multi-agent-ai` (`MA`)
+- `adapter-open-agent-world` (`OAW`)
+- `adapter-digital-twin` (`DT`)
 
-## Portfolio Shape
+## Out-Of-Program Tracks
 
-- `supply_network` and `air_traffic` are the original public proof paths.
-- `semantic_system`, `power_grid`, and `city_ops` expand the portfolio into meaning governance, infrastructure, and civic coordination.
-- `lab_science` and `market_micro` show regulated and high-intensity operating environments.
-- `multiplayer_game`, `autonomous_vehicle`, `multi_agent_ai`, and `open_agent_world` stress concurrency, motion safety, and agent governance.
-- `digital_twin` is a host-bound overlay track across public host domains, not a standalone world.
+- `adapter-supply-ops`
+- `adapter-world-game`
 
-## Boundaries
+These packages remain in the repository for internal work. Their package-local docs stay intact, but they are not part of this public adapter-series promotion program.
 
-- This public repo contains documentation only.
-- Internal development tracks are intentionally excluded from this public portfolio.
-- Build-process materials such as milestone ledgers, roadmaps, changelogs, and thread prompts are intentionally not published here.
+`adapter-digital-twin` is the current overlay exception: it is host-bound, validated first on `power_grid`, then `city_ops`, and should still not be treated as a standalone showcase world.
+
+## Working Defaults
+
+- Root docs stay rollup-only.
+- `docs/what-you-can-build.md` is the primary public portfolio narrative.
+- Package-local README files are the public-facing summary for each promoted track.
+- No new stable App Server, HTTP API, or SDK surfaces are implied by this series unless a later milestone explicitly declares them.

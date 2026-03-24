@@ -1,0 +1,74 @@
+{
+  "decision_id": "decision.digital-twin.0001",
+  "status": "approved",
+  "selected_proposal_id": "proposal.digital-twin.0001",
+  "selected_action": {
+    "action_type": "publish_cross_host_overlay_guidance",
+    "parameters": {
+      "host_binding_ids": [
+        "binding.digital-twin.power-grid.0001",
+        "binding.digital-twin.city-ops.0002"
+      ],
+      "review_board_id": "board.digital-twin.metro-overlay"
+    }
+  },
+  "alternatives_considered": [
+    {
+      "proposal_id": "proposal.digital-twin.unsafe.0002",
+      "disposition": "rejected",
+      "reason": "Rejected because it attempted hostless writeback without verified bindings."
+    },
+    {
+      "proposal_id": "proposal.digital-twin.power-grid-first.0003",
+      "disposition": "candidate",
+      "reason": "Preferred in the cleaner simulation branch, but the city extension was approved once the incident correlation widened."
+    }
+  ],
+  "policy_results": [
+    {
+      "policy_name": "digital_twin_overlay_controls",
+      "outcome": "require_approval",
+      "message": "Cross-host digital-twin overlays require operator approval."
+    }
+  ],
+  "approval_status": "approved",
+  "approval_id": "approval.digital-twin.0001",
+  "approvals": [
+    {
+      "approver": {
+        "actor_id": "human.metro-overlay-director-01",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "overlay_director"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "status": "approved"
+    }
+  ],
+  "approval_chain": [
+    {
+      "sequence": 1,
+      "action": "approved",
+      "actor": {
+        "actor_id": "human.metro-overlay-director-01",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "overlay_director"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "at": "2026-03-23T12:10:00Z"
+    }
+  ],
+  "rationale": "The overlay board approved the city extension after the flood-response risk clearly tracked the same operational window as the grid contingency.",
+  "created_at": "2026-03-23T12:09:45Z"
+}

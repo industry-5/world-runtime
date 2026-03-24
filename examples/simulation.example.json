@@ -1,0 +1,69 @@
+{
+  "simulation_id": "sim.delay-response.0001",
+  "simulation_type": "what_if_operational_response",
+  "status": "completed",
+  "base_ref": {
+    "projection_name": "supply_network_state",
+    "projection_version": "1.0.0",
+    "event_offset": 128
+  },
+  "scenario_name": "Reroute delayed shipment to protect factory output",
+  "assumptions": [
+    "alternate route capacity is available",
+    "no further weather disruptions occur"
+  ],
+  "inputs": {
+    "shipment_id": "shipment.88421",
+    "delay_hours": 18,
+    "candidate_route": "route.alt-texas-02"
+  },
+  "hypothetical_events": [
+    {
+      "event_id": "evt.simulated.reroute.0001",
+      "event_type": "shipment_rerouted",
+      "occurred_at": "2026-03-08T11:21:00Z",
+      "recorded_at": "2026-03-08T11:21:00Z",
+      "payload": {
+        "shipment_id": "shipment.88421",
+        "new_route": "route.alt-texas-02"
+      }
+    }
+  ],
+  "proposed_actions": [
+    {
+      "proposal_id": "proposal.reroute.0001",
+      "proposal_type": "operational_response",
+      "status": "submitted",
+      "proposer": {
+        "actor_id": "agent.ops-planner-01",
+        "actor_type": "agent"
+      },
+      "proposed_action": {
+        "action_type": "reroute_shipment"
+      },
+      "created_at": "2026-03-08T11:20:00Z"
+    }
+  ],
+  "outcomes": {
+    "factory_output_loss_percent": 4,
+    "transport_cost_delta_percent": 6,
+    "service_risk": "reduced"
+  },
+  "comparison_summary": {
+    "baseline_output_loss_percent": 17,
+    "simulated_output_loss_percent": 4,
+    "recommended": true
+  },
+  "started_at": "2026-03-08T11:20:10Z",
+  "completed_at": "2026-03-08T11:20:45Z",
+  "created_at": "2026-03-08T11:20:05Z",
+  "created_by": {
+    "actor_id": "agent.ops-planner-01",
+    "actor_type": "agent",
+    "display_name": "Ops Planner Agent"
+  },
+  "metadata": {
+    "adapter": "supply-network"
+  },
+  "correlation_id": "corr.supply-event.20260308.01"
+}

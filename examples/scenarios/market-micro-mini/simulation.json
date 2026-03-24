@@ -1,0 +1,25 @@
+{
+  "simulation_id": "sim.market-micro.0001",
+  "simulation_type": "inventory_pressure_analysis",
+  "status": "completed",
+  "scenario_name": "Microstructure risk-control response",
+  "assumptions": [
+    "venue latency remains below 50 ms during the mitigation window",
+    "the desk can absorb a brief quote widening period without losing the position entirely"
+  ],
+  "inputs": {
+    "book_id": "book.es.nq.cross",
+    "conflicting_proposals": [
+      "proposal.market-micro.0001",
+      "proposal.market-micro.unsafe.0002",
+      "proposal.market-micro.derisk.0003"
+    ]
+  },
+  "outcomes": {
+    "recommended_proposal_id": "proposal.market-micro.derisk.0003",
+    "projected_loss_avoided_bps": 17,
+    "projected_residual_limit_utilization_percent": 66,
+    "projected_market_impact_bps": 4
+  },
+  "created_at": "2026-03-23T12:28:40Z"
+}

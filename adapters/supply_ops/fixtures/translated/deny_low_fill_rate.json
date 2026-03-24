@@ -1,0 +1,44 @@
+{
+  "proposal_id": "proposal.supply-ops.deny.0003",
+  "proposal_type": "commitment_recovery",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.supply-ops-planner-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "commitment.retailer-deny-0003",
+      "entity_type": "order_commitment"
+    },
+    {
+      "entity_id": "inventory.phoenix.dc.widget-gamma",
+      "entity_type": "inventory_position"
+    },
+    {
+      "entity_id": "capacity.phoenix.packout.2026-03-24",
+      "entity_type": "capacity_bucket"
+    },
+    {
+      "entity_id": "lane.phoenix-sea.standard",
+      "entity_type": "fulfillment_lane"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "rebalance_inventory_and_recover_commitment",
+    "parameters": {
+      "commitment_id": "commitment.retailer-deny-0003",
+      "source_inventory_id": "inventory.phoenix.dc.widget-gamma",
+      "reserve_capacity_id": "capacity.phoenix.packout.2026-03-24",
+      "lane_id": "lane.phoenix-sea.standard",
+      "reallocation_units": 90,
+      "projected_fill_rate_percent": 92,
+      "projected_post_action_inventory_days": 4,
+      "expedite_cost_delta_percent": 9,
+      "simulation_completed": true,
+      "simulation_id": "sim.supply-ops.deny.0003"
+    }
+  },
+  "justification": "The best available standard-lane recovery still leaves too many units late to accept as an executable proposal.",
+  "created_at": "2026-03-22T10:12:00Z"
+}

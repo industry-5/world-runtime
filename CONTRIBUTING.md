@@ -2,7 +2,7 @@
 
 Thanks for contributing to World Runtime.
 
-_Documentation note: `README.md` is the front door and `CHANGELOG.md` carries the release narrative for this public export._
+_Documentation note: `README.md` is the front door for this public export._
 
 ## Public Collaboration Posture
 

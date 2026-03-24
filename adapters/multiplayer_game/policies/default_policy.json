@@ -1,0 +1,74 @@
+{
+  "policy_id": "policy.multiplayer-game.default",
+  "policy_name": "multiplayer_game_concurrency_controls",
+  "policy_type": "concurrency_control",
+  "rules": [
+    {
+      "rule_id": "rule.multiplayer-game.deny-without-lock",
+      "rule_name": "Deny reconciliation without an authoritative lock",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.authoritative_lock_acquired",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "deny",
+      "message_template": "Shared-state reconciliation requires an authoritative lock before conflicting updates can merge.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T13:05:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.multiplayer-game.deny-excessive-tick-drift",
+      "rule_name": "Deny plans when projected tick drift exceeds the safety ceiling",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.projected_tick_drift_ms",
+        "operator": ">",
+        "value": 120
+      },
+      "outcome": "deny",
+      "message_template": "Projected tick drift is too high to reconcile without forcing a broader rollback.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T13:05:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.multiplayer-game.warn-heavy-contention",
+      "rule_name": "Warn when a large number of players are caught in the contested state window",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.contested_players_count",
+        "operator": ">",
+        "value": 8
+      },
+      "outcome": "warn",
+      "message_template": "The contested concurrency window affects enough players that the live-ops team should watch for fairness complaints.",
+      "evaluation_mode": "deterministic",
+      "severity": "medium",
+      "created_at": "2026-03-23T13:05:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.multiplayer-game.require-approval-rollback-radius",
+      "rule_name": "Require approval when a reconciliation plan rolls back too many players",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.rollback_players_count",
+        "operator": ">",
+        "value": 4
+      },
+      "outcome": "require_approval",
+      "message_template": "Rollback plans that affect more than four players require live-ops approval.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-23T13:05:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-23T13:05:00Z",
+  "version": 1
+}

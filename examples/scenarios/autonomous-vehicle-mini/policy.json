@@ -1,0 +1,74 @@
+{
+  "policy_id": "policy.autonomous-vehicle.default",
+  "policy_name": "autonomous_vehicle_motion_controls",
+  "policy_type": "motion_safety",
+  "rules": [
+    {
+      "rule_id": "rule.autonomous-vehicle.deny-without-teleassist",
+      "rule_name": "Deny occlusion maneuvers when remote supervision is not connected",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.remote_supervisor_connected",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "deny",
+      "message_template": "The vehicle cannot proceed through the occluded segment without a connected remote supervisor.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T13:14:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.autonomous-vehicle.deny-low-clearance",
+      "rule_name": "Deny maneuvers that drop below minimum clearance",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.minimum_clearance_meters",
+        "operator": "<",
+        "value": 1.2
+      },
+      "outcome": "deny",
+      "message_template": "Projected clearance is below the safe intervention floor.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T13:14:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.autonomous-vehicle.warn-occluded-crosswalk",
+      "rule_name": "Warn when an occluded crossing probability remains elevated",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.occluded_crosswalk_probability_percent",
+        "operator": ">",
+        "value": 40
+      },
+      "outcome": "warn",
+      "message_template": "The occluded crossing probability remains elevated and requires closer supervision.",
+      "evaluation_mode": "deterministic",
+      "severity": "medium",
+      "created_at": "2026-03-23T13:14:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.autonomous-vehicle.require-approval-creep-speed",
+      "rule_name": "Require approval when supervised creep exceeds the low-speed envelope",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.planned_speed_kph",
+        "operator": ">",
+        "value": 15
+      },
+      "outcome": "require_approval",
+      "message_template": "Motion plans above 15 kph in an occluded zone require human approval.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-23T13:14:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-23T13:14:00Z",
+  "version": 1
+}

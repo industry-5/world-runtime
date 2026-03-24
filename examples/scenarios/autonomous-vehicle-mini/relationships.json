@@ -1,0 +1,44 @@
+[
+  {
+    "relationship_id": "rel.vehicle.traverses.river.12",
+    "relationship_type": "traverses",
+    "from_entity": {
+      "entity_id": "vehicle.av.17",
+      "entity_type": "autonomous_vehicle"
+    },
+    "to_entity": {
+      "entity_id": "road.segment.river.12",
+      "entity_type": "road_segment"
+    },
+    "created_at": "2026-03-23T13:16:20Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.hazard.affects.river.12",
+    "relationship_type": "affects",
+    "from_entity": {
+      "entity_id": "hazard.zone.occlusion.04",
+      "entity_type": "hazard_zone"
+    },
+    "to_entity": {
+      "entity_id": "road.segment.river.12",
+      "entity_type": "road_segment"
+    },
+    "created_at": "2026-03-23T13:16:20Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.supervisor.oversees.vehicle.av.17",
+    "relationship_type": "oversees",
+    "from_entity": {
+      "entity_id": "supervisor.remote.02",
+      "entity_type": "remote_supervisor"
+    },
+    "to_entity": {
+      "entity_id": "vehicle.av.17",
+      "entity_type": "autonomous_vehicle"
+    },
+    "created_at": "2026-03-23T13:16:20Z",
+    "version": 1
+  }
+]

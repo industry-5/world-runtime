@@ -1,0 +1,44 @@
+{
+  "proposal_id": "proposal.supply-ops.warn.0002",
+  "proposal_type": "commitment_recovery",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.supply-ops-planner-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "commitment.retailer-warn-0002",
+      "entity_type": "order_commitment"
+    },
+    {
+      "entity_id": "inventory.dallas.dc.widget-beta",
+      "entity_type": "inventory_position"
+    },
+    {
+      "entity_id": "capacity.dallas.packout.2026-03-24",
+      "entity_type": "capacity_bucket"
+    },
+    {
+      "entity_id": "lane.dallas-atl.standard",
+      "entity_type": "fulfillment_lane"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "rebalance_inventory_and_recover_commitment",
+    "parameters": {
+      "commitment_id": "commitment.retailer-warn-0002",
+      "source_inventory_id": "inventory.dallas.dc.widget-beta",
+      "reserve_capacity_id": "capacity.dallas.packout.2026-03-24",
+      "lane_id": "lane.dallas-atl.standard",
+      "reallocation_units": 90,
+      "projected_fill_rate_percent": 100,
+      "projected_post_action_inventory_days": 2,
+      "expedite_cost_delta_percent": 6,
+      "simulation_completed": true,
+      "simulation_id": "sim.supply-ops.warn.0002"
+    }
+  },
+  "justification": "Recover the commitment with a standard lane, accepting low residual inventory cover but avoiding premium shipping.",
+  "created_at": "2026-03-22T10:05:00Z"
+}

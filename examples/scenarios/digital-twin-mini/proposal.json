@@ -1,0 +1,37 @@
+{
+  "proposal_id": "proposal.digital-twin.0001",
+  "proposal_type": "overlay_guidance",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.digital-twin-orchestrator-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "binding.digital-twin.power-grid.0001",
+      "entity_type": "dt_host_binding"
+    },
+    {
+      "entity_id": "binding.digital-twin.city-ops.0002",
+      "entity_type": "dt_host_binding"
+    },
+    {
+      "entity_id": "control.digital-twin.metro-watchfloor",
+      "entity_type": "dt_control_center"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "publish_cross_host_overlay_guidance",
+    "parameters": {
+      "host_bindings_verified": true,
+      "writeback_to_host": false,
+      "freshness_lag_minutes": 12,
+      "cross_host_binding_count": 2,
+      "projected_customer_interruptions_avoided": 12500,
+      "projected_residents_spared_from_extended_detours": 3800,
+      "overlay_scope": "power_grid_then_city_ops"
+    }
+  },
+  "justification": "Publish one host-bound overlay view so the grid contingency forecast and the civic response forecast stay aligned under a single review board.",
+  "created_at": "2026-03-23T12:09:00Z"
+}

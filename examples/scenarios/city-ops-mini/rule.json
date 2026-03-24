@@ -1,0 +1,14 @@
+{
+  "rule_id": "rule.city-ops.require-approval-large-population-impact",
+  "rule_name": "Require approval for city actions with large resident impact",
+  "rule_type": "approval_trigger",
+  "condition": {
+    "field": "proposed_action.parameters.affected_residents",
+    "operator": ">",
+    "value": 10000
+  },
+  "outcome": "require_approval",
+  "evaluation_mode": "deterministic",
+  "created_at": "2026-03-23T11:10:00Z",
+  "version": 1
+}

@@ -1,0 +1,74 @@
+{
+  "policy_id": "policy.power-grid.default",
+  "policy_name": "power_grid_contingency_controls",
+  "policy_type": "infrastructure",
+  "rules": [
+    {
+      "rule_id": "rule.power-grid.deny-missing-contingency-model",
+      "rule_name": "Deny contingency actions without simulation evidence",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.contingency_model_completed",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "deny",
+      "message_template": "Power-grid contingency actions must include a completed simulation before execution.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T11:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.power-grid.deny-low-frequency-floor",
+      "rule_name": "Deny actions that project an unsafe frequency floor",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.projected_frequency_hz",
+        "operator": "<",
+        "value": 59.5
+      },
+      "outcome": "deny",
+      "message_template": "Projected frequency would fall below the safe operating floor.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T11:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.power-grid.warn-low-reserve-margin",
+      "rule_name": "Warn when reserve margin is critically tight",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.reserve_margin_percent",
+        "operator": "<",
+        "value": 8
+      },
+      "outcome": "warn",
+      "message_template": "Reserve margin is below preferred contingency headroom.",
+      "evaluation_mode": "deterministic",
+      "severity": "medium",
+      "created_at": "2026-03-23T11:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.power-grid.require-approval-customer-interruptions",
+      "rule_name": "Require approval before large-scale customer interruptions",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.customer_interruptions",
+        "operator": ">",
+        "value": 10000
+      },
+      "outcome": "require_approval",
+      "message_template": "Load-shed actions affecting more than 10,000 customers require operator approval.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-23T11:00:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-23T11:00:00Z",
+  "version": 1
+}

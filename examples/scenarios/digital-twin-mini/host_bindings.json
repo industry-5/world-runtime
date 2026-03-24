@@ -1,0 +1,48 @@
+[
+  {
+    "binding_id": "binding.digital-twin.power-grid.0001",
+    "proof_stage": "DT-M2",
+    "proof_sequence": 1,
+    "host_adapter_id": "adapter-power-grid",
+    "host_scenario_slug": "power-grid-mini",
+    "overlay_entity_id": "overlay.digital-twin.power-grid",
+    "host_entities": [
+      {
+        "entity_id": "ba.ercot.north",
+        "entity_type": "balancing_authority"
+      },
+      {
+        "entity_id": "substation.oak-138",
+        "entity_type": "substation"
+      }
+    ],
+    "binding_mode": "advisory_overlay",
+    "writeback_enabled": false,
+    "established_at": "2026-03-23T12:06:00Z"
+  },
+  {
+    "binding_id": "binding.digital-twin.city-ops.0002",
+    "proof_stage": "DT-M3",
+    "proof_sequence": 2,
+    "host_adapter_id": "adapter-city-ops",
+    "host_scenario_slug": "city-ops-mini",
+    "overlay_entity_id": "overlay.digital-twin.city-ops",
+    "host_entities": [
+      {
+        "entity_id": "agency.chicago-emergency-management",
+        "entity_type": "city_agency"
+      },
+      {
+        "entity_id": "corridor.loop-blue-line",
+        "entity_type": "transit_corridor"
+      },
+      {
+        "entity_id": "zone.loop-west",
+        "entity_type": "response_zone"
+      }
+    ],
+    "binding_mode": "advisory_overlay",
+    "writeback_enabled": false,
+    "established_at": "2026-03-23T12:08:00Z"
+  }
+]

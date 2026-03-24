@@ -1,0 +1,30 @@
+[
+  {
+    "relationship_id": "rel.agency.manages.zone.loop-west",
+    "relationship_type": "manages",
+    "from_entity": {
+      "entity_id": "agency.chicago-emergency-management",
+      "entity_type": "city_agency"
+    },
+    "to_entity": {
+      "entity_id": "zone.loop-west",
+      "entity_type": "response_zone"
+    },
+    "created_at": "2026-03-23T11:13:00Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.asset.impacts.corridor.loop-blue-line",
+    "relationship_type": "impacts",
+    "from_entity": {
+      "entity_id": "asset.water-main.wacker-18in",
+      "entity_type": "utility_asset"
+    },
+    "to_entity": {
+      "entity_id": "corridor.loop-blue-line",
+      "entity_type": "transit_corridor"
+    },
+    "created_at": "2026-03-23T11:13:00Z",
+    "version": 1
+  }
+]

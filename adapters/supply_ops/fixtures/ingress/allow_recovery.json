@@ -1,0 +1,55 @@
+{
+  "envelope_id": "ingress.supply-ops.allow.0001",
+  "envelope_type": "supply_ops_connector_signal",
+  "schema_version": "so-m4.ingress.v1",
+  "received_at": "2026-03-22T09:59:40Z",
+  "connector": {
+    "connector_id": "connector.supply-ops.erp-wms-ingress",
+    "direction": "inbound",
+    "provider": "fixture.erp-wms-gateway",
+    "source": "erp_wms_control_tower"
+  },
+  "governance": {
+    "translation_required": true,
+    "mutates_runtime_state": false,
+    "translation_boundary": "proposal_only"
+  },
+  "trace": {
+    "external_message_id": "msg.erp-wms.allow.0001",
+    "correlation_id": "corr.supply-ops.allow.0001"
+  },
+  "signal_bundle": {
+    "translation_context": {
+      "proposal_suffix": "allow.0001",
+      "proposal_type": "commitment_recovery",
+      "proposer_actor_id": "agent.supply-ops-planner-01",
+      "proposer_actor_type": "agent",
+      "created_at": "2026-03-22T10:00:00Z"
+    },
+    "order_signal": {
+      "commitment_id": "commitment.retailer-allow-0001",
+      "requested_units": 240,
+      "at_risk_units": 80
+    },
+    "inventory_signal": {
+      "inventory_position_id": "inventory.chicago.dc.widget-beta",
+      "on_hand_units": 320,
+      "allocatable_units": 80,
+      "daily_demand_units": 40
+    },
+    "capacity_signal": {
+      "capacity_bucket_id": "capacity.chicago.packout.2026-03-23",
+      "available_units": 110
+    },
+    "lane_signal": {
+      "lane_id": "lane.chicago-cle.standard",
+      "service_level": "standard",
+      "expedite_cost_delta_percent": 8
+    },
+    "simulation_signal": {
+      "simulation_id": "sim.supply-ops.allow.0001",
+      "completed": true
+    },
+    "justification": "Recover the at-risk commitment with local inventory and standard fulfillment capacity while preserving healthy inventory cover."
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "policy_id": "policy.lab-science.default",
+  "policy_name": "lab_science_release_controls",
+  "policy_type": "regulated_workflow",
+  "rules": [
+    {
+      "rule_id": "rule.lab-science.deny-incomplete-evidence",
+      "rule_name": "Deny release without a complete evidence chain",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.evidence_chain_complete",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "deny",
+      "message_template": "Lab batch release cannot proceed without a complete evidence chain.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T12:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.lab-science.deny-low-sample-integrity",
+      "rule_name": "Deny release when sample integrity is below the validated floor",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.sample_integrity_score",
+        "operator": "<",
+        "value": 90
+      },
+      "outcome": "deny",
+      "message_template": "Sample integrity falls below the validated release threshold.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T12:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.lab-science.warn-control-drift",
+      "rule_name": "Warn when control drift exceeds the preferred review threshold",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.control_drift_score",
+        "operator": ">",
+        "value": 4
+      },
+      "outcome": "warn",
+      "message_template": "Control drift is elevated and should be reviewed before release.",
+      "evaluation_mode": "deterministic",
+      "severity": "medium",
+      "created_at": "2026-03-23T12:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.lab-science.require-approval-open-deviation",
+      "rule_name": "Require approval for release while a protocol deviation is open",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.deviation_open",
+        "operator": "equals",
+        "value": true
+      },
+      "outcome": "require_approval",
+      "message_template": "Open deviation releases require quality-board approval after review.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-23T12:00:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-23T12:00:00Z",
+  "version": 1
+}

@@ -1,0 +1,14 @@
+{
+  "rule_id": "rule.open-agent-world.require-approval-wide-radius",
+  "rule_name": "Require approval when an intervention spans more than two regions",
+  "rule_type": "approval_trigger",
+  "condition": {
+    "field": "proposed_action.parameters.regions_under_intervention",
+    "operator": ">",
+    "value": 2
+  },
+  "outcome": "require_approval",
+  "evaluation_mode": "deterministic",
+  "created_at": "2026-03-23T14:08:00Z",
+  "version": 1
+}

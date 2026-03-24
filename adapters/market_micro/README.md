@@ -1,22 +1,46 @@
-# Market Micro
+# Market Micro Public Adapter Package
 
 _Last updated: 2026-03-23 (America/Chicago)_
 
-`adapter-market-micro` shows how World Runtime fits fast, high-intensity environments where exposure limits, intervention rules, and competing actor behavior need to stay visible.
+`adapter-market-micro` is the public market-micro package in the World Runtime public domain adapter scenario program.
 
-## What This Track Demonstrates
+## Purpose
 
-- high event intensity with explicit risk controls
-- policy-visible interventions in market-like conditions
-- replayable evidence for exposure and inventory decisions
-- comparison of alternate responses under pressure
+- prove high event intensity, exposure limits, and multi-actor conflict behavior
+- exercise risk controls and policy-visible interventions in market-like conditions
 
-## Why It Matters
+## Current State
 
-Market microstructure is useful as a stress case because it combines speed, conflict, and constraint. The runtime model helps make risk controls legible instead of burying them inside opaque behavior.
+- current state: promotion-hardened public `MM-M4` slice with adapter contract, schemas, default/scenario policy, market-risk alternatives, replay/simulation artifacts, package-local docs, and playbook guidance
+- package assets on disk include:
+  - `adapter.py`
+  - `schemas/`
+  - `policies/default_policy.json`
+  - `examples/scenarios/market-micro-mini/`
+  - `playbooks/adapter-market-micro.md`
+- `risk_options.json` preserves market-risk alternatives on top of the shared bundle baseline
+- the package is now registered in `adapters/public_program.py` and available through `AdapterRegistry.with_defaults()`
+
+## Working Defaults
+
+- adapter id: `adapter-market-micro`
+- package path: `adapters/market_micro`
+- scenario path: `examples/scenarios/market-micro-mini`
+- milestone code: `MM`
+
+## Contributor Validation Path
+
+Use this package-local bundle when touching the market-micro path:
+
+- `python3 scripts/check_adapters.py`
+- `python3 scripts/check_examples.py`
+- `python3 -m pytest -q tests/test_adapters.py tests/test_scenario_bundles.py tests/test_market_micro_domain.py tests/test_operator_workflows.py`
+- contributor/operator guidance lives in `playbooks/adapter-market-micro.md`
 
 ## Boundaries
 
-- this public page describes the domain story only
-- it does not publish internal test or process materials
-- the track stays focused on desk-risk and exposure pressure rather than broad exchange coverage
+- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- root docs should keep only rollup pointers for this track
+- adapter implementation stays inside the stable `adapters.base.DomainAdapter` contract
+- no stable App Server, HTTP API, or SDK surface is widened by this package
+- the market-micro track should remain focused on exposure limits, inventory pressure, and desk-risk controls rather than full exchange or brokerage breadth

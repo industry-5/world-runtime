@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "evt.market-micro.order-flow-spike.0001",
+    "event_type": "order_flow_spike_detected",
+    "occurred_at": "2026-03-23T12:25:00Z",
+    "recorded_at": "2026-03-23T12:25:03Z",
+    "payload": {
+      "venue_id": "venue.chi.mini",
+      "book_id": "book.es.nq.cross",
+      "burst_orders_per_second": 1850
+    },
+    "correlation_id": "corr.market-micro.20260323.01"
+  },
+  {
+    "event_id": "evt.market-micro.inventory-warning.0002",
+    "event_type": "inventory_limit_warning",
+    "occurred_at": "2026-03-23T12:26:00Z",
+    "recorded_at": "2026-03-23T12:26:04Z",
+    "payload": {
+      "firm_id": "firm.delta-one.03",
+      "book_id": "book.es.nq.cross",
+      "projected_limit_utilization_percent": 94
+    },
+    "correlation_id": "corr.market-micro.20260323.01"
+  },
+  {
+    "event_id": "evt.market-micro.risk-plan.0003",
+    "event_type": "risk_reduction_plan_submitted",
+    "occurred_at": "2026-03-23T12:27:00Z",
+    "recorded_at": "2026-03-23T12:27:05Z",
+    "payload": {
+      "proposal_id": "proposal.market-micro.0001",
+      "maker_imbalance_percent": 82,
+      "kill_switch_armed": true
+    },
+    "correlation_id": "corr.market-micro.20260323.01"
+  }
+]

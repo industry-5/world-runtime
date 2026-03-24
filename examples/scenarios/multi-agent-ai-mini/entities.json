@@ -1,0 +1,42 @@
+[
+  {
+    "entity_id": "agent-team.orchestrator.01",
+    "entity_type": "agent_team",
+    "attributes": {
+      "specialty": "incident_triage",
+      "max_parallel_agents": 5
+    },
+    "created_at": "2026-03-23T14:03:00Z",
+    "version": 1
+  },
+  {
+    "entity_id": "goal.customer-escalation.22",
+    "entity_type": "coordination_goal",
+    "attributes": {
+      "priority": "high",
+      "service_level_minutes": 45
+    },
+    "created_at": "2026-03-23T14:03:20Z",
+    "version": 1
+  },
+  {
+    "entity_id": "context.shared-workspace.09",
+    "entity_type": "shared_context",
+    "attributes": {
+      "sensitivity": "restricted",
+      "workspace_scope": "single_tenant"
+    },
+    "created_at": "2026-03-23T14:03:40Z",
+    "version": 1
+  },
+  {
+    "entity_id": "board.agent-governance.01",
+    "entity_type": "review_board",
+    "attributes": {
+      "review_mode": "human_in_loop",
+      "coverage": "delegated_execution"
+    },
+    "created_at": "2026-03-23T14:04:00Z",
+    "version": 1
+  }
+]

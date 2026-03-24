@@ -1,0 +1,37 @@
+{
+  "proposal_id": "proposal.power-grid.0001",
+  "proposal_type": "contingency_response",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.grid-operator-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "ba.ercot.north",
+      "entity_type": "balancing_authority"
+    },
+    {
+      "entity_id": "line.north-south.01",
+      "entity_type": "transmission_line"
+    },
+    {
+      "entity_id": "substation.oak-138",
+      "entity_type": "substation"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "controlled_load_shed",
+    "parameters": {
+      "balancing_authority_id": "ba.ercot.north",
+      "affected_substation_id": "substation.oak-138",
+      "reserve_margin_percent": 6,
+      "projected_frequency_hz": 59.67,
+      "customer_interruptions": 12500,
+      "contingency_model_completed": true,
+      "restoration_window_minutes": 35
+    }
+  },
+  "justification": "Staged load shed is the fastest reliable way to arrest the cascade while the derated corridor remains constrained.",
+  "created_at": "2026-03-23T11:08:00Z"
+}

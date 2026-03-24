@@ -1,0 +1,74 @@
+{
+  "policy_id": "policy.market-micro.default",
+  "policy_name": "market_micro_risk_controls",
+  "policy_type": "market_risk",
+  "rules": [
+    {
+      "rule_id": "rule.market-micro.deny-kill-switch-disarmed",
+      "rule_name": "Deny inventory plans when the kill switch is not armed",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.kill_switch_armed",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "deny",
+      "message_template": "Market risk plans require an armed kill switch before execution.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T12:20:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.market-micro.deny-limit-breach",
+      "rule_name": "Deny plans that exceed hard position limits",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.projected_limit_utilization_percent",
+        "operator": ">",
+        "value": 100
+      },
+      "outcome": "deny",
+      "message_template": "Projected inventory utilization exceeds the hard risk limit.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T12:20:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.market-micro.warn-maker-imbalance",
+      "rule_name": "Warn when one-sided inventory pressure is elevated",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.maker_imbalance_percent",
+        "operator": ">",
+        "value": 75
+      },
+      "outcome": "warn",
+      "message_template": "Maker inventory imbalance is elevated and should be monitored closely.",
+      "evaluation_mode": "deterministic",
+      "severity": "medium",
+      "created_at": "2026-03-23T12:20:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.market-micro.require-approval-thin-headroom",
+      "rule_name": "Require approval when inventory headroom is critically thin",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.projected_limit_utilization_percent",
+        "operator": ">",
+        "value": 90
+      },
+      "outcome": "require_approval",
+      "message_template": "Plans above 90 percent of limit utilization require desk approval.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-23T12:20:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-23T12:20:00Z",
+  "version": 1
+}

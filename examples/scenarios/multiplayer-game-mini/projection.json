@@ -1,0 +1,9 @@
+{
+  "projection_id": "projection.multiplayer-game-state.0001",
+  "projection_name": "multiplayer_game_state",
+  "projection_type": "state",
+  "projection_version": "1.0.0",
+  "source_event_offset": 2,
+  "materialized_state_ref": "state://multiplayer_game/current/1",
+  "status": "ready"
+}

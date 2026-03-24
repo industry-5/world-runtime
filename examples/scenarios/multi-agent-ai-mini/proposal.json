@@ -1,0 +1,38 @@
+{
+  "proposal_id": "proposal.multi-agent-ai.0001",
+  "proposal_type": "delegated_coordination_plan",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.orchestrator-lead-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "goal.customer-escalation.22",
+      "entity_type": "coordination_goal"
+    },
+    {
+      "entity_id": "context.shared-workspace.09",
+      "entity_type": "shared_context"
+    },
+    {
+      "entity_id": "board.agent-governance.01",
+      "entity_type": "review_board"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "stage_coordinated_agent_plan",
+    "parameters": {
+      "goal_id": "goal.customer-escalation.22",
+      "shared_context_id": "context.shared-workspace.09",
+      "review_board_id": "board.agent-governance.01",
+      "delegated_agent_count": 4,
+      "conflicting_objectives_count": 2,
+      "simulation_branches_count": 3,
+      "unreviewed_privileged_tools": false,
+      "cross_workspace_write_scope": false
+    }
+  },
+  "justification": "A four-agent plan shortens the escalation backlog while keeping the task inside a reviewed single-tenant workspace.",
+  "created_at": "2026-03-23T14:07:20Z"
+}

@@ -1,0 +1,9 @@
+{
+  "projection_id": "projection.autonomous-vehicle-state.0001",
+  "projection_name": "autonomous_vehicle_state",
+  "projection_type": "state",
+  "projection_version": "1.0.0",
+  "source_event_offset": 2,
+  "materialized_state_ref": "state://autonomous_vehicle/current/1",
+  "status": "ready"
+}

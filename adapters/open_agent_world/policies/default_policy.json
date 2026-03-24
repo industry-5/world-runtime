@@ -1,0 +1,74 @@
+{
+  "policy_id": "policy.open-agent-world.default",
+  "policy_name": "open_agent_world_governance_controls",
+  "policy_type": "shared_world_governance",
+  "rules": [
+    {
+      "rule_id": "rule.open-agent-world.deny-offline-beacon",
+      "rule_name": "Deny interventions when the governance beacon is offline",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.governance_beacon_online",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "deny",
+      "message_template": "Open-world interventions require an online governance beacon before they can execute.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T14:08:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.open-agent-world.deny-excessive-replication",
+      "rule_name": "Deny interventions that exceed the replication budget ceiling",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.replication_budget_percent",
+        "operator": ">",
+        "value": 70
+      },
+      "outcome": "deny",
+      "message_template": "Replication pressure above the budget ceiling is not allowed in the public open-agent-world slice.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T14:08:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.open-agent-world.warn-conflict-density",
+      "rule_name": "Warn when the intervention responds to dense cross-cohort conflict",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.cross_cohort_conflicts_count",
+        "operator": ">",
+        "value": 4
+      },
+      "outcome": "warn",
+      "message_template": "Cross-cohort conflict density is elevated and steward review should watch for emergent spillover.",
+      "evaluation_mode": "deterministic",
+      "severity": "medium",
+      "created_at": "2026-03-23T14:08:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.open-agent-world.require-approval-wide-radius",
+      "rule_name": "Require approval when an intervention spans more than two regions",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.regions_under_intervention",
+        "operator": ">",
+        "value": 2
+      },
+      "outcome": "require_approval",
+      "message_template": "Wide-area interventions require a human steward before the sandbox can rebalance.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-23T14:08:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-23T14:08:00Z",
+  "version": 1
+}

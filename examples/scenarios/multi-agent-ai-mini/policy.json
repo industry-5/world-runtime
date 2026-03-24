@@ -1,0 +1,74 @@
+{
+  "policy_id": "policy.multi-agent-ai.default",
+  "policy_name": "multi_agent_ai_coordination_controls",
+  "policy_type": "agent_governance",
+  "rules": [
+    {
+      "rule_id": "rule.multi-agent-ai.deny-unreviewed-privileged-tools",
+      "rule_name": "Deny delegation plans that launch privileged tools without prior review",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.unreviewed_privileged_tools",
+        "operator": "equals",
+        "value": true
+      },
+      "outcome": "deny",
+      "message_template": "Privileged tool use must be reviewed before a delegated agent plan can launch.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T14:02:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.multi-agent-ai.deny-cross-workspace-writes",
+      "rule_name": "Deny plans that widen agent write scope across workspaces",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.cross_workspace_write_scope",
+        "operator": "equals",
+        "value": true
+      },
+      "outcome": "deny",
+      "message_template": "Cross-workspace write scope is outside the allowed public coordination slice.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T14:02:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.multi-agent-ai.warn-conflicting-objectives",
+      "rule_name": "Warn when a coordination plan carries multiple conflicting objectives",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.conflicting_objectives_count",
+        "operator": ">",
+        "value": 1
+      },
+      "outcome": "warn",
+      "message_template": "The agent plan spans multiple conflicting objectives and should be reviewed for branch drift.",
+      "evaluation_mode": "deterministic",
+      "severity": "medium",
+      "created_at": "2026-03-23T14:02:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.multi-agent-ai.require-approval-large-swarm",
+      "rule_name": "Require approval when more than three delegated agents are scheduled",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.delegated_agent_count",
+        "operator": ">",
+        "value": 3
+      },
+      "outcome": "require_approval",
+      "message_template": "Large multi-agent plans require a human reviewer before execution can proceed.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-23T14:02:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-23T14:02:00Z",
+  "version": 1
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/digital_twin/entity_types.schema.json",
+  "title": "Digital Twin Entity Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "dt_host_binding",
+        "dt_overlay_model",
+        "dt_signal_feed",
+        "dt_control_center"
+      ]
+    }
+  },
+  "required": [
+    "entity_type"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "policy_id": "policy.city-ops.default",
+  "policy_name": "city_ops_incident_coordination_controls",
+  "policy_type": "civic_operations",
+  "rules": [
+    {
+      "rule_id": "rule.city-ops.deny-no-unified-command",
+      "rule_name": "Deny coordinated response without unified command",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.unified_command_established",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "deny",
+      "message_template": "Cross-agency incident actions require a unified command structure.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T11:10:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.city-ops.deny-hospital-access-loss",
+      "rule_name": "Deny plans that remove hospital access routes",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.hospital_access_routes_open",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "deny",
+      "message_template": "City response plans must preserve hospital access routes.",
+      "evaluation_mode": "deterministic",
+      "severity": "critical",
+      "created_at": "2026-03-23T11:10:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.city-ops.warn-long-detour",
+      "rule_name": "Warn when transit detours become prolonged",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.transit_detour_minutes",
+        "operator": ">",
+        "value": 30
+      },
+      "outcome": "warn",
+      "message_template": "The incident plan creates a long transit detour and should be reviewed for equity impact.",
+      "evaluation_mode": "deterministic",
+      "severity": "medium",
+      "created_at": "2026-03-23T11:10:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.city-ops.require-approval-large-population-impact",
+      "rule_name": "Require approval for city actions with large resident impact",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.affected_residents",
+        "operator": ">",
+        "value": 10000
+      },
+      "outcome": "require_approval",
+      "message_template": "Multi-agency actions affecting more than 10,000 residents require operator approval.",
+      "evaluation_mode": "deterministic",
+      "severity": "high",
+      "created_at": "2026-03-23T11:10:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-23T11:10:00Z",
+  "version": 1
+}

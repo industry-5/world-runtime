@@ -1,0 +1,50 @@
+[
+  {
+    "relationship_id": "rel.inventory-dallas-widget-alpha.covers.commitment-retailer-4821",
+    "relationship_type": "covers",
+    "from_entity": {
+      "entity_id": "inventory.dallas.dc.widget-alpha",
+      "entity_type": "inventory_position"
+    },
+    "to_entity": {
+      "entity_id": "commitment.retailer-4821",
+      "entity_type": "order_commitment"
+    },
+    "attributes": {
+      "planned_units": 180
+    },
+    "created_at": "2026-03-22T09:02:00Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.capacity-dallas-packout.supports.commitment-retailer-4821",
+    "relationship_type": "supports",
+    "from_entity": {
+      "entity_id": "capacity.dallas.packout.2026-03-23",
+      "entity_type": "capacity_bucket"
+    },
+    "to_entity": {
+      "entity_id": "commitment.retailer-4821",
+      "entity_type": "order_commitment"
+    },
+    "attributes": {
+      "reserved_units": 180
+    },
+    "created_at": "2026-03-22T09:02:00Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.lane-dallas-atl-express.fulfills.commitment-retailer-4821",
+    "relationship_type": "fulfills",
+    "from_entity": {
+      "entity_id": "lane.dallas-atl.expedited",
+      "entity_type": "fulfillment_lane"
+    },
+    "to_entity": {
+      "entity_id": "commitment.retailer-4821",
+      "entity_type": "order_commitment"
+    },
+    "created_at": "2026-03-22T09:02:00Z",
+    "version": 1
+  }
+]

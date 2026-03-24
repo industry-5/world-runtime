@@ -1,0 +1,37 @@
+{
+  "proposal_id": "proposal.open-agent-world.0001",
+  "proposal_type": "shared_world_intervention_plan",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.world-steward-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "zone.commons.delta",
+      "entity_type": "world_zone"
+    },
+    {
+      "entity_id": "beacon.governance.delta",
+      "entity_type": "governance_beacon"
+    },
+    {
+      "entity_id": "pool.energy.delta",
+      "entity_type": "resource_pool"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "stage_governed_quota_shift",
+    "parameters": {
+      "zone_id": "zone.commons.delta",
+      "governance_beacon_id": "beacon.governance.delta",
+      "resource_pool_id": "pool.energy.delta",
+      "cross_cohort_conflicts_count": 5,
+      "replication_budget_percent": 42,
+      "regions_under_intervention": 3,
+      "governance_beacon_online": true
+    }
+  },
+  "justification": "A staged quota shift stabilizes the contested commons while keeping the beacon online and intervention records reviewable.",
+  "created_at": "2026-03-23T14:13:20Z"
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "evt.multi-agent-ai.goal.0001",
+    "event_type": "agent_goal_published",
+    "occurred_at": "2026-03-23T14:05:00Z",
+    "recorded_at": "2026-03-23T14:05:02Z",
+    "payload": {
+      "goal_id": "goal.customer-escalation.22",
+      "delegated_agent_count": 4,
+      "review_board_id": "board.agent-governance.01"
+    },
+    "correlation_id": "corr.multi-agent-ai.20260323.01"
+  },
+  {
+    "event_id": "evt.multi-agent-ai.conflict.0002",
+    "event_type": "proposal_conflict_detected",
+    "occurred_at": "2026-03-23T14:06:00Z",
+    "recorded_at": "2026-03-23T14:06:05Z",
+    "payload": {
+      "goal_id": "goal.customer-escalation.22",
+      "conflicting_objectives_count": 2,
+      "workspace_scope": "single_tenant"
+    },
+    "correlation_id": "corr.multi-agent-ai.20260323.01"
+  },
+  {
+    "event_id": "evt.multi-agent-ai.branch-score.0003",
+    "event_type": "review_branch_scored",
+    "occurred_at": "2026-03-23T14:07:00Z",
+    "recorded_at": "2026-03-23T14:07:04Z",
+    "payload": {
+      "proposal_id": "proposal.multi-agent-ai.0001",
+      "simulation_branches_count": 3,
+      "recommended_branch": "proposal.multi-agent-ai.reviewed.0003"
+    },
+    "correlation_id": "corr.multi-agent-ai.20260323.01"
+  }
+]

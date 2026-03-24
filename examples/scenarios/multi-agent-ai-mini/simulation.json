@@ -1,0 +1,25 @@
+{
+  "simulation_id": "sim.multi-agent-ai.0001",
+  "simulation_type": "coordination_branch_analysis",
+  "status": "completed",
+  "scenario_name": "Delegated escalation coordination under review pressure",
+  "assumptions": [
+    "the escalation backlog stays within the current tenant scope during the review window",
+    "two reviewed agents can still close the highest-priority branch before the service-level floor is breached"
+  ],
+  "inputs": {
+    "goal_id": "goal.customer-escalation.22",
+    "conflicting_proposals": [
+      "proposal.multi-agent-ai.0001",
+      "proposal.multi-agent-ai.unsafe.0002",
+      "proposal.multi-agent-ai.reviewed.0003"
+    ]
+  },
+  "outcomes": {
+    "recommended_proposal_id": "proposal.multi-agent-ai.reviewed.0003",
+    "projected_review_cycles_avoided": 2,
+    "projected_branch_merge_conflicts_avoided": 3,
+    "projected_escalation_backlog_delta": -11
+  },
+  "created_at": "2026-03-23T14:07:55Z"
+}

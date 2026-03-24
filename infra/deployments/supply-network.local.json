@@ -1,0 +1,8 @@
+{
+  "deployment_id": "deployment.supply-network.local",
+  "profile": "local",
+  "adapter_id": "adapter-supply-network",
+  "scenario_path": "examples/scenarios/supply-network-mini",
+  "entry_workflow": "quickstart",
+  "owner": "ops-team"
+}

@@ -1,0 +1,25 @@
+{
+  "simulation_id": "sim.digital-twin.0001",
+  "simulation_type": "cross_host_overlay_analysis",
+  "status": "completed",
+  "scenario_name": "Power-grid-first overlay with city-ops expansion",
+  "assumptions": [
+    "power-grid telemetry is inside the preferred freshness window",
+    "city-ops contamination telemetry lags by one overlay refresh cycle"
+  ],
+  "inputs": {
+    "overlay_program": "digital_twin",
+    "conflicting_proposals": [
+      "proposal.digital-twin.0001",
+      "proposal.digital-twin.unsafe.0002",
+      "proposal.digital-twin.power-grid-first.0003"
+    ]
+  },
+  "outcomes": {
+    "recommended_proposal_id": "proposal.digital-twin.power-grid-first.0003",
+    "projected_customer_interruptions_avoided": 9100,
+    "projected_residents_spared_from_extended_detours": 2400,
+    "projected_cross_host_alerts_suppressed": 4
+  },
+  "created_at": "2026-03-23T12:09:30Z"
+}

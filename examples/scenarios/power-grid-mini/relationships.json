@@ -1,0 +1,30 @@
+[
+  {
+    "relationship_id": "rel.ba.manages.substation.oak-138",
+    "relationship_type": "manages",
+    "from_entity": {
+      "entity_id": "ba.ercot.north",
+      "entity_type": "balancing_authority"
+    },
+    "to_entity": {
+      "entity_id": "substation.oak-138",
+      "entity_type": "substation"
+    },
+    "created_at": "2026-03-23T11:03:00Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.line.feeds.substation.oak-138",
+    "relationship_type": "feeds",
+    "from_entity": {
+      "entity_id": "line.north-south.01",
+      "entity_type": "transmission_line"
+    },
+    "to_entity": {
+      "entity_id": "substation.oak-138",
+      "entity_type": "substation"
+    },
+    "created_at": "2026-03-23T11:03:00Z",
+    "version": 1
+  }
+]

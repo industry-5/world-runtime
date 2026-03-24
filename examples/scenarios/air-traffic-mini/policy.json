@@ -1,0 +1,66 @@
+{
+  "policy_id": "policy.air-traffic.scenario",
+  "policy_name": "air_traffic_scenario_safety",
+  "policy_type": "safety",
+  "rules": [
+    {
+      "rule_id": "rule.air-traffic.scenario.deny-unsafe",
+      "rule_name": "Deny unsafe conflict clearance",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.action_type",
+        "operator": "equals",
+        "value": "clear_conflict_takeoff_without_separation"
+      },
+      "outcome": "deny",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-09T08:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.air-traffic.scenario.deny-low-separation",
+      "rule_name": "Deny separation below 3nm",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.minimum_separation_nm",
+        "operator": "<",
+        "value": 3
+      },
+      "outcome": "deny",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-09T08:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.air-traffic.scenario.require-approval",
+      "rule_name": "Closed runway reroutes require approval",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.action_type",
+        "operator": "equals",
+        "value": "reroute_arrival_to_closed_runway"
+      },
+      "outcome": "require_approval",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-09T08:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.air-traffic.scenario.warn-fuel",
+      "rule_name": "Low fuel buffer warning",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.fuel_buffer_minutes",
+        "operator": "<",
+        "value": 30
+      },
+      "outcome": "warn",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-09T08:00:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-09T08:00:00Z",
+  "version": 1
+}

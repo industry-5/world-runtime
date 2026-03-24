@@ -1,22 +1,45 @@
-# Air Traffic
+# Air Traffic Public Adapter Package
 
 _Last updated: 2026-03-23 (America/Chicago)_
 
-`adapter-air-traffic` shows how World Runtime fits safety-constrained operating environments where urgency, approval boundaries, and simulation-before-action all matter at once.
+`adapter-air-traffic` is the safety-constrained public air-traffic package in the World Runtime public domain adapter scenario program.
 
-## What This Track Demonstrates
+## Purpose
 
-- hard safety constraints under operational pressure
-- review of conflicting proposals before action
-- replayable decision evidence in high-consequence flows
-- simulation of alternate actions when tradeoffs are unavoidable
+- prove hard safety constraints, urgency, approvals, and simulation-before-action under operational pressure
+- serve as one of the implemented public proof paths in the foundation trio
 
-## Why It Matters
+## Current State
 
-Air traffic is a useful proof path because it forces explicit treatment of risk, authority, and timing. Decisions are not only about optimization; they are about staying inside clear safety limits while still moving the system forward.
+- current state: promotion-hardened public `AT-M4` slice with adapter contract, schemas, default/scenario policy, constrained-alternative review, replay/simulation artifacts, package-local docs, and playbook guidance
+- package assets on disk include:
+  - `adapter.py`
+  - `schemas/`
+  - `policies/default_policy.json`
+  - `examples/scenarios/air-traffic-mini/`
+  - `playbooks/adapter-air-traffic.md`
+- `conflicting_proposals.json` remains the package-local supplemental proof file on top of the shared bundle baseline
+
+## Working Defaults
+
+- adapter id: `adapter-air-traffic`
+- package path: `adapters/air_traffic`
+- scenario path: `examples/scenarios/air-traffic-mini`
+- milestone code: `AT`
+
+## Contributor Validation Path
+
+Use this package-local bundle when touching the air-traffic path:
+
+- `python3 scripts/check_adapters.py`
+- `python3 scripts/check_examples.py`
+- `python3 -m pytest -q tests/test_adapters.py tests/test_scenario_bundles.py tests/test_air_traffic_domain.py tests/test_operator_workflows.py`
+- contributor/operator guidance lives in `playbooks/adapter-air-traffic.md`
 
 ## Boundaries
 
-- this public page describes the domain story only
-- it does not publish internal validation, process history, or handoff materials
-- the track remains focused on safety-constrained coordination rather than generic logistics
+- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- root docs should keep only rollup pointers for this track
+- adapter implementation stays inside the stable `adapters.base.DomainAdapter` contract
+- no stable App Server, HTTP API, or SDK surface is widened by this package
+- the air-traffic track remains the high-constraint proof path; it should not be diluted into a generic logistics demo

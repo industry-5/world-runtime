@@ -1,0 +1,38 @@
+{
+  "proposal_id": "proposal.market-micro.0001",
+  "proposal_type": "risk_reduction_plan",
+  "status": "submitted",
+  "proposer": {
+    "actor_id": "agent.risk-router-01",
+    "actor_type": "agent"
+  },
+  "target_entities": [
+    {
+      "entity_id": "firm.delta-one.03",
+      "entity_type": "trading_firm"
+    },
+    {
+      "entity_id": "book.es.nq.cross",
+      "entity_type": "instrument_book"
+    },
+    {
+      "entity_id": "limit.delta-one.03.primary",
+      "entity_type": "risk_limit"
+    }
+  ],
+  "proposed_action": {
+    "action_type": "cross_venue_inventory_rebalance",
+    "parameters": {
+      "firm_id": "firm.delta-one.03",
+      "book_id": "book.es.nq.cross",
+      "venue_id": "venue.chi.mini",
+      "projected_limit_utilization_percent": 94,
+      "maker_imbalance_percent": 82,
+      "kill_switch_armed": true,
+      "hedge_latency_ms": 42,
+      "quote_throttle_enabled": true
+    }
+  },
+  "justification": "A supervised rebalance reduces the one-sided position quickly while keeping the desk inside hard limits.",
+  "created_at": "2026-03-23T12:28:00Z"
+}

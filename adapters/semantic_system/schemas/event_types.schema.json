@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/semantic_system/event_types.schema.json",
+  "title": "Semantic System Event Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "semantic_term_registered",
+        "mapping_conflict_detected",
+        "meaning_change_requested"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "relationship_id": "rel.term.customer_status.current-definition",
+    "relationship_type": "current_definition",
+    "from_entity": {
+      "entity_id": "term.customer_status",
+      "entity_type": "semantic_term"
+    },
+    "to_entity": {
+      "entity_id": "definition.customer_status.v1",
+      "entity_type": "semantic_definition"
+    },
+    "created_at": "2026-03-23T10:02:00Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.mapping.crm.customer_status.maps-to-term",
+    "relationship_type": "maps_to_term",
+    "from_entity": {
+      "entity_id": "mapping.crm.customer_status",
+      "entity_type": "semantic_mapping"
+    },
+    "to_entity": {
+      "entity_id": "term.customer_status",
+      "entity_type": "semantic_term"
+    },
+    "created_at": "2026-03-23T10:02:10Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.board.data-governance.governs-term",
+    "relationship_type": "governs",
+    "from_entity": {
+      "entity_id": "board.data-governance",
+      "entity_type": "governance_board"
+    },
+    "to_entity": {
+      "entity_id": "term.customer_status",
+      "entity_type": "semantic_term"
+    },
+    "created_at": "2026-03-23T10:02:20Z",
+    "version": 1
+  },
+  {
+    "relationship_id": "rel.definition.customer_status.v2.supersedes-v1",
+    "relationship_type": "supersedes",
+    "from_entity": {
+      "entity_id": "definition.customer_status.v2",
+      "entity_type": "semantic_definition"
+    },
+    "to_entity": {
+      "entity_id": "definition.customer_status.v1",
+      "entity_type": "semantic_definition"
+    },
+    "created_at": "2026-03-23T10:02:30Z",
+    "version": 1
+  }
+]

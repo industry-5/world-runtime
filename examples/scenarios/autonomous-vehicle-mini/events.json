@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "evt.autonomous-vehicle.occlusion.0001",
+    "event_type": "occlusion_detected",
+    "occurred_at": "2026-03-23T13:17:00Z",
+    "recorded_at": "2026-03-23T13:17:02Z",
+    "payload": {
+      "vehicle_id": "vehicle.av.17",
+      "hazard_zone_id": "hazard.zone.occlusion.04",
+      "visibility_meters": 38
+    },
+    "correlation_id": "corr.autonomous-vehicle.20260323.01"
+  },
+  {
+    "event_id": "evt.autonomous-vehicle.path-score.0002",
+    "event_type": "fallback_path_scored",
+    "occurred_at": "2026-03-23T13:18:00Z",
+    "recorded_at": "2026-03-23T13:18:04Z",
+    "payload": {
+      "vehicle_id": "vehicle.av.17",
+      "road_segment_id": "road.segment.river.12",
+      "planned_speed_kph": 18
+    },
+    "correlation_id": "corr.autonomous-vehicle.20260323.01"
+  },
+  {
+    "event_id": "evt.autonomous-vehicle.teleassist.0003",
+    "event_type": "teleassist_plan_submitted",
+    "occurred_at": "2026-03-23T13:19:00Z",
+    "recorded_at": "2026-03-23T13:19:05Z",
+    "payload": {
+      "proposal_id": "proposal.autonomous-vehicle.0001",
+      "minimum_clearance_meters": 1.8,
+      "remote_supervisor_connected": true
+    },
+    "correlation_id": "corr.autonomous-vehicle.20260323.01"
+  }
+]

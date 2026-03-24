@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/adapters/power_grid/entity_types.schema.json",
+  "title": "Power Grid Entity Types",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "balancing_authority",
+        "generator",
+        "transmission_line",
+        "substation"
+      ]
+    }
+  },
+  "required": [
+    "entity_type"
+  ]
+}

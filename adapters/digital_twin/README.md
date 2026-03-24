@@ -1,22 +1,47 @@
-# Digital Twin
+# Digital Twin Public Adapter Package
 
 _Last updated: 2026-03-23 (America/Chicago)_
 
-`adapter-digital-twin` shows how World Runtime fits host-bound overlay systems where a twin layer is attached to an operating domain rather than treated as a standalone world.
+`adapter-digital-twin` is the public digital-twin overlay package in the World Runtime public domain adapter scenario program.
 
-## What This Track Demonstrates
+## Purpose
 
-- host-bound overlay modeling
-- twin-layer simulation across existing operating systems
-- comparison of live-world and overlay choices
-- explicit boundaries between host systems and twin behavior
+- provide a host-bound overlay track rather than a standalone showcase world
+- prove twin-layer simulation and host binding first on `power_grid`, then on `city_ops`
 
-## Why It Matters
+## Current State
 
-Digital twin work is often most useful when it stays anchored to a real host domain. In this portfolio, the twin layer is attached to public host tracks such as `power_grid` and `city_ops`, which keeps the overlay grounded in operational context.
+- current state: promotion-hardened public `DT-M4` slice with adapter contract, schemas, default/scenario policy, host-binding metadata, replay/simulation artifacts, package-local docs, and playbook guidance
+- package assets on disk include:
+  - `adapter.py`
+  - `schemas/`
+  - `policies/default_policy.json`
+  - `examples/scenarios/digital-twin-mini/`
+  - `playbooks/adapter-digital-twin.md`
+- `host_bindings.json` keeps the overlay boundary explicit across the `power_grid` and `city_ops` host proofs
+- the package is now registered in `adapters/public_program.py` and available through `AdapterRegistry.with_defaults()`
+
+## Working Defaults
+
+- adapter id: `adapter-digital-twin`
+- package path: `adapters/digital_twin`
+- scenario path: `examples/scenarios/digital-twin-mini`
+- first host targets: `power_grid`, then `city_ops`
+- milestone code: `DT`
+
+## Contributor Validation Path
+
+Use this package-local bundle when touching the digital-twin path:
+
+- `python3 scripts/check_adapters.py`
+- `python3 scripts/check_examples.py`
+- `python3 -m pytest -q tests/test_adapters.py tests/test_scenario_bundles.py tests/test_digital_twin_domain.py tests/test_operator_workflows.py`
+- contributor/operator guidance lives in `playbooks/adapter-digital-twin.md`
 
 ## Boundaries
 
-- this public page describes the domain story only
-- it does not publish internal process materials or validation machinery
-- this track is intentionally host-bound and should not be read as a standalone world
+- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- root docs should keep only rollup pointers for this track
+- adapter implementation stays inside the stable `adapters.base.DomainAdapter` contract
+- the overlay must stay host-bound to public host tracks rather than becoming a standalone showcase world
+- no stable App Server, HTTP API, or SDK surface is widened by this package

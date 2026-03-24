@@ -1,0 +1,72 @@
+{
+  "decision_id": "decision.autonomous-vehicle.0001",
+  "status": "approved",
+  "selected_proposal_id": "proposal.autonomous-vehicle.0001",
+  "selected_action": {
+    "action_type": "supervised_creep_through_occlusion",
+    "parameters": {
+      "vehicle_id": "vehicle.av.17",
+      "road_segment_id": "road.segment.river.12",
+      "teleassist_bridge_id": "bridge.autonomous-vehicle.0001"
+    }
+  },
+  "alternatives_considered": [
+    {
+      "proposal_id": "proposal.autonomous-vehicle.unsafe.0002",
+      "disposition": "rejected",
+      "reason": "Rejected because it dropped below the clearance floor and removed remote supervision."
+    },
+    {
+      "proposal_id": "proposal.autonomous-vehicle.yield.0003",
+      "disposition": "candidate",
+      "reason": "Preferred in the simulation branch, but it extends the delivery delay beyond the corridor target."
+    }
+  ],
+  "policy_results": [
+    {
+      "policy_name": "autonomous_vehicle_motion_controls",
+      "outcome": "require_approval",
+      "message": "Motion plans above 15 kph in an occluded zone require human approval."
+    }
+  ],
+  "approval_status": "approved",
+  "approval_id": "approval.autonomous-vehicle.0001",
+  "approvals": [
+    {
+      "approver": {
+        "actor_id": "human.remote-supervisor-02",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "teleassist_supervisor"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "status": "approved"
+    }
+  ],
+  "approval_chain": [
+    {
+      "sequence": 1,
+      "action": "approved",
+      "actor": {
+        "actor_id": "human.remote-supervisor-02",
+        "actor_type": "human",
+        "roles": [
+          "operator",
+          "teleassist_supervisor"
+        ],
+        "capabilities": [
+          "approval.respond",
+          "proposal.approve"
+        ]
+      },
+      "at": "2026-03-23T13:20:10Z"
+    }
+  ],
+  "rationale": "The supervisor approved the supervised creep because it preserves the corridor schedule while staying inside the motion safety envelope.",
+  "created_at": "2026-03-23T13:20:00Z"
+}

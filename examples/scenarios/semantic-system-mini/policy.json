@@ -1,0 +1,52 @@
+{
+  "policy_id": "policy.semantic-system.scenario",
+  "policy_name": "semantic_system_scenario_controls",
+  "policy_type": "governance",
+  "rules": [
+    {
+      "rule_id": "rule.semantic-system.scenario.deny-missing-provenance",
+      "rule_name": "Deny semantic changes without provenance evidence",
+      "rule_type": "constraint",
+      "condition": {
+        "field": "proposed_action.parameters.provenance_complete",
+        "operator": "equals",
+        "value": false
+      },
+      "outcome": "deny",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-23T10:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.semantic-system.scenario.warn-high-conflict-score",
+      "rule_name": "Warn when semantic conflict score is elevated",
+      "rule_type": "advisory",
+      "condition": {
+        "field": "proposed_action.parameters.conflict_score",
+        "operator": ">",
+        "value": 70
+      },
+      "outcome": "warn",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-23T10:00:00Z",
+      "version": 1
+    },
+    {
+      "rule_id": "rule.semantic-system.scenario.require-approval-breaking-change",
+      "rule_name": "Breaking semantic changes require approval",
+      "rule_type": "approval_trigger",
+      "condition": {
+        "field": "proposed_action.parameters.breaking_change",
+        "operator": "equals",
+        "value": true
+      },
+      "outcome": "require_approval",
+      "evaluation_mode": "deterministic",
+      "created_at": "2026-03-23T10:00:00Z",
+      "version": 1
+    }
+  ],
+  "default_outcome": "allow",
+  "created_at": "2026-03-23T10:00:00Z",
+  "version": 1
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "evt.power-grid.demand-spike.0001",
+    "event_type": "demand_spike_detected",
+    "occurred_at": "2026-03-23T11:05:00Z",
+    "recorded_at": "2026-03-23T11:05:05Z",
+    "payload": {
+      "balancing_authority_id": "ba.ercot.north",
+      "delta_mw": 180,
+      "cause": "heat_wave"
+    },
+    "correlation_id": "corr.power-grid.20260323.01"
+  },
+  {
+    "event_id": "evt.power-grid.line-derated.0002",
+    "event_type": "transmission_line_derated",
+    "occurred_at": "2026-03-23T11:06:00Z",
+    "recorded_at": "2026-03-23T11:06:05Z",
+    "payload": {
+      "line_id": "line.north-south.01",
+      "available_transfer_mw": 260,
+      "reason": "thermal_limit"
+    },
+    "correlation_id": "corr.power-grid.20260323.01"
+  },
+  {
+    "event_id": "evt.power-grid.reserve-dispatch.0003",
+    "event_type": "reserve_dispatch_committed",
+    "occurred_at": "2026-03-23T11:07:00Z",
+    "recorded_at": "2026-03-23T11:07:05Z",
+    "payload": {
+      "generator_id": "generator.windfarm.07",
+      "dispatch_mw": 85,
+      "reserve_margin_percent": 6
+    },
+    "correlation_id": "corr.power-grid.20260323.01"
+  }
+]

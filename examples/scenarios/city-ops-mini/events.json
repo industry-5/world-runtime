@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": "evt.city-ops.water-main-break.0001",
+    "event_type": "water_main_break_detected",
+    "occurred_at": "2026-03-23T11:15:00Z",
+    "recorded_at": "2026-03-23T11:15:05Z",
+    "payload": {
+      "asset_id": "asset.water-main.wacker-18in",
+      "flood_depth_inches": 18,
+      "zone_id": "zone.loop-west"
+    },
+    "correlation_id": "corr.city-ops.20260323.01"
+  },
+  {
+    "event_id": "evt.city-ops.transit-suspended.0002",
+    "event_type": "transit_service_suspended",
+    "occurred_at": "2026-03-23T11:16:00Z",
+    "recorded_at": "2026-03-23T11:16:05Z",
+    "payload": {
+      "corridor_id": "corridor.loop-blue-line",
+      "suspension_reason": "flooding",
+      "expected_detour_minutes": 42
+    },
+    "correlation_id": "corr.city-ops.20260323.01"
+  },
+  {
+    "event_id": "evt.city-ops.unified-command.0003",
+    "event_type": "unified_command_activated",
+    "occurred_at": "2026-03-23T11:17:00Z",
+    "recorded_at": "2026-03-23T11:17:05Z",
+    "payload": {
+      "lead_agency_id": "agency.chicago-emergency-management",
+      "zone_id": "zone.loop-west",
+      "participating_agencies": 3
+    },
+    "correlation_id": "corr.city-ops.20260323.01"
+  }
+]

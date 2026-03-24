@@ -1,0 +1,25 @@
+{
+  "simulation_id": "sim.open-agent-world.0001",
+  "simulation_type": "commons_intervention_analysis",
+  "status": "completed",
+  "scenario_name": "Open commons intervention under governance pressure",
+  "assumptions": [
+    "the governance beacon remains reachable throughout the intervention window",
+    "bounded regional intervention can reduce conflict faster than uncontrolled replication"
+  ],
+  "inputs": {
+    "zone_id": "zone.commons.delta",
+    "conflicting_proposals": [
+      "proposal.open-agent-world.0001",
+      "proposal.open-agent-world.unsafe.0002",
+      "proposal.open-agent-world.bounded.0003"
+    ]
+  },
+  "outcomes": {
+    "recommended_proposal_id": "proposal.open-agent-world.bounded.0003",
+    "projected_conflicts_reduced_percent": 31,
+    "projected_agent_displacement_count": 18,
+    "projected_resource_stability_score": 87
+  },
+  "created_at": "2026-03-23T14:13:55Z"
+}
