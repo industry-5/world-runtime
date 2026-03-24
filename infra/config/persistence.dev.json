@@ -1,8 +1,0 @@
-{
-  "backend": "sqlite",
-  "database_path": "tmp/world-runtime.dev.sqlite",
-  "event_store": "sqlite",
-  "snapshots": "sqlite",
-  "reset_on_bootstrap": true,
-  "notes": "Reference dev profile with sqlite persistence adapter"
-}

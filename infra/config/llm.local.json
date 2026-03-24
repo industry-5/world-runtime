@@ -1,7 +1,0 @@
-{
-  "provider": "mock",
-  "model": "reasoning-adapter-deterministic",
-  "temperature": 0.0,
-  "max_tokens": 512,
-  "notes": "Offline local profile with deterministic behavior"
-}

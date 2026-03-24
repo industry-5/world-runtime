@@ -1,9 +1,0 @@
-{
-  "projection_id": "projection.supply-network-state.0001",
-  "projection_name": "supply_network_state",
-  "projection_type": "state",
-  "projection_version": "1.0.0",
-  "source_event_offset": 1,
-  "materialized_state_ref": "state://supply_network/current/1",
-  "status": "ready"
-}

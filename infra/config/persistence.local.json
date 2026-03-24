@@ -1,8 +1,0 @@
-{
-  "backend": "sqlite",
-  "database_path": "tmp/world-runtime.local.sqlite",
-  "event_store": "sqlite",
-  "snapshots": "sqlite",
-  "reset_on_bootstrap": true,
-  "notes": "Local-first default profile"
-}
