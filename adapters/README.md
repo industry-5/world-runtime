@@ -20,15 +20,7 @@ The public export keeps the runtime-facing package docs and portfolio story, but
 - `adapter-multi-agent-ai` (`MA`)
 - `adapter-open-agent-world` (`OAW`)
 - `adapter-digital-twin` (`DT`)
-
-## Out-Of-Program Tracks
-
-- `adapter-supply-ops`
-- `adapter-world-game`
-
-These packages remain in the repository for internal work. Their package-local docs stay intact, but they are not part of this public adapter-series promotion program.
-
-`adapter-digital-twin` is the current overlay exception: it is host-bound, validated first on `power_grid`, then `city_ops`, and should still not be treated as a standalone showcase world.
+- `adapter-digital-twin` is the current overlay exception: it is host-bound, validated first on `power_grid`, then `city_ops`, and should not be treated as a standalone.
 
 ## Working Defaults
 
