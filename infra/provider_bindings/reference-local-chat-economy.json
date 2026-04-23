@@ -1,0 +1,31 @@
+{
+  "provider_id": "reference-local-chat-economy",
+  "display_name": "Reference Local Chat Economy",
+  "description": "Reference managed local provider tuned for interactive assistant chat at low cost.",
+  "provider_kind": "managed_model_service",
+  "service_dependency_ids": [
+    "reference-http"
+  ],
+  "capability_tags": [
+    "chat",
+    "local_only",
+    "streaming",
+    "text_generation"
+  ],
+  "model_identifiers": [
+    "reference-chat-economy"
+  ],
+  "tool_identifiers": [],
+  "quality_tier": "economy",
+  "latency_tier": "realtime",
+  "cost_tier": "low",
+  "determinism_tier": "bounded",
+  "structured_output": {
+    "mode": "json_object",
+    "schema_guarantee": "best_effort"
+  },
+  "policy_scope_tags": [
+    "local_only"
+  ],
+  "health_dependency_mode": "all_ready"
+}

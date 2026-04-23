@@ -1,13 +1,13 @@
 # What You Can Build with World Runtime
 
-_Last updated: 2026-03-23 (America/Chicago)_
+_Last updated: 2026-04-23 (America/Chicago)_
 
 World Runtime is for teams building systems that need to understand the world they operate in, not just move tasks between screens.
 
 Use it when you need explicit world state, append-only events, deterministic replay, simulation before action, and policy-governed decisions with evidence.
 
 This guide frames the repo through the public domain adapter scenario program: compact domain bundles that prove the runtime under realistic tension.
-The current portfolio is promotion-hardened for downstream public export: eleven standalone proof paths plus one host-bound overlay track.
+The current portfolio is released for public use as eleven standalone proof paths plus one host-bound overlay track.
 
 Useful entry points:
 
@@ -142,7 +142,7 @@ Proof in repo:
 
 ## Implemented Overlay Track
 
-This track is part of the public adapter-series roadmap and is now implemented as a runtime-authoritative overlay package under `adapters/`.
+This track is now implemented as a runtime-authoritative overlay package under `adapters/`.
 
 | Scenario | What you could build | Primary proof | Current program state |
 | --- | --- | --- | --- |
@@ -216,7 +216,7 @@ Stable and support-committed:
 Experimental or best-effort:
 
 - starter templates and exploratory examples unless promoted
-- future adapter additions or post-promotion follow-up work unless explicitly promoted
+- future adapter additions or post-release follow-up work unless explicitly promoted
 
 For the authoritative support boundary, read [docs/SUPPORT_POLICY.md](SUPPORT_POLICY.md).
 

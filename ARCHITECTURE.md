@@ -248,6 +248,10 @@ The current implementation includes concrete runtime surfaces for:
 - deterministic policy evaluation with durable policy reports
 - simulation branches with isolation and lineage tracking
 - reasoning adapter with evidence-backed responses and non-mutating proposal generation
+- managed runtime host supervision for declarative local services with readiness/health probes, restart policy, and lifecycle telemetry
+- provider registry and task-profile catalogs with deterministic routing, bounded fallback semantics, and inspectable routing traces on top of the managed-service substrate
+- additive runtime-admin surfaces for runtime inventory, provider inventory, task resolution, and bounded reconcile through the App Server, Public API `/v1`, and starter SDK
+- a managed local AI reference stack for schema-constrained structured extraction, using the managed-service host, routing substrate, and runtime-admin surfaces without promoting those manifests to new stable embedding contracts
 - App Server methods/events for:
   - session
   - task
@@ -255,6 +259,7 @@ The current implementation includes concrete runtime surfaces for:
   - eval
   - simulation
   - policy/proposal/decision workflows
+  - runtime admin inventory, provider inspection, task resolution, and reconcile
 - public API `v1` HTTP wrapper and starter Python SDK surface for external clients
 - eval harness for functional/simulation/policy/reasoning/safety/regression checks
 - adapter registry with supply-network, air-traffic, and world-game adapters

@@ -1,0 +1,38 @@
+{
+  "task_profile_id": "structured-extraction.local-reference",
+  "display_name": "Structured Extraction Local Reference",
+  "description": "M30 reference task profile for local schema-constrained extraction with bounded fallback and strong diagnostics.",
+  "task_category": "structured_extraction",
+  "required_capability_tags": [
+    "extraction_reference_stack",
+    "local_only",
+    "sensitive_data_approved",
+    "structured_output",
+    "text_generation"
+  ],
+  "preferred_capability_tags": [],
+  "forbidden_capability_tags": [
+    "network_required"
+  ],
+  "required_policy_scope_tags": [
+    "local_only",
+    "sensitive_data_approved"
+  ],
+  "output_contract": {
+    "response_format": "json_schema",
+    "schema_id": "reference.character-card.v1",
+    "structured_output_required": true
+  },
+  "routing_preferences": {
+    "preferred_quality_tier": "high",
+    "minimum_quality_tier": "balanced",
+    "preferred_latency_tier": "interactive",
+    "preferred_cost_tier": "medium",
+    "minimum_determinism_tier": "high"
+  },
+  "fallback_policy": {
+    "mode": "quality_floor",
+    "max_quality_tier_downgrade": 1
+  },
+  "approval_sensitivity": "operator_review"
+}

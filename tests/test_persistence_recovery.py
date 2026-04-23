@@ -40,7 +40,8 @@ def test_backup_restore_roundtrip_preserves_table_counts(tmp_path: Path):
 
 
 def test_m23_recovery_script_passes_with_reduced_volume(tmp_path: Path):
-    output_path = tmp_path / "test_m23_recovery.json"
+    output_rel = "tmp/diagnostics/test_m23_recovery.json"
+    output_path = REPO_ROOT / output_rel
     if output_path.exists():
         output_path.unlink()
     result = subprocess.run(
@@ -50,7 +51,7 @@ def test_m23_recovery_script_passes_with_reduced_volume(tmp_path: Path):
             "--event-count",
             "200",
             "--output",
-            str(output_path),
+            output_rel,
         ],
         cwd=REPO_ROOT,
         text=True,
@@ -65,7 +66,8 @@ def test_m23_recovery_script_passes_with_reduced_volume(tmp_path: Path):
 
 
 def test_m23_benchmark_script_passes_with_reduced_samples(tmp_path: Path):
-    output_path = tmp_path / "test_m23_benchmarks.json"
+    output_rel = "tmp/diagnostics/test_m23_benchmarks.json"
+    output_path = REPO_ROOT / output_rel
     if output_path.exists():
         output_path.unlink()
     result = subprocess.run(
@@ -81,7 +83,7 @@ def test_m23_benchmark_script_passes_with_reduced_samples(tmp_path: Path):
             "--replay-events",
             "60",
             "--output",
-            str(output_path),
+            output_rel,
         ],
         cwd=REPO_ROOT,
         text=True,

@@ -13,7 +13,7 @@ make workflow-quickstart
 If you want the supported HTTP + SDK surface after that:
 
 ```bash
-make api-server
+python -m world_runtime serve --profile local
 make sdk-example
 ```
 

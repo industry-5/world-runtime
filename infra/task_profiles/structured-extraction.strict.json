@@ -1,0 +1,35 @@
+{
+  "task_profile_id": "structured-extraction.strict",
+  "display_name": "Structured Extraction Strict",
+  "description": "Reference structured extraction profile that requires local handling, explicit approval posture, and schema-shaped output.",
+  "task_category": "structured_extraction",
+  "required_capability_tags": [
+    "local_only",
+    "sensitive_data_approved",
+    "structured_output",
+    "text_generation"
+  ],
+  "preferred_capability_tags": [],
+  "forbidden_capability_tags": [],
+  "required_policy_scope_tags": [
+    "local_only",
+    "sensitive_data_approved"
+  ],
+  "output_contract": {
+    "response_format": "json_schema",
+    "schema_id": "reference.schemas.structured-extraction.v1",
+    "structured_output_required": true
+  },
+  "routing_preferences": {
+    "preferred_quality_tier": "high",
+    "minimum_quality_tier": "balanced",
+    "preferred_latency_tier": "interactive",
+    "preferred_cost_tier": "medium",
+    "minimum_determinism_tier": "high"
+  },
+  "fallback_policy": {
+    "mode": "quality_floor",
+    "max_quality_tier_downgrade": 1
+  },
+  "approval_sensitivity": "operator_review"
+}

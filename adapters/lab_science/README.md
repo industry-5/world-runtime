@@ -8,10 +8,11 @@ _Last updated: 2026-03-23 (America/Chicago)_
 
 - prove regulated experiment workflows, evidence chains, and policy depth
 - exercise provenance-heavy decisions where process integrity is part of the runtime proof
+- keep package-local roadmap, status, and change history inside this package.
 
 ## Current State
 
-- current state: promotion-hardened public `LS-M4` slice with adapter contract, schemas, default/scenario policy, regulated-release alternatives, replay/simulation artifacts, package-local docs, and playbook guidance
+- current state: released public adapter slice with adapter contract, schemas, default/scenario policy, regulated-release alternatives, replay/simulation artifacts, package-local docs, and playbook guidance
 - package assets on disk include:
   - `adapter.py`
   - `schemas/`
@@ -21,12 +22,20 @@ _Last updated: 2026-03-23 (America/Chicago)_
 - `release_options.json` preserves regulated release alternatives on top of the shared bundle baseline
 - the package is now registered in `adapters/public_program.py` and available through `AdapterRegistry.with_defaults()`
 
+## Package Docs
+
+- `README.md` - package overview and boundaries
+- `ROADMAP.md` - package direction and scope
+- `STATUS.md` - current execution ledger
+- `CHANGELOG.md` - package release and change history
+
+
 ## Working Defaults
 
 - adapter id: `adapter-lab-science`
 - package path: `adapters/lab_science`
 - scenario path: `examples/scenarios/lab-science-mini`
-- milestone code: `LS`
+- track code: `LS`
 
 ## Contributor Validation Path
 
@@ -39,7 +48,7 @@ Use this package-local bundle when touching the lab-science path:
 
 ## Boundaries
 
-- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- package-local roadmap and status live here
 - root docs should keep only rollup pointers for this track
 - adapter implementation stays inside the stable `adapters.base.DomainAdapter` contract
 - no stable App Server, HTTP API, or SDK surface is widened by this package

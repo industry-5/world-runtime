@@ -8,10 +8,11 @@ _Last updated: 2026-03-23 (America/Chicago)_
 
 - prove dynamic planning under hard safety constraints in physical-space reasoning
 - exercise intervention logic, least-bad choices, and explicit safety boundaries
+- keep package-local roadmap, status, and change history inside this package.
 
 ## Current State
 
-- current state: promotion-hardened public `AV-M4` slice with adapter contract, schemas, default/scenario policy, maneuver alternatives, replay/simulation artifacts, package-local docs, and playbook guidance
+- current state: released public adapter slice with adapter contract, schemas, default/scenario policy, maneuver alternatives, replay/simulation artifacts, package-local docs, and playbook guidance
 - package assets on disk include:
   - `adapter.py`
   - `schemas/`
@@ -21,12 +22,20 @@ _Last updated: 2026-03-23 (America/Chicago)_
 - `maneuver_options.json` preserves motion-safety alternatives on top of the shared bundle baseline
 - the package is now registered in `adapters/public_program.py` and available through `AdapterRegistry.with_defaults()`
 
+## Package Docs
+
+- `README.md` - package overview and boundaries
+- `ROADMAP.md` - package direction and scope
+- `STATUS.md` - current execution ledger
+- `CHANGELOG.md` - package release and change history
+
+
 ## Working Defaults
 
 - adapter id: `adapter-autonomous-vehicle`
 - package path: `adapters/autonomous_vehicle`
 - scenario path: `examples/scenarios/autonomous-vehicle-mini`
-- milestone code: `AV`
+- track code: `AV`
 
 ## Contributor Validation Path
 
@@ -39,7 +48,7 @@ Use this package-local bundle when touching the autonomous-vehicle path:
 
 ## Boundaries
 
-- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- package-local roadmap and status live here
 - root docs should keep only rollup pointers for this track
 - adapter implementation stays inside the stable `adapters.base.DomainAdapter` contract
 - no stable App Server, HTTP API, or SDK surface is widened by this package

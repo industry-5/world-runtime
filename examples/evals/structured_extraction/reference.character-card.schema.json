@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/examples/evals/structured_extraction/reference.character-card.schema.json",
+  "title": "Reference Character Card Extraction",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "source_id",
+    "record_type",
+    "character",
+    "artifacts",
+    "risk_flags",
+    "open_questions",
+    "ambiguities"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "reference.character-card.v1"
+    },
+    "source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "record_type": {
+      "const": "character_card"
+    },
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "role",
+        "affiliation",
+        "origin_world"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "affiliation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "origin_world": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  }
+}

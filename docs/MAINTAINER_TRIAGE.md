@@ -66,4 +66,4 @@ Close when:
 ## Release And Docs Discipline
 
 - If public behavior changes, update `README.md`, `docs/SUPPORT_POLICY.md`, and the relevant contract docs in the same change.
-- If release posture changes, update the public-facing version and support docs together.
+- If release posture changes, update `STATUS.md`, `CHANGELOG.md`, and release-readiness docs together.

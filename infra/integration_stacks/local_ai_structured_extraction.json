@@ -1,0 +1,33 @@
+{
+  "stack_kind": "local_ai_structured_extraction",
+  "stack_id": "stack.local-ai.structured-extraction.reference",
+  "profile": "local",
+  "description": "M30 managed local AI reference stack for schema-constrained structured extraction.",
+  "managed_service_ids": [
+    "reference-local-ai-extraction"
+  ],
+  "provider_binding_ids": [
+    "reference-local-structured-extraction-high",
+    "reference-local-structured-extraction-balanced"
+  ],
+  "task_profile_ids": [
+    "structured-extraction.local-reference"
+  ],
+  "smoke_test": {
+    "service_id": "reference-local-ai-extraction",
+    "task_profile_id": "structured-extraction.local-reference",
+    "schema_path": "examples/evals/structured_extraction/reference.character-card.schema.json",
+    "fixture_manifest_path": "examples/evals/structured_extraction/manifest.json",
+    "preferred_provider_id": "reference-local-structured-extraction-high",
+    "fallback_policy_input": {
+      "denied_provider_ids": [
+        "reference-local-structured-extraction-high"
+      ]
+    }
+  },
+  "eval_references": [
+    "examples/evals/structured_extraction/manifest.json",
+    "tests/evals/structured_extraction/test_reference_local_ai_extraction.py"
+  ],
+  "owner": "runtime-ai"
+}

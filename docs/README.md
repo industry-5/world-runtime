@@ -1,6 +1,6 @@
 # Documentation Hub
 
-_Last updated: 2026-03-23 (America/Chicago)_
+_Last updated: 2026-04-23 (America/Chicago)_
 
 This hub is the fastest way to navigate the World Runtime docs by intent instead of by folder layout.
 
@@ -17,8 +17,10 @@ The promotion-hardened public adapter portfolio remains the primary scenario sto
 
 - Front door and repo map: [README.md](../README.md)
 - Text-first overview: [docs/what-you-can-build.md](what-you-can-build.md)
-- Public adapter series docs: [adapters/README.md](../adapters/README.md)
+- Public adapter series docs: [adapters/README.md](../adapters/README.md), [adapters/ROADMAP.md](../adapters/ROADMAP.md), [adapters/STATUS.md](../adapters/STATUS.md)
 - Architecture: [ARCHITECTURE.md](../ARCHITECTURE.md)
+- Release narrative: [CHANGELOG.md](../CHANGELOG.md)
+- Release notes: [docs/releases/1.1.0.md](releases/1.1.0.md)
 
 ## Run It Locally
 
@@ -61,11 +63,11 @@ The promotion-hardened public adapter portfolio remains the primary scenario sto
 
 ## Support, Releases, And Governance
 
+- Release narrative: [CHANGELOG.md](../CHANGELOG.md)
+- Release notes: [docs/releases/1.1.0.md](releases/1.1.0.md)
 - Release readiness checklist: [docs/RELEASE_READINESS_CHECKLIST.md](RELEASE_READINESS_CHECKLIST.md)
 - Support commitments: [docs/SUPPORT_POLICY.md](SUPPORT_POLICY.md)
 - Public maintainer workflow: [docs/MAINTAINER_TRIAGE.md](MAINTAINER_TRIAGE.md)
 - GitHub/public launch settings checklist: [docs/GITHUB_PUBLIC_LAUNCH_CHECKLIST.md](GITHUB_PUBLIC_LAUNCH_CHECKLIST.md)
 - Security/trust-boundary review: [docs/SECURITY_TRUST_BOUNDARY_REVIEW.md](SECURITY_TRUST_BOUNDARY_REVIEW.md)
 - CI/CD and release workflow: [playbooks/ci-cd-release.md](../playbooks/ci-cd-release.md)
-
-Internal milestone ledgers and thread handoff prompts are intentionally omitted from the public export.

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/schemas/provider_binding.schema.json",
+  "title": "Provider Binding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "provider_id",
+    "provider_kind",
+    "capability_tags",
+    "quality_tier",
+    "latency_tier",
+    "cost_tier",
+    "determinism_tier",
+    "structured_output",
+    "policy_scope_tags"
+  ],
+  "properties": {
+    "provider_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider_kind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "service_dependency_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "capability_tags": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "model_identifiers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "tool_identifiers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "quality_tier": {
+      "type": "string",
+      "enum": ["economy", "balanced", "high", "premium"]
+    },
+    "latency_tier": {
+      "type": "string",
+      "enum": ["batch", "interactive", "realtime"]
+    },
+    "cost_tier": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "determinism_tier": {
+      "type": "string",
+      "enum": ["low", "bounded", "high"]
+    },
+    "structured_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "schema_guarantee"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["none", "json_object", "json_schema"]
+        },
+        "schema_guarantee": {
+          "type": "string",
+          "enum": ["none", "best_effort", "strict"]
+        }
+      }
+    },
+    "policy_scope_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "health_dependency_mode": {
+      "type": "string",
+      "enum": ["all_ready"],
+      "default": "all_ready"
+    }
+  }
+}

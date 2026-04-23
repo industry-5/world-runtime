@@ -39,6 +39,59 @@ def top_level_example_paths(examples_dir: Path):
 
 
 @pytest.fixture
+def service_manifest_paths() -> dict[str, Path]:
+    return {
+        "reference_http": REPO_ROOT / "infra" / "service_manifests" / "reference-http.json",
+        "world_runtime_local": REPO_ROOT / "infra" / "service_manifests" / "world-runtime.local.json",
+        "reference_local_ai_extraction": REPO_ROOT
+        / "infra"
+        / "service_manifests"
+        / "reference-local-ai-extraction.json",
+    }
+
+
+@pytest.fixture
+def provider_binding_paths() -> dict[str, Path]:
+    return {
+        "reference_local_chat_economy": REPO_ROOT
+        / "infra"
+        / "provider_bindings"
+        / "reference-local-chat-economy.json",
+        "reference_local_structured_balanced": REPO_ROOT
+        / "infra"
+        / "provider_bindings"
+        / "reference-local-structured-balanced.json",
+        "reference_network_structured_premium": REPO_ROOT
+        / "infra"
+        / "provider_bindings"
+        / "reference-network-structured-premium.json",
+        "reference_local_structured_extraction_high": REPO_ROOT
+        / "infra"
+        / "provider_bindings"
+        / "reference-local-structured-extraction-high.json",
+        "reference_local_structured_extraction_balanced": REPO_ROOT
+        / "infra"
+        / "provider_bindings"
+        / "reference-local-structured-extraction-balanced.json",
+    }
+
+
+@pytest.fixture
+def task_profile_paths() -> dict[str, Path]:
+    return {
+        "assistant_chat_default": REPO_ROOT / "infra" / "task_profiles" / "assistant-chat.default.json",
+        "structured_extraction_strict": REPO_ROOT
+        / "infra"
+        / "task_profiles"
+        / "structured-extraction.strict.json",
+        "structured_extraction_local_reference": REPO_ROOT
+        / "infra"
+        / "task_profiles"
+        / "structured-extraction.local-reference.json",
+    }
+
+
+@pytest.fixture
 def supply_network_scenario_dir(examples_dir: Path) -> Path:
     return examples_dir / "scenarios" / "supply-network-mini"
 

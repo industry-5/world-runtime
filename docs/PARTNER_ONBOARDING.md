@@ -22,7 +22,7 @@ This guide is for external domain teams integrating with World Runtime.
      `python3 scripts/scaffold_extension.py connector-plugin --name "Acme Queue" --provider "acme.queue" --output-dir tmp/onboarding/acme-queue-plugin`
 3. Integrate scaffolded code into your domain package and registry wiring.
 4. Add policy pack and scenario fixtures.
-5. Run milestone checks:
+5. Run validation checks:
    - `make extension-contracts`
    - `make adapters`
    - `make connectors`

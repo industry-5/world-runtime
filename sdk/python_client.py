@@ -25,6 +25,53 @@ class WorldRuntimeSDKClient:
     def create_session(self) -> Dict[str, Any]:
         return self._post("/v1/sessions")
 
+    def runtime_inventory(self) -> Dict[str, Any]:
+        return self._get("/v1/runtime/inventory")
+
+    def list_runtime_services(self) -> Dict[str, Any]:
+        return self._get("/v1/runtime/services")
+
+    def get_runtime_service(self, service_id: str) -> Dict[str, Any]:
+        return self._get("/v1/runtime/services/%s" % service_id)
+
+    def reconcile_runtime_services(
+        self,
+        *,
+        actor: Dict[str, Any],
+        service_ids: Optional[list[str]] = None,
+        session_id: Optional[str] = None,
+        prune: bool = False,
+    ) -> Dict[str, Any]:
+        return self._post(
+            "/v1/runtime/services/reconcile",
+            {
+                "actor": actor,
+                "service_ids": service_ids,
+                "session_id": session_id,
+                "prune": prune,
+            },
+        )
+
+    def list_runtime_providers(self) -> Dict[str, Any]:
+        return self._get("/v1/runtime/providers")
+
+    def get_runtime_provider(self, provider_id: str) -> Dict[str, Any]:
+        return self._get("/v1/runtime/providers/%s" % provider_id)
+
+    def resolve_runtime_task(
+        self,
+        *,
+        task_profile_id: str,
+        policy_input: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        return self._post(
+            "/v1/runtime/tasks/resolve",
+            {
+                "task_profile_id": task_profile_id,
+                "policy_input": policy_input or {},
+            },
+        )
+
     def submit_proposal(
         self,
         session_id: str,

@@ -4,10 +4,12 @@ import os
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Sequence
+from urllib.parse import urlparse
 
 from api.runtime_api import API_VERSION, PUBLIC_ENDPOINTS, PublicRuntimeAPI
 from api.runtime_factory import build_server_from_examples
+from core.app_server import WorldRuntimeAppServer
 
 
 def _json_bytes(payload: Dict[str, Any]) -> bytes:
@@ -19,7 +21,9 @@ class _RuntimeHTTPHandler(BaseHTTPRequestHandler):
     auth_token: Optional[str] = None
 
     def do_GET(self) -> None:  # noqa: N802
-        if self.path == "/health":
+        path = self._request_path()
+
+        if path == "/health":
             self._send(
                 HTTPStatus.OK,
                 {
@@ -33,7 +37,58 @@ class _RuntimeHTTPHandler(BaseHTTPRequestHandler):
         if not self._authorize():
             return
 
-        if self.path == PUBLIC_ENDPOINTS["telemetry_summary"]:
+        if path == PUBLIC_ENDPOINTS["runtime_inventory"]:
+            assert self.runtime_api is not None
+            try:
+                self._send_ok(self.runtime_api.runtime_inventory())
+                return
+            except Exception as exc:  # pragma: no cover - defensive
+                self._send_error_payload("runtime_error", str(exc), status=HTTPStatus.INTERNAL_SERVER_ERROR)
+                return
+
+        if path == PUBLIC_ENDPOINTS["runtime_services"]:
+            assert self.runtime_api is not None
+            try:
+                self._send_ok(self.runtime_api.list_runtime_services())
+                return
+            except Exception as exc:  # pragma: no cover - defensive
+                self._send_error_payload("runtime_error", str(exc), status=HTTPStatus.INTERNAL_SERVER_ERROR)
+                return
+
+        service_prefix = PUBLIC_ENDPOINTS["runtime_services"] + "/"
+        if path.startswith(service_prefix):
+            service_id = path[len(service_prefix) :]
+            if service_id and "/" not in service_id and service_id != "reconcile":
+                assert self.runtime_api is not None
+                try:
+                    self._send_ok(self.runtime_api.get_runtime_service(service_id))
+                    return
+                except Exception as exc:  # pragma: no cover - defensive
+                    self._send_error_payload("runtime_error", str(exc), status=HTTPStatus.INTERNAL_SERVER_ERROR)
+                    return
+
+        if path == PUBLIC_ENDPOINTS["runtime_providers"]:
+            assert self.runtime_api is not None
+            try:
+                self._send_ok(self.runtime_api.list_runtime_providers())
+                return
+            except Exception as exc:  # pragma: no cover - defensive
+                self._send_error_payload("runtime_error", str(exc), status=HTTPStatus.INTERNAL_SERVER_ERROR)
+                return
+
+        provider_prefix = PUBLIC_ENDPOINTS["runtime_providers"] + "/"
+        if path.startswith(provider_prefix):
+            provider_id = path[len(provider_prefix) :]
+            if provider_id and "/" not in provider_id:
+                assert self.runtime_api is not None
+                try:
+                    self._send_ok(self.runtime_api.get_runtime_provider(provider_id))
+                    return
+                except Exception as exc:  # pragma: no cover - defensive
+                    self._send_error_payload("runtime_error", str(exc), status=HTTPStatus.INTERNAL_SERVER_ERROR)
+                    return
+
+        if path == PUBLIC_ENDPOINTS["telemetry_summary"]:
             assert self.runtime_api is not None
             try:
                 result = self.runtime_api.telemetry_summary()
@@ -43,7 +98,7 @@ class _RuntimeHTTPHandler(BaseHTTPRequestHandler):
                 self._send_error_payload("runtime_error", str(exc), status=HTTPStatus.INTERNAL_SERVER_ERROR)
                 return
 
-        if self.path == "/v1/meta":
+        if path == "/v1/meta":
             assert self.runtime_api is not None
             self._send_ok(self.runtime_api.metadata())
             return
@@ -51,6 +106,7 @@ class _RuntimeHTTPHandler(BaseHTTPRequestHandler):
         self._send_error_payload("not_found", "unknown endpoint", status=HTTPStatus.NOT_FOUND)
 
     def do_POST(self) -> None:  # noqa: N802
+        path = self._request_path()
         if not self._authorize():
             return
 
@@ -60,7 +116,7 @@ class _RuntimeHTTPHandler(BaseHTTPRequestHandler):
             return
 
         try:
-            result = self._dispatch_post(self.path, body or {})
+            result = self._dispatch_post(path, body or {})
         except ValueError as exc:
             self._send_error_payload("bad_request", str(exc), status=HTTPStatus.BAD_REQUEST)
             return
@@ -88,6 +144,32 @@ class _RuntimeHTTPHandler(BaseHTTPRequestHandler):
             if not response.get("ok"):
                 raise ValueError(response.get("error", "runtime call failed"))
             return response["result"]
+
+        if path == PUBLIC_ENDPOINTS["runtime_service_reconcile"]:
+            actor = body.get("actor")
+            if not isinstance(actor, dict):
+                raise ValueError("actor is required")
+            service_ids = body.get("service_ids")
+            if service_ids is not None and not isinstance(service_ids, list):
+                raise ValueError("service_ids must be a list")
+            return self.runtime_api.reconcile_runtime_services(
+                actor=actor,
+                service_ids=service_ids,
+                session_id=body.get("session_id"),
+                prune=bool(body.get("prune", False)),
+            )
+
+        if path == PUBLIC_ENDPOINTS["runtime_task_resolve"]:
+            task_profile_id = body.get("task_profile_id")
+            if not isinstance(task_profile_id, str) or not task_profile_id:
+                raise ValueError("task_profile_id is required")
+            policy_input = body.get("policy_input")
+            if policy_input is not None and not isinstance(policy_input, dict):
+                raise ValueError("policy_input must be an object")
+            return self.runtime_api.resolve_runtime_task(
+                task_profile_id=task_profile_id,
+                policy_input=policy_input,
+            )
 
         if path == PUBLIC_ENDPOINTS["session_create"]:
             return self.runtime_api.create_session()
@@ -147,6 +229,9 @@ class _RuntimeHTTPHandler(BaseHTTPRequestHandler):
             )
 
         return None
+
+    def _request_path(self) -> str:
+        return urlparse(self.path).path
 
     def _authorize(self) -> bool:
         token = self.auth_token
@@ -234,29 +319,55 @@ def build_http_server(
     return ThreadingHTTPServer((host, port), handler)
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="World Runtime Public API HTTP server")
+def add_server_arguments(
+    parser: argparse.ArgumentParser,
+    *,
+    default_examples_dir: Optional[str] = "examples",
+) -> None:
+    parser.add_argument("--profile", choices=("local", "dev"), default="local")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8080)
-    parser.add_argument("--examples-dir", default="examples")
+    parser.add_argument("--examples-dir", default=default_examples_dir)
     parser.add_argument(
         "--api-token",
         default=os.getenv("WORLD_RUNTIME_API_TOKEN"),
         help="Optional bearer token. Falls back to WORLD_RUNTIME_API_TOKEN.",
     )
-    args = parser.parse_args()
 
-    app_server = build_server_from_examples(Path(args.examples_dir))
+
+def serve_app_server(
+    app_server: WorldRuntimeAppServer,
+    host: str,
+    port: int,
+    auth_token: Optional[str] = None,
+) -> None:
     runtime_api = PublicRuntimeAPI(app_server)
-    server = build_http_server(host=args.host, port=args.port, runtime_api=runtime_api, auth_token=args.api_token)
+    server = build_http_server(host=host, port=port, runtime_api=runtime_api, auth_token=auth_token)
 
     print(
-        "Serving World Runtime Public API %s at http://%s:%s" % (API_VERSION, args.host, args.port),
+        "Serving World Runtime Public API %s at http://%s:%s" % (API_VERSION, host, port),
         flush=True,
     )
-    if args.api_token:
+    if auth_token:
         print("Bearer auth enabled via WORLD_RUNTIME_API_TOKEN/--api-token", flush=True)
     server.serve_forever()
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="World Runtime Public API HTTP server")
+    add_server_arguments(parser, default_examples_dir="examples")
+    return parser
+
+
+def main(argv: Optional[Sequence[str]] = None) -> None:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+
+    if args.profile == "dev" and not args.api_token:
+        parser.error("WORLD_RUNTIME_API_TOKEN or --api-token is required for --profile dev")
+
+    app_server = build_server_from_examples(Path(args.examples_dir))
+    serve_app_server(app_server, host=args.host, port=args.port, auth_token=args.api_token)
 
 
 if __name__ == "__main__":

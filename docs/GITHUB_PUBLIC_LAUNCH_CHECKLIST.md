@@ -24,7 +24,7 @@ Use this checklist when preparing to flip the repository public or immediately a
 - Confirm no local filesystem paths remain in public docs/templates
 - Confirm no secrets or private customer data are committed
 - Confirm README quickstart works from a clean checkout
-- Confirm release/version messaging is consistent across `README.md`, tags, and `VERSION`
+- Confirm release/version messaging is consistent across `README.md`, `STATUS.md`, `CHANGELOG.md`, tags, and `VERSION`
 
 ## Launch-Day Verification
 

@@ -1,0 +1,34 @@
+{
+  "task_profile_id": "assistant-chat.default",
+  "display_name": "Assistant Chat Default",
+  "description": "Reference interactive assistant chat profile with local-first routing and streaming output.",
+  "task_category": "assistant_chat",
+  "required_capability_tags": [
+    "local_only",
+    "streaming",
+    "text_generation"
+  ],
+  "preferred_capability_tags": [
+    "chat"
+  ],
+  "forbidden_capability_tags": [],
+  "required_policy_scope_tags": [
+    "local_only"
+  ],
+  "output_contract": {
+    "response_format": "text",
+    "structured_output_required": false
+  },
+  "routing_preferences": {
+    "preferred_quality_tier": "economy",
+    "minimum_quality_tier": "economy",
+    "preferred_latency_tier": "realtime",
+    "preferred_cost_tier": "low",
+    "minimum_determinism_tier": "bounded"
+  },
+  "fallback_policy": {
+    "mode": "none",
+    "max_quality_tier_downgrade": 0
+  },
+  "approval_sensitivity": "none"
+}

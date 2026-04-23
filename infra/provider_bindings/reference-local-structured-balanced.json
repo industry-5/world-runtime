@@ -1,0 +1,32 @@
+{
+  "provider_id": "reference-local-structured-balanced",
+  "display_name": "Reference Local Structured Balanced",
+  "description": "Reference managed local provider for structured text work with bounded deterministic output.",
+  "provider_kind": "managed_model_service",
+  "service_dependency_ids": [
+    "reference-http"
+  ],
+  "capability_tags": [
+    "local_only",
+    "sensitive_data_approved",
+    "structured_output",
+    "text_generation"
+  ],
+  "model_identifiers": [
+    "reference-structured-balanced"
+  ],
+  "tool_identifiers": [],
+  "quality_tier": "balanced",
+  "latency_tier": "interactive",
+  "cost_tier": "low",
+  "determinism_tier": "high",
+  "structured_output": {
+    "mode": "json_schema",
+    "schema_guarantee": "strict"
+  },
+  "policy_scope_tags": [
+    "local_only",
+    "sensitive_data_approved"
+  ],
+  "health_dependency_mode": "all_ready"
+}

@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://world-runtime.dev/schemas/service_manifest.schema.json",
+  "title": "Managed Service Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "service_id",
+    "process",
+    "restart_policy",
+    "log_capture"
+  ],
+  "properties": {
+    "service_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "process": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "executable",
+        "arguments",
+        "working_directory",
+        "environment"
+      ],
+      "properties": {
+        "executable": {
+          "type": "string",
+          "minLength": 1
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "working_directory": {
+          "type": "string",
+          "minLength": 1
+        },
+        "environment": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9._-]*$"
+      }
+    },
+    "readiness_probe": {
+      "$ref": "#/$defs/probe"
+    },
+    "health_probe": {
+      "$ref": "#/$defs/probe"
+    },
+    "restart_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "condition",
+        "max_attempts",
+        "backoff_seconds"
+      ],
+      "properties": {
+        "condition": {
+          "type": "string",
+          "enum": [
+            "never",
+            "on_failure",
+            "always"
+          ]
+        },
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "backoff_seconds": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "type",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "url",
+              "tcp_port",
+              "unix_socket"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "log_capture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "tail_lines"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "file",
+            "inherit",
+            "discard"
+          ]
+        },
+        "directory": {
+          "type": "string"
+        },
+        "tail_lines": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  },
+  "$defs": {
+    "probe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "interval_seconds",
+        "timeout_seconds",
+        "initial_delay_seconds"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "http",
+            "command",
+            "tcp"
+          ]
+        },
+        "interval_seconds": {
+          "type": "number",
+          "minimum": 0.05
+        },
+        "timeout_seconds": {
+          "type": "number",
+          "minimum": 0.1
+        },
+        "initial_delay_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "expected_status": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 599
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "host": {
+          "type": "string",
+          "minLength": 1
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "success_contains": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "http"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "url"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "command"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "command"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "tcp"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "host",
+              "port"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

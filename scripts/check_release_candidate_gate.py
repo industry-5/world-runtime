@@ -2,23 +2,17 @@ import argparse
 import json
 import shlex
 import subprocess
-import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import List
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
-
-from core.path_utils import resolve_writable_repo_path
-
 DEFAULT_OUTPUT = REPO_ROOT / "tmp" / "diagnostics" / "m25_release_candidate_gate.latest.json"
 
 REQUIRED_DOCS = {
     "docs/RELEASE_READINESS_CHECKLIST.md": [
-        "# v1.0 Release Readiness Checklist",
+        "# v1.1.0 Release Readiness Checklist",
         "## Go/No-Go Criteria",
         "## Aggregate Release Gate Matrix",
     ],
@@ -30,6 +24,10 @@ REQUIRED_DOCS = {
     "docs/SUPPORT_POLICY.md": [
         "# Support Policy",
         "## Compatibility Commitments",
+    ],
+    "CHANGELOG.md": [
+        "# Changelog",
+        "## [1.1.0] - 2026-04-23",
     ],
 }
 
@@ -47,7 +45,6 @@ def utc_now() -> str:
 
 def _build_command_matrix(release_version: str, fast: bool) -> List[CommandSpec]:
     if fast:
-        release_dir = resolve_writable_repo_path(REPO_ROOT, Path("tmp/releases_fast"))
         return [
             CommandSpec("milestone", "schema-check", "make schemas"),
             CommandSpec("milestone", "protocol-compat", "make protocol-compat"),
@@ -56,7 +53,7 @@ def _build_command_matrix(release_version: str, fast: bool) -> List[CommandSpec]
             CommandSpec(
                 "milestone",
                 "release-artifacts",
-                f"python3 scripts/build_release_artifacts.py --version {shlex.quote(release_version)} --output-dir {shlex.quote(str(release_dir))}",
+                f"python3 scripts/build_release_artifacts.py --version {shlex.quote(release_version)} --output-dir tmp/releases_fast",
             ),
         ]
 
@@ -158,9 +155,9 @@ def _run_command(spec: CommandSpec) -> dict:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run M25 v1.0 release gate checks")
+    parser = argparse.ArgumentParser(description="Run M25 release gate checks")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument("--release-version", default="1.0.0")
+    parser.add_argument("--release-version", default="1.1.0")
     parser.add_argument("--rc-version", dest="release_version_legacy")
     parser.add_argument("--fast", action="store_true", help="Run reduced gate matrix for smoke/test environments")
     return parser.parse_args()
@@ -171,7 +168,7 @@ def main() -> int:
 
     payload = {
         "milestone": "M25",
-        "gate": "v1.0-release",
+        "gate": "release",
         "started_at": utc_now(),
         "mode": "fast" if args.fast else "full",
     }
@@ -195,9 +192,8 @@ def main() -> int:
     payload["status"] = "passed" if not errors else "failed"
     payload["errors"] = errors
 
-    output_path = resolve_writable_repo_path(REPO_ROOT, args.output)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
     print(json.dumps(payload, indent=2))
     return 0 if payload["status"] == "passed" else 1

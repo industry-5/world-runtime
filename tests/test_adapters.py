@@ -41,9 +41,10 @@ def test_public_adapter_program_package_checklist_exists():
 def test_public_export_rewrites_match_current_public_adapter_story(tmp_path):
     export_script = REPO_ROOT / "scripts" / "build_public_export.py"
     if not export_script.exists():
-        pytest.skip("public export script is intentionally omitted from the sanitized public repo")
+        pytest.skip("public export script is intentionally omitted from the curated public export")
 
     export_module = runpy.run_path(str(export_script))
+    private_milestones_prefix = "docs/" "milestones/"
     for relative_path in (
         "README.md",
         "STATUS.md",
@@ -74,13 +75,49 @@ def test_public_export_rewrites_match_current_public_adapter_story(tmp_path):
     assert "digital-twin-mini" in what_text
 
     assert "DA-M1 through DA-M9 complete" in status_text
+    assert "v1.1.0" in readme_text
+    assert "docs/releases/1.1.0.md" in readme_text
+    assert "releases/1.1.0.md" in docs_readme_text
     assert "Additional adapter tracks may remain planned" not in status_text
 
     assert "execute `DA-M4`" not in roadmap_text
     assert "current supply-network, air-traffic, and semantic-system proofs" not in roadmap_text
-    assert "downstream promotion/export follow-through" in roadmap_text
+    assert "released 1.1.0 runtime story" in roadmap_text
 
-    assert "eleven standalone proof paths plus one host-bound overlay track" in what_text
+    assert "released for public use as eleven standalone proof paths plus one host-bound overlay track" in what_text
+    assert private_milestones_prefix not in readme_text
+    assert private_milestones_prefix not in status_text
+    assert private_milestones_prefix not in roadmap_text
+    assert private_milestones_prefix not in docs_readme_text
+    assert private_milestones_prefix not in what_text
+
+
+def test_public_export_treats_labs_as_private_by_default():
+    export_script = REPO_ROOT / "scripts" / "build_public_export.py"
+    if not export_script.exists():
+        pytest.skip("public export script is intentionally omitted from the curated public export")
+
+    export_module = runpy.run_path(str(export_script))
+    is_excluded = export_module["is_excluded"]
+    private_plan_path = Path("_" "plan/world-runtime_v1.1/ROADMAP.md")
+    private_milestone_path = Path("docs/" "milestones/M30/README.md")
+
+    assert is_excluded(private_plan_path, [], [])
+    assert is_excluded(private_milestone_path, [], [])
+    assert is_excluded(Path("labs/shared_ui/tokens.css"), [], [])
+    assert is_excluded(Path("labs/supply_ops_lab/decision-explorer.html"), [], [])
+    assert is_excluded(Path("tests/labs/test_supply_ops_lab.py"), [], [])
+
+    assert not is_excluded(
+        Path("labs/supply_ops_lab/decision-explorer.html"),
+        [],
+        ["labs/supply_ops_lab/"],
+    )
+    assert not is_excluded(
+        Path("tests/labs/test_supply_ops_lab.py"),
+        [],
+        ["tests/labs/test_supply_ops_lab.py"],
+    )
 
 
 def test_adapter_level_assets_exist():

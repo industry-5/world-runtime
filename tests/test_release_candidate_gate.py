@@ -7,8 +7,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_release_candidate_gate_fast_mode_passes(tmp_path: Path):
-    output_path = tmp_path / "test_m25_release_candidate_gate.json"
+def test_release_candidate_gate_fast_mode_passes():
+    output_rel = "tmp/diagnostics/test_m25_release_candidate_gate.json"
+    output_path = REPO_ROOT / output_rel
     if output_path.exists():
         output_path.unlink()
 
@@ -18,9 +19,9 @@ def test_release_candidate_gate_fast_mode_passes(tmp_path: Path):
             "scripts/check_release_candidate_gate.py",
             "--fast",
             "--release-version",
-            "1.0.0-test",
+            "1.1.0-test",
             "--output",
-            str(output_path),
+            output_rel,
         ],
         cwd=REPO_ROOT,
         text=True,
@@ -33,6 +34,6 @@ def test_release_candidate_gate_fast_mode_passes(tmp_path: Path):
     assert payload["milestone"] == "M25"
     assert payload["status"] == "passed"
     assert payload["mode"] == "fast"
-    assert payload["release_version"] == "1.0.0-test"
+    assert payload["release_version"] == "1.1.0-test"
     assert payload["errors"] == []
     assert len(payload["command_results"]) >= 5

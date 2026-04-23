@@ -10,7 +10,12 @@ if TYPE_CHECKING:
     from adapters.base import DomainAdapter
 
 
-STANDARD_PUBLIC_PACKAGE_FILENAMES = ("README.md",)
+STANDARD_PUBLIC_PACKAGE_FILENAMES = (
+    "README.md",
+    "ROADMAP.md",
+    "STATUS.md",
+    "CHANGELOG.md",
+)
 
 STANDARD_NON_OVERLAY_BUNDLE_FILENAMES = (
     "README.md",

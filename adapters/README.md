@@ -1,38 +1,64 @@
 # Public Domain Adapter Program
 
-_Last updated: 2026-03-23 (America/Chicago)_
+_Last updated: 2026-04-23 (America/Chicago)_
 
-This directory now carries the public domain adapter scenario program for `world-runtime`.
+This directory carries the public domain adapter program for `world-runtime`.
 
-The public export keeps the runtime-facing package docs and portfolio story, but omits the internal milestone ledgers and thread handoff materials used to build the series.
+The public export keeps the runtime-facing package docs and portfolio story while leaving private planning and handoff material out of the release.
 
-## In-Scope Public Tracks
+## Current Public Portfolio
 
-- `adapter-supply-network` (`SN`)
-- `adapter-air-traffic` (`AT`)
-- `adapter-semantic-system` (`SS`)
-- `adapter-power-grid` (`PG`)
-- `adapter-city-ops` (`CO`)
-- `adapter-lab-science` (`LS`)
-- `adapter-market-micro` (`MM`)
-- `adapter-multiplayer-game` (`MPG`)
-- `adapter-autonomous-vehicle` (`AV`)
-- `adapter-multi-agent-ai` (`MA`)
-- `adapter-open-agent-world` (`OAW`)
-- `adapter-digital-twin` (`DT`)
+- standalone proof paths:
+  - `adapter-supply-network`
+  - `adapter-air-traffic`
+  - `adapter-semantic-system`
+  - `adapter-power-grid`
+  - `adapter-city-ops`
+  - `adapter-lab-science`
+  - `adapter-market-micro`
+  - `adapter-multiplayer-game`
+  - `adapter-autonomous-vehicle`
+  - `adapter-multi-agent-ai`
+  - `adapter-open-agent-world`
+- implemented overlay track:
+  - `adapter-digital-twin`
 
 ## Out-Of-Program Tracks
 
 - `adapter-supply-ops`
 - `adapter-world-game`
 
-These packages remain in the repository for internal work. Their package-local docs stay intact, but they are not part of this public adapter-series promotion program.
+These packages remain in the repository, but they are not part of the public adapter portfolio described here.
 
-`adapter-digital-twin` is the current overlay exception: it is host-bound, validated first on `power_grid`, then `city_ops`, and should still not be treated as a standalone showcase world.
+## Shared Public Package Shape
+
+Every in-scope package keeps the same public-facing rollups:
+
+- `README.md`
+- `ROADMAP.md`
+- `STATUS.md`
+- `CHANGELOG.md`
+
+The standard non-overlay public scenario-bundle contract is:
+
+- `README.md`
+- `entities.json`
+- `relationships.json`
+- `events.json`
+- `proposal.json`
+- `decision.json`
+- `simulation.json`
+- `policy.json`
+- `rule.json`
+- `projection.json`
+
+The overlay bundle used by `adapter-digital-twin` keeps that same runtime artifact set and adds:
+
+- `host_bindings.json`
 
 ## Working Defaults
 
 - Root docs stay rollup-only.
 - `docs/what-you-can-build.md` is the primary public portfolio narrative.
-- Package-local README files are the public-facing summary for each promoted track.
-- No new stable App Server, HTTP API, or SDK surfaces are implied by this series unless a later milestone explicitly declares them.
+- Package-local docs are the source of truth for package-specific usage, boundaries, and validation paths.
+- No new stable App Server, HTTP API, or SDK surfaces are implied by the adapter portfolio by itself.

@@ -1,0 +1,23 @@
+{
+  "schema_id": "reference.character-card.v1",
+  "source_id": "dossier-001",
+  "record_type": "character_card",
+  "character": {
+    "name": "Mara Voss",
+    "role": "Archive Diver",
+    "affiliation": "Tideglass Guild",
+    "origin_world": "Pelagos"
+  },
+  "artifacts": [
+    "Compass Codex",
+    "Salt Key"
+  ],
+  "risk_flags": [
+    "memory drift",
+    "tidal debt"
+  ],
+  "open_questions": [
+    "exact birth year"
+  ],
+  "ambiguities": []
+}

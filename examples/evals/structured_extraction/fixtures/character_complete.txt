@@ -1,0 +1,8 @@
+Source ID: dossier-001
+Name: Mara Voss
+Role: Archive Diver
+Affiliation: Tideglass Guild
+Origin World: Pelagos
+Artifacts: Compass Codex; Salt Key
+Risk Flags: memory drift; tidal debt
+Open Questions: exact birth year

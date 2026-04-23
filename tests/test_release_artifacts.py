@@ -40,11 +40,14 @@ def test_release_artifact_builder_outputs_manifest_and_archive(tmp_path):
     assert len(manifest["files"]) >= 10
     manifest_paths = {item["path"] for item in manifest["files"]}
     assert "docs/EXTENSION_CONTRACTS.md" in manifest_paths
+    assert "docs/CONSUMER_INTEGRATION.md" in manifest_paths
     assert "docs/PARTNER_ONBOARDING.md" in manifest_paths
     assert "docs/COMPATIBILITY_MATRIX.md" in manifest_paths
     assert "docs/RELEASE_READINESS_CHECKLIST.md" in manifest_paths
     assert "docs/SECURITY_TRUST_BOUNDARY_REVIEW.md" in manifest_paths
     assert "docs/SUPPORT_POLICY.md" in manifest_paths
+    assert "pyproject.toml" in manifest_paths
     assert "playbooks/ci-cd-release.md" in manifest_paths
+    assert "CHANGELOG.md" in manifest_paths
     assert "templates/adapter_starter/adapter.py" in manifest_paths
     assert "templates/connector_plugin_starter/plugin.py" in manifest_paths

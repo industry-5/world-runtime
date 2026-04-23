@@ -15,7 +15,7 @@ This executes:
 - fixture and adapter checks (`make examples`, `make adapters`)
 - App Server protocol/schema compatibility checks (`make protocol-compat`)
 
-## v1.0 release gate
+## v1.1.0 release gate
 
 Run the aggregate M25 release gate:
 
@@ -24,7 +24,7 @@ make m25-validate
 ```
 
 This command validates release-readiness docs, security/trust-boundary disposition,
-and executes baseline/milestone/regression command matrix checks while writing:
+and executes baseline/release/regression command matrix checks while writing:
 
 - `tmp/diagnostics/m25_release_candidate_gate.latest.json`
 
@@ -45,7 +45,7 @@ make release-artifacts RELEASE_VERSION=0.1.1
 Build with the current GA version:
 
 ```bash
-make release-artifacts RELEASE_VERSION=1.0.0
+make release-artifacts RELEASE_VERSION=1.1.0
 ```
 
 Artifacts are written to `dist/releases/v<version>/` and `dist/releases/v<version>.tar.gz`.

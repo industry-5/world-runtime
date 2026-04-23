@@ -1,7 +1,7 @@
 PYTHON ?= python3
 PIP ?= pip3
 
-.PHONY: help install dev test test-verbose schemas examples adapters evals air-traffic-evals validate protocol-compat public-api-compat extension-contracts scaffold-smoke ci-gate release-artifacts release-dry-run fixtures app-client api-server sdk-example workflow-quickstart workflow-failure workflow-proposal workflow-simulation observability provenance-audit migrate-local migrate-dev deploy-local deploy-dev integration-stacks connectors connector-plugins benchmark recovery-check m23-validate m24-validate m25-validate clean
+.PHONY: help install dev test test-verbose schemas examples adapters evals air-traffic-evals validate protocol-compat public-api-compat extension-contracts scaffold-smoke ci-gate release-artifacts release-dry-run fixtures app-client api-server sdk-example consumer-smoke service-host-smoke task-routing provider-inventory runtime-admin-smoke structured-extraction-smoke milestone-docs workflow-quickstart workflow-failure workflow-proposal workflow-simulation observability provenance-audit migrate-local migrate-dev deploy-local deploy-dev integration-stacks connectors connector-plugins benchmark recovery-check m23-validate m24-validate m25-validate m26-validate m27-validate m28-validate m29-validate m30-validate clean
 
 help:
 	@echo "World Runtime developer commands"
@@ -26,6 +26,13 @@ help:
 	@echo "  make app-client     Run App Server test client"
 	@echo "  make api-server     Run Public API HTTP server"
 	@echo "  make sdk-example    Run Public API Python SDK example client"
+	@echo "  make consumer-smoke Run the package-consumer smoke validation"
+	@echo "  make service-host-smoke Run the M27 managed service-host smoke validation"
+	@echo "  make provider-inventory Validate M28 provider/task inventory cross references"
+	@echo "  make task-routing  Run the M28 deterministic task-routing validation"
+	@echo "  make runtime-admin-smoke Run the M29 supported runtime-admin surface validation"
+	@echo "  make structured-extraction-smoke Run the M30 local AI structured extraction validation"
+	@echo "  make milestone-docs Run the root WR milestone documentation hygiene check"
 	@echo "  make workflow-quickstart  Run operator quickstart workflow"
 	@echo "  make workflow-failure     Run operator failure-recovery workflow"
 	@echo "  make workflow-proposal    Run operator proposal-review workflow"
@@ -43,7 +50,12 @@ help:
 	@echo "  make recovery-check Run M23 persistence recovery + migration-volume checks"
 	@echo "  make m23-validate   Run M23 benchmark and recovery validation bundle"
 	@echo "  make m24-validate   Run M24 extension contract + scaffold + release bundle validation"
-	@echo "  make m25-validate   Run M25 v1.0 release gate"
+	@echo "  make m25-validate   Run M25 release gate"
+	@echo "  make m26-validate   Run M26 consumer boundary validation bundle"
+	@echo "  make m27-validate   Run M27 managed service-host validation bundle"
+	@echo "  make m28-validate   Run M28 provider routing validation bundle"
+	@echo "  make m29-validate   Run M29 runtime-admin validation bundle"
+	@echo "  make m30-validate   Run M30 local AI structured extraction validation bundle"
 	@echo "  make clean          Remove cache files"
 
 install:
@@ -102,10 +114,31 @@ app-client:
 	$(PYTHON) cli/test_client.py
 
 api-server:
-	$(PYTHON) -m api.http_server
+	$(PYTHON) -m world_runtime serve --profile local --examples-dir examples
 
 sdk-example:
 	PYTHONPATH=. $(PYTHON) examples/clients/public_api_python_sdk_example.py
+
+consumer-smoke:
+	$(PYTHON) scripts/check_consumer_smoke.py
+
+service-host-smoke:
+	$(PYTHON) scripts/check_service_host.py
+
+task-routing:
+	$(PYTHON) scripts/check_task_routing.py
+
+provider-inventory:
+	$(PYTHON) scripts/check_provider_inventory.py
+
+runtime-admin-smoke:
+	$(PYTHON) scripts/check_runtime_admin_surface.py
+
+structured-extraction-smoke:
+	$(PYTHON) scripts/check_structured_extraction_stack.py
+
+milestone-docs:
+	$(PYTHON) scripts/check_milestone_docs.py
 
 workflow-quickstart:
 	$(PYTHON) scripts/run_operator_workflow.py quickstart
@@ -158,6 +191,16 @@ m24-validate: extension-contracts scaffold-smoke release-artifacts
 
 m25-validate:
 	$(PYTHON) scripts/check_release_candidate_gate.py
+
+m26-validate: validate protocol-compat public-api-compat extension-contracts consumer-smoke
+
+m27-validate: validate observability deploy-local provenance-audit service-host-smoke
+
+m28-validate: validate integration-stacks extension-contracts task-routing provider-inventory
+
+m29-validate: protocol-compat public-api-compat sdk-example observability runtime-admin-smoke
+
+m30-validate: integration-stacks evals observability structured-extraction-smoke
 
 clean:
 	find . -type d -name "__pycache__" -prune -exec rm -rf {} +

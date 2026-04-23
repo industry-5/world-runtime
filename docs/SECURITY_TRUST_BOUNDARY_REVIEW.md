@@ -1,7 +1,7 @@
 # Security and Trust-Boundary Review
 
-Review date: 2026-03-09 (America/Chicago)
-Scope: v1.0 release gate / GA cutover (M25)
+Review date: 2026-04-23 (America/Chicago)
+Scope: v1.1.0 release gate / GA cutover
 
 ## Findings Register
 
@@ -13,4 +13,4 @@ Scope: v1.0 release gate / GA cutover (M25)
 
 ## Waivers
 
-No active waivers for the v1.0 RC candidate gate.
+No active waivers for the v1.1.0 release gate.

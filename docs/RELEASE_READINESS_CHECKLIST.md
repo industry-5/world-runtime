@@ -1,6 +1,6 @@
-# v1.0 Release Readiness Checklist
+# v1.1.0 Release Readiness Checklist
 
-Milestone: M25 (v1.0 release gate)
+Release: `v1.1.0` GA
 
 ## Go/No-Go Criteria
 
@@ -16,11 +16,11 @@ Milestone: M25 (v1.0 release gate)
 | --- | --- | --- |
 | Baseline | `make test` | Full unit/integration suite gate |
 | Baseline | `make validate` | Schema + test gate |
-| Milestone | `make evals` | Eval harness confidence gate |
-| Milestone | `make benchmark` | Performance envelope evidence |
-| Milestone | `make recovery-check` | Recovery + migration-volume evidence |
-| Milestone | `make provenance-audit` | Provenance/export redaction gate |
-| Milestone | `make release-artifacts RELEASE_VERSION=1.0.0` | Tagged GA artifact build |
+| Release | `make evals` | Eval harness confidence gate |
+| Release | `make benchmark` | Performance envelope evidence |
+| Release | `make recovery-check` | Recovery + migration-volume evidence |
+| Release | `make provenance-audit` | Provenance/export redaction gate |
+| Release | `make release-artifacts RELEASE_VERSION=1.1.0` | Tagged GA artifact build |
 | Regression | `make examples` | Scenario coherence regression |
 | Regression | `make adapters` | Adapter contract regression |
 | Regression | `make connectors` | Connector runtime regression |
@@ -36,5 +36,5 @@ Milestone: M25 (v1.0 release gate)
 - `tmp/diagnostics/m23_benchmarks.latest.json`
 - `tmp/diagnostics/m23_recovery.latest.json`
 - `tmp/diagnostics/audit_export.latest.json`
-- `dist/releases/v1.0.0/`
-- `dist/releases/v1.0.0.tar.gz`
+- `dist/releases/v1.1.0/`
+- `dist/releases/v1.1.0.tar.gz`

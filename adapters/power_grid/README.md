@@ -8,10 +8,11 @@ _Last updated: 2026-03-23 (America/Chicago)_
 
 - prove balancing, contingency response, and cascading infrastructure simulation
 - exercise least-bad-choice decision making under critical-infrastructure constraints
+- keep package-local roadmap, status, and change history inside this package.
 
 ## Current State
 
-- current state: promotion-hardened public `PG-M4` slice with adapter contract, schemas, default/scenario policy, contingency-response alternatives, replay/simulation artifacts, package-local docs, and playbook guidance
+- current state: released public adapter slice with adapter contract, schemas, default/scenario policy, contingency-response alternatives, replay/simulation artifacts, package-local docs, and playbook guidance
 - package assets on disk include:
   - `adapter.py`
   - `schemas/`
@@ -22,12 +23,20 @@ _Last updated: 2026-03-23 (America/Chicago)_
 - the package is now registered in `adapters/public_program.py` and available through `AdapterRegistry.with_defaults()`
 - the package now serves as the first host proof surface for `adapter-digital-twin` through host-bound overlay bindings rather than new stable package surfaces
 
+## Package Docs
+
+- `README.md` - package overview and boundaries
+- `ROADMAP.md` - package direction and scope
+- `STATUS.md` - current execution ledger
+- `CHANGELOG.md` - package release and change history
+
+
 ## Working Defaults
 
 - adapter id: `adapter-power-grid`
 - package path: `adapters/power_grid`
 - scenario path: `examples/scenarios/power-grid-mini`
-- milestone code: `PG`
+- track code: `PG`
 
 ## Contributor Validation Path
 
@@ -40,7 +49,7 @@ Use this package-local bundle when touching the power-grid path:
 
 ## Boundaries
 
-- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- package-local roadmap and status live here
 - root docs should keep only rollup pointers for this track
 - adapter implementation stays inside the stable `adapters.base.DomainAdapter` contract
 - no stable App Server, HTTP API, or SDK surface is widened by this package

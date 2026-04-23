@@ -41,6 +41,13 @@ Requests, responses, and notifications use explicit envelopes.
 - Error envelope always includes `code` and `message`.
 - Event stream entries include both legacy fields (`type`, `payload`) and protocol fields (`wire_type`, `method`, `params`).
 - Domain runtime methods are additive and callable via `handle_request` and Public API runtime-call endpoint, including:
+  - `runtime.inventory.summary`
+  - `runtime.service.list`
+  - `runtime.service.get`
+  - `runtime.service.reconcile`
+  - `runtime.provider.list`
+  - `runtime.provider.get`
+  - `runtime.task.resolve`
   - `world_game.scenario.list`
   - `world_game.session.create`
   - `world_game.session.get`
@@ -81,4 +88,5 @@ Requests, responses, and notifications use explicit envelopes.
 
 - Public HTTP API `v1` is documented in `api/PUBLIC_API_V1.md`.
 - Public API `v1` maps to supported App Server methods and is the recommended external integration surface.
+- Runtime-admin methods remain additive under protocol `1.x`; `runtime.service.reconcile` is the baseline v1.1 mutating admin action and remains distinct from the read surfaces.
 - `handle_request` remains supported for internal in-process use and backward compatibility.

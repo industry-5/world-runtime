@@ -6,19 +6,19 @@
 
 - provide a fixture-first ERP/WMS-style domain path for commitments, inventory, capacity, and fulfillment orchestration
 - prove the runtime can ingest business signals, translate them into proposals, evaluate tradeoffs explicitly, and simulate before action
+- keep package-local rollups, execution status, and the rolling kickoff entrypoint inside `adapters/supply_ops/`
 - pair with `labs/supply_ops_lab` as the thin operator-facing demo surface once the lab track begins implementation
 
 ## Current State
 
-- current state: implemented fixture-first `SO-M4` slice with deterministic translation, policy-covered proposal flow, shared replay/simulation validation, connector-shaped ingress envelope fixtures, and approved-recovery execution evidence framing
-- next package milestone: `SO-M5 - first stable-surface connector handoff`
+- current state: released fixture-first adapter slice with deterministic translation, policy-covered proposal flow, shared replay/simulation validation, connector-shaped ingress envelope fixtures, and approved-recovery execution evidence framing
 - the package is registered in `adapters/registry.py` as `adapter-supply-ops`
 - the package now contributes adapter-local schemas, a default policy with all four outcome classes, `translator.py`, `replay.py`, `ingress.py`, `evidence.py`, inbound ERP/WMS fixture packs under `adapters/supply_ops/fixtures/`, and the `examples/scenarios/supply-ops-mini` fixture bundle
 - `labs/supply_ops_lab` now provides a thin runnable `SO-P2` preset/result/timeline surface hardened through `SO-P3`, and live connector-backed transport execution is still not implemented
 
-This public export keeps the package implementation, validation path, and demo linkage, while omitting internal milestone ledgers and handoff prompts.
+This directory remains the local source of truth for package rollups, implementation status, and public-facing guidance.
 
-## Implemented SO-M4 Path
+## Implemented Path
 
 The current Supply Ops path is intentionally fixture-first and runtime-authoritative:
 
@@ -47,11 +47,26 @@ Use this package-local bundle when touching the Supply Ops path:
 
 ## Boundaries
 
-- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- package-local roadmap and status live here
 - root docs should keep only rollup pointers for this track
 - adapter implementation should stay inside the stable `adapters.base.DomainAdapter` contract
 - connector-shaped ingress expectations remain fixture-first and should not add live transport execution or new public/runtime API methods
 - `labs/supply_ops_lab` should remain thin relative to runtime logic and should use existing stable HTTP surfaces only
+
+## Planned Package Map
+
+- `README.md` - package overview and boundaries
+- `ROADMAP.md` - package direction and scope
+- `STATUS.md` - current execution ledger and next-thread entrypoint
+- `CHANGELOG.md` - package release and change history
+- root rollup pointers live in repo-level `README.md`, `STATUS.md`, `ROADMAP.md`, `docs/README.md`, and `adapters/README.md`
+- implementation assets now include:
+  - `ingress.py`
+  - `evidence.py`
+  - `translator.py`
+  - `replay.py`
+  - `fixtures/`
+
 
 ## Working Defaults
 

@@ -1,5 +1,5 @@
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -17,13 +17,19 @@ from core.deployment import DeploymentLoader
 class IntegrationStack:
     stack_id: str
     profile: str
-    adapter_id: str
-    scenario_path: str
-    external_systems: List[Dict[str, Any]]
-    ingress: Dict[str, Any]
-    egress: Dict[str, Any]
-    smoke_test: Dict[str, Any]
     owner: str
+    stack_kind: str = "adapter_integration"
+    description: str = ""
+    adapter_id: str = ""
+    scenario_path: str = ""
+    external_systems: List[Dict[str, Any]] = field(default_factory=list)
+    ingress: Dict[str, Any] = field(default_factory=dict)
+    egress: Dict[str, Any] = field(default_factory=dict)
+    smoke_test: Dict[str, Any] = field(default_factory=dict)
+    managed_service_ids: List[str] = field(default_factory=list)
+    provider_binding_ids: List[str] = field(default_factory=list)
+    task_profile_ids: List[str] = field(default_factory=list)
+    eval_references: List[str] = field(default_factory=list)
 
 
 class IntegrationStackLoader:
@@ -47,13 +53,19 @@ class IntegrationStackLoader:
         return IntegrationStack(
             stack_id=payload["stack_id"],
             profile=payload["profile"],
-            adapter_id=payload["adapter_id"],
-            scenario_path=payload["scenario_path"],
+            owner=payload.get("owner", "unknown"),
+            stack_kind=payload.get("stack_kind", "adapter_integration"),
+            description=payload.get("description", ""),
+            adapter_id=payload.get("adapter_id", ""),
+            scenario_path=payload.get("scenario_path", ""),
             external_systems=list(payload.get("external_systems", [])),
             ingress=dict(payload.get("ingress", {})),
             egress=dict(payload.get("egress", {})),
             smoke_test=dict(payload.get("smoke_test", {})),
-            owner=payload.get("owner", "unknown"),
+            managed_service_ids=list(payload.get("managed_service_ids", [])),
+            provider_binding_ids=list(payload.get("provider_binding_ids", [])),
+            task_profile_ids=list(payload.get("task_profile_ids", [])),
+            eval_references=list(payload.get("eval_references", [])),
         )
 
     def validate_stack(self, stack: IntegrationStack) -> List[str]:
@@ -64,6 +76,16 @@ class IntegrationStackLoader:
         except ValueError as exc:
             return [str(exc)]
 
+        if stack.stack_kind == "local_ai_structured_extraction":
+            return self._validate_local_ai_stack(stack)
+
+        if stack.stack_kind != "adapter_integration":
+            return ["unsupported integration stack kind: %s" % stack.stack_kind]
+
+        return self._validate_adapter_stack(stack, profile)
+
+    def _validate_adapter_stack(self, stack: IntegrationStack, profile) -> List[str]:
+        errors: List[str] = []
         registry = AdapterRegistry.with_defaults()
         try:
             adapter = registry.get(stack.adapter_id)
@@ -122,11 +144,89 @@ class IntegrationStackLoader:
 
         return errors
 
+    def _validate_local_ai_stack(self, stack: IntegrationStack) -> List[str]:
+        errors: List[str] = []
+        service_ids = self._load_manifest_ids(self.repo_root / "infra" / "service_manifests", key="service_id")
+        provider_ids = self._load_manifest_ids(self.repo_root / "infra" / "provider_bindings", key="provider_id")
+        task_profile_ids = self._load_manifest_ids(self.repo_root / "infra" / "task_profiles", key="task_profile_id")
+
+        if not stack.managed_service_ids:
+            errors.append("managed_service_ids must not be empty")
+        for service_id in stack.managed_service_ids:
+            if service_id not in service_ids:
+                errors.append("managed service manifest missing: %s" % service_id)
+
+        if not stack.provider_binding_ids:
+            errors.append("provider_binding_ids must not be empty")
+        for provider_id in stack.provider_binding_ids:
+            if provider_id not in provider_ids:
+                errors.append("provider binding manifest missing: %s" % provider_id)
+
+        if not stack.task_profile_ids:
+            errors.append("task_profile_ids must not be empty")
+        for task_profile_id in stack.task_profile_ids:
+            if task_profile_id not in task_profile_ids:
+                errors.append("task profile manifest missing: %s" % task_profile_id)
+
+        smoke_service_id = stack.smoke_test.get("service_id")
+        if smoke_service_id not in stack.managed_service_ids:
+            errors.append("smoke_test.service_id must reference a managed service in the stack")
+
+        smoke_task_profile_id = stack.smoke_test.get("task_profile_id")
+        if smoke_task_profile_id not in stack.task_profile_ids:
+            errors.append("smoke_test.task_profile_id must reference a task profile in the stack")
+
+        preferred_provider_id = stack.smoke_test.get("preferred_provider_id")
+        if preferred_provider_id not in stack.provider_binding_ids:
+            errors.append("smoke_test.preferred_provider_id must reference a provider binding in the stack")
+
+        schema_path = stack.smoke_test.get("schema_path")
+        if not isinstance(schema_path, str) or not (self.repo_root / schema_path).exists():
+            errors.append("smoke_test.schema_path must point to an existing schema file")
+
+        fixture_manifest_path = stack.smoke_test.get("fixture_manifest_path")
+        if not isinstance(fixture_manifest_path, str) or not (self.repo_root / fixture_manifest_path).exists():
+            errors.append("smoke_test.fixture_manifest_path must point to an existing fixture manifest")
+
+        if not stack.eval_references:
+            errors.append("eval_references must not be empty")
+        for relative_path in stack.eval_references:
+            if not (self.repo_root / relative_path).exists():
+                errors.append("eval reference missing: %s" % relative_path)
+
+        return errors
+
     def smoke_check(self, stack_name: str, run_eval: bool = True) -> Dict[str, Any]:
         stack = self.load_stack(stack_name)
         errors = self.validate_stack(stack)
         if errors:
             raise ValueError("integration stack invalid: %s" % "; ".join(errors))
+
+        if stack.stack_kind == "local_ai_structured_extraction":
+            from core.local_ai_reference_stack import run_local_ai_reference_stack
+
+            file_name = stack_name if stack_name.endswith(".json") else "%s.json" % stack_name
+            payload = run_local_ai_reference_stack(
+                self.repo_root,
+                stack_path=self.stack_dir / file_name,
+                include_eval=run_eval,
+            )
+            preferred = payload.get("routing", {}).get("preferred", {}).get("decision", {})
+            fallback = payload.get("routing", {}).get("fallback", {}).get("decision", {})
+            return {
+                "stack_id": stack.stack_id,
+                "stack_kind": stack.stack_kind,
+                "profile": stack.profile,
+                "owner": stack.owner,
+                "task_status": "completed" if payload.get("status") == "passed" else "failed",
+                "eval_status": payload.get("eval", {}).get("status", "not_run") if run_eval else "not_run",
+                "managed_services": len(stack.managed_service_ids),
+                "providers": len(stack.provider_binding_ids),
+                "task_profiles": len(stack.task_profile_ids),
+                "preferred_provider_id": preferred.get("selected_provider_id"),
+                "fallback_provider_id": fallback.get("selected_provider_id"),
+                "diagnostics_status": payload.get("status"),
+            }
 
         profile = self.deployment_loader.load_profile(stack.profile)
         runtime = self.deployment_loader.build_runtime(profile)
@@ -254,3 +354,15 @@ class IntegrationStackLoader:
     def _load_json(self, path: Path) -> Dict[str, Any]:
         with path.open("r", encoding="utf-8") as f:
             return json.load(f)
+
+    def _load_manifest_ids(self, directory: Path, *, key: str) -> List[str]:
+        if not directory.exists():
+            return []
+
+        manifest_ids = []
+        for path in sorted(directory.glob("*.json")):
+            payload = self._load_json(path)
+            value = payload.get(key)
+            if isinstance(value, str) and value:
+                manifest_ids.append(value)
+        return manifest_ids

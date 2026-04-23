@@ -1,0 +1,20 @@
+{
+  "suite_id": "structured-extraction.reference-local-ai",
+  "schema_path": "examples/evals/structured_extraction/reference.character-card.schema.json",
+  "cases": [
+    {
+      "case_id": "character_complete",
+      "description": "Fully specified character note yields complete schema-valid output.",
+      "input_path": "examples/evals/structured_extraction/fixtures/character_complete.txt",
+      "expected_output_path": "examples/evals/structured_extraction/fixtures/character_complete.expected.json",
+      "minimum_field_completeness": 1.0
+    },
+    {
+      "case_id": "character_ambiguous",
+      "description": "Ambiguous or partial notes still yield schema-valid output with nulls and explicit ambiguity notes.",
+      "input_path": "examples/evals/structured_extraction/fixtures/character_ambiguous.txt",
+      "expected_output_path": "examples/evals/structured_extraction/fixtures/character_ambiguous.expected.json",
+      "minimum_field_completeness": 0.25
+    }
+  ]
+}

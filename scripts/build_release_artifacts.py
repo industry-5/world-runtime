@@ -53,9 +53,13 @@ def collect_release_inputs() -> list[Path]:
     required_files = [
         Path("README.md"),
         Path("ARCHITECTURE.md"),
+        Path("ROADMAP.md"),
+        Path("STATUS.md"),
         Path("APP_SERVER_PROTOCOL.md"),
         Path("VERSION"),
+        Path("pyproject.toml"),
         Path("evals/suites.manifest.json"),
+        Path("docs/CONSUMER_INTEGRATION.md"),
         Path("docs/EXTENSION_CONTRACTS.md"),
         Path("docs/PARTNER_ONBOARDING.md"),
         Path("docs/COMPATIBILITY_MATRIX.md"),
@@ -64,6 +68,7 @@ def collect_release_inputs() -> list[Path]:
         Path("docs/SUPPORT_POLICY.md"),
         Path("playbooks/partner-onboarding.md"),
         Path("playbooks/ci-cd-release.md"),
+        Path("CHANGELOG.md"),
         Path("scripts/scaffold_extension.py"),
         Path("scripts/check_extension_contracts.py"),
     ]

@@ -16,6 +16,7 @@ Adapter implementations must satisfy `adapters.base.DomainAdapter`:
 Contract boundaries:
 
 - Adapter code may define domain taxonomies and fixtures.
+- Adapter taxonomies extend the shared runtime vocabulary in `docs/controlled-vocabulary-v1.md`; they do not replace core runtime terms such as entity, event, proposal, policy, projection, or simulation.
 - Adapter code may not bypass policy/approval enforcement in `core/app_server.py`.
 - Adapter policy packs should validate against `schemas/policy.schema.json`.
 

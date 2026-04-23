@@ -47,10 +47,21 @@ def main() -> None:
             continue
 
         results.append(result)
-        print(
-            "[OK]   %s (%s -> %s, policy=%s)"
-            % (stack_name, result["query_type"], result["task_status"], result["policy_outcome"])
-        )
+        if result.get("stack_kind") == "local_ai_structured_extraction":
+            print(
+                "[OK]   %s (%s -> preferred=%s fallback=%s)"
+                % (
+                    stack_name,
+                    result["task_status"],
+                    result["preferred_provider_id"],
+                    result["fallback_provider_id"],
+                )
+            )
+        else:
+            print(
+                "[OK]   %s (%s -> %s, policy=%s)"
+                % (stack_name, result["query_type"], result["task_status"], result["policy_outcome"])
+            )
 
     if failed:
         raise SystemExit(1)

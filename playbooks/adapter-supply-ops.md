@@ -8,9 +8,13 @@ Run the implemented fixture-first Supply Ops path from translated signal to poli
 
 - current state: implemented fixture-first `SO-M4` adapter slice; the lab now exposes a thin runnable `SO-P2` surface hardened through `SO-P3`
 - the adapter now ships connector-shaped ingress envelope fixtures, deterministic ERP/WMS fixture translation, policy-covered proposal flow, replay/simulation validation helpers, approved-recovery execution-evidence packaging, and the `supply-ops-mini` example bundle
-- use the package-local and lab-local README surfaces as the public-facing overview:
+- use the package-local and lab-local docs as the source of truth for milestone detail:
   - `adapters/supply_ops/README.md`
+  - `adapters/supply_ops/ROADMAP.md`
+  - `adapters/supply_ops/STATUS.md`
   - `labs/supply_ops_lab/README.md`
+  - `labs/supply_ops_lab/ROADMAP.md`
+  - `labs/supply_ops_lab/STATUS.md`
 
 ## Steps
 

@@ -29,7 +29,7 @@ make workflow-quickstart
 Optional API/SDK smoke path:
 
 ```bash
-make api-server
+python -m world_runtime serve --profile local
 make sdk-example
 ```
 
@@ -47,7 +47,7 @@ Use this path when you are moving beyond the first smoke run:
 2. Baseline confidence: `make validate`
 3. Behavior and fixture checks as needed: `make examples`, `make adapters`, `make evals`
 4. Compatibility checks when touching protocol/API surfaces: `make protocol-compat`, `make public-api-compat`
-5. Full RC gate before merge or release-critical changes: `make m25-validate`
+5. Full release gate before merge or release-critical changes: `make m25-validate`
 
 ## Task-to-Command Map
 
@@ -65,7 +65,7 @@ Use this path when you are moving beyond the first smoke run:
 | Check public API + SDK compatibility | `make public-api-compat` |
 | Validate extension contracts | `make extension-contracts` |
 | Validate connector adapters/plugins | `make connectors` and `make connector-plugins` |
-| Run full RC gate | `make m25-validate` |
+| Run full release gate | `make m25-validate` |
 
 For the complete command surface, see [`Makefile`](../Makefile).
 

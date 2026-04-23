@@ -8,10 +8,11 @@ _Last updated: 2026-03-23 (America/Chicago)_
 
 - provide a host-bound overlay track rather than a standalone showcase world
 - prove twin-layer simulation and host binding first on `power_grid`, then on `city_ops`
+- keep package-local roadmap, status, and change history inside this package.
 
 ## Current State
 
-- current state: promotion-hardened public `DT-M4` slice with adapter contract, schemas, default/scenario policy, host-binding metadata, replay/simulation artifacts, package-local docs, and playbook guidance
+- current state: released public adapter slice with adapter contract, schemas, default/scenario policy, host-binding metadata, replay/simulation artifacts, package-local docs, and playbook guidance
 - package assets on disk include:
   - `adapter.py`
   - `schemas/`
@@ -21,13 +22,21 @@ _Last updated: 2026-03-23 (America/Chicago)_
 - `host_bindings.json` keeps the overlay boundary explicit across the `power_grid` and `city_ops` host proofs
 - the package is now registered in `adapters/public_program.py` and available through `AdapterRegistry.with_defaults()`
 
+## Package Docs
+
+- `README.md` - package overview and boundaries
+- `ROADMAP.md` - package direction and scope
+- `STATUS.md` - current execution ledger
+- `CHANGELOG.md` - package release and change history
+
+
 ## Working Defaults
 
 - adapter id: `adapter-digital-twin`
 - package path: `adapters/digital_twin`
 - scenario path: `examples/scenarios/digital-twin-mini`
 - first host targets: `power_grid`, then `city_ops`
-- milestone code: `DT`
+- track code: `DT`
 
 ## Contributor Validation Path
 
@@ -40,7 +49,7 @@ Use this package-local bundle when touching the digital-twin path:
 
 ## Boundaries
 
-- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- package-local roadmap and status live here
 - root docs should keep only rollup pointers for this track
 - adapter implementation stays inside the stable `adapters.base.DomainAdapter` contract
 - the overlay must stay host-bound to public host tracks rather than becoming a standalone showcase world

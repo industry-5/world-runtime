@@ -1,0 +1,8 @@
+# Public-export lab allowlist
+#
+# Labs are private by default. Add one path per line only when a lab or
+# lab-owned test path is explicitly approved for public promotion.
+#
+# Examples:
+# labs/example_lab/
+# tests/labs/test_example_lab.py

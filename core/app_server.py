@@ -22,14 +22,19 @@ from core.connectors import (
     RetryPolicy,
     TransientConnectorError,
 )
-from adapters.registry import AdapterRegistry
 from core.eval_harness import EvalHarness
 from core.observability import ObservabilityStore
 from core.policy_engine import DeterministicPolicyEngine
 from core.provenance import normalize_evidence_ref, redact_sensitive_payload, stable_fingerprint
 from core.reasoning_adapter import ReasoningAdapter
 from core.replay_engine import ReplayEngine
+from core.runtime_admin import RuntimeAdminSurface
 from core.simulation_engine import SimulationEngine
+
+try:
+    from adapters.registry import AdapterRegistry
+except ImportError:  # pragma: no cover - exercised by installed consumer package
+    AdapterRegistry = None
 
 
 def _utc_now() -> str:
@@ -105,7 +110,14 @@ class WorldRuntimeAppServer:
         self.decisions: Dict[str, Dict[str, Any]] = {}
         self.eval_reports: Dict[str, Dict[str, Any]] = {}
         self._repo_root = Path(__file__).resolve().parents[1]
-        world_game_adapter = AdapterRegistry.with_defaults().maybe_get("adapter-world-game")
+        self.runtime_admin = RuntimeAdminSurface(
+            self._repo_root,
+            observability=self.observability,
+            policy_engine=self.policy_engine,
+        )
+        world_game_adapter = None
+        if AdapterRegistry is not None:
+            world_game_adapter = AdapterRegistry.with_defaults().maybe_get("adapter-world-game")
         self.world_game_service = None
         self.world_game_context_by_session: Dict[str, Dict[str, Any]] = {}
         if world_game_adapter is not None:
@@ -201,6 +213,13 @@ class WorldRuntimeAppServer:
             "trace.list": self.trace_list,
             "diagnostics.dashboard": self.diagnostics_dashboard,
             "audit.export": self.audit_export,
+            "runtime.inventory.summary": self.runtime_inventory_summary,
+            "runtime.service.list": self.runtime_service_list,
+            "runtime.service.get": self.runtime_service_get,
+            "runtime.service.reconcile": self.runtime_service_reconcile,
+            "runtime.provider.list": self.runtime_provider_list,
+            "runtime.provider.get": self.runtime_provider_get,
+            "runtime.task.resolve": self.runtime_task_resolve,
             "connector.inbound.run": self.connector_inbound_run,
             "connector.outbound.run": self.connector_outbound_run,
             "connector.dead_letter.list": self.connector_dead_letter_list,
@@ -1136,6 +1155,56 @@ class WorldRuntimeAppServer:
 
     def diagnostics_dashboard(self) -> Dict[str, Any]:
         return self.observability.dashboard()
+
+    def runtime_inventory_summary(self) -> Dict[str, Any]:
+        return self.runtime_admin.inventory_summary()
+
+    def runtime_service_list(self) -> Dict[str, Any]:
+        return self.runtime_admin.list_services()
+
+    def runtime_service_get(self, service_id: str) -> Dict[str, Any]:
+        return self.runtime_admin.get_service(service_id)
+
+    def runtime_service_reconcile(
+        self,
+        actor: Dict[str, Any],
+        service_ids: Optional[List[str]] = None,
+        session_id: Optional[str] = None,
+        prune: bool = False,
+    ) -> Dict[str, Any]:
+        if session_id is not None:
+            self._require_session(session_id)
+
+        result = self.runtime_admin.reconcile_services(
+            actor=actor,
+            service_ids=service_ids,
+            session_id=session_id,
+            prune=prune,
+        )
+        proposal = result.pop("proposal")
+        if session_id is not None:
+            result["decision"] = self.decision_create(
+                session_id=session_id,
+                proposal=proposal,
+                policy_report=result["policy_report"],
+            )
+        return result
+
+    def runtime_provider_list(self) -> Dict[str, Any]:
+        return self.runtime_admin.list_providers()
+
+    def runtime_provider_get(self, provider_id: str) -> Dict[str, Any]:
+        return self.runtime_admin.get_provider(provider_id)
+
+    def runtime_task_resolve(
+        self,
+        task_profile_id: str,
+        policy_input: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        return self.runtime_admin.resolve_task(
+            task_profile_id=task_profile_id,
+            policy_input=policy_input,
+        )
 
     def audit_export(
         self,

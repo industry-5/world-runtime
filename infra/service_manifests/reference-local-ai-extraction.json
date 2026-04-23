@@ -1,0 +1,65 @@
+{
+  "service_id": "reference-local-ai-extraction",
+  "display_name": "Reference Local AI Structured Extraction",
+  "description": "Managed local reference extraction engine used to prove M30 structured-output routing and diagnostics.",
+  "process": {
+    "executable": "${PYTHON}",
+    "arguments": [
+      "scripts/reference_local_ai_extraction_service.py",
+      "--host",
+      "${REFERENCE_LOCAL_AI_HOST}",
+      "--port",
+      "${REFERENCE_LOCAL_AI_PORT}",
+      "--startup-delay-seconds",
+      "0.2"
+    ],
+    "working_directory": "${REPO_ROOT}",
+    "environment": {}
+  },
+  "dependencies": [],
+  "readiness_probe": {
+    "type": "http",
+    "url": "http://${REFERENCE_LOCAL_AI_HOST}:${REFERENCE_LOCAL_AI_PORT}/ready",
+    "expected_status": 200,
+    "interval_seconds": 0.2,
+    "timeout_seconds": 8.0,
+    "initial_delay_seconds": 0.0,
+    "success_contains": "\"ready\": true"
+  },
+  "health_probe": {
+    "type": "http",
+    "url": "http://${REFERENCE_LOCAL_AI_HOST}:${REFERENCE_LOCAL_AI_PORT}/health",
+    "expected_status": 200,
+    "interval_seconds": 0.2,
+    "timeout_seconds": 2.0,
+    "initial_delay_seconds": 0.0,
+    "success_contains": "\"status\": \"healthy\""
+  },
+  "restart_policy": {
+    "condition": "on_failure",
+    "max_attempts": 2,
+    "backoff_seconds": 0.2
+  },
+  "outputs": [
+    {
+      "name": "extract",
+      "type": "url",
+      "value": "http://${REFERENCE_LOCAL_AI_HOST}:${REFERENCE_LOCAL_AI_PORT}/v1/extract"
+    },
+    {
+      "name": "state",
+      "type": "url",
+      "value": "http://${REFERENCE_LOCAL_AI_HOST}:${REFERENCE_LOCAL_AI_PORT}/state"
+    },
+    {
+      "name": "port",
+      "type": "tcp_port",
+      "value": "${REFERENCE_LOCAL_AI_PORT}"
+    }
+  ],
+  "log_capture": {
+    "mode": "file",
+    "directory": "${REPO_ROOT}/tmp/service_logs",
+    "tail_lines": 80
+  }
+}

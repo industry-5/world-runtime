@@ -1,6 +1,6 @@
 # World Runtime
 
-_Last updated: 2026-03-23 (America/Chicago)_
+_Last updated: 2026-04-23 (America/Chicago)_
 
 World Runtime is a runtime and build repo for systems that need explicit world state, append-only events, deterministic replay, simulation before action, and policy-governed decisions.
 
@@ -37,12 +37,11 @@ The public domain adapter scenario program currently centers on:
 - implemented overlay track under `adapters/`:
   - `adapter-digital-twin` (host-bound across `power_grid` and `city_ops`)
 
-The public export also keeps the wider runtime, API, SDK starter, examples, schemas, scripts, tests, and selected operator/developer docs so the repository remains runnable and inspectable.
-
 ## What Is Stable
 
-- Current release posture: **v1.0 GA**
-- Stable/support-committed surfaces: App Server protocol, Public API `/v1`, Python SDK starter, persistence migrations, and extension contracts
+- Current release posture: **v1.1 GA**
+- Stable/support-committed surfaces: App Server protocol, Public API `/v1`, Python SDK starter, persistence migrations, extension contracts, supported package serve entrypoints, and additive runtime-admin inventory plus bounded reconcile
+- Released v1.1 capability areas: package-hosted consumption, managed runtime host/service supervision, provider/task routing, runtime-admin inspection, and the local AI structured-extraction reference stack
 - Experimental surfaces: starter/example materials and any adapter track not explicitly promoted
 - Public support posture: **best-effort**
 - Public collaboration posture: **Issues enabled, PRs welcome**
@@ -64,7 +63,7 @@ make workflow-quickstart
 If you want the supported HTTP and SDK path after that:
 
 ```bash
-make api-server
+python -m world_runtime serve --profile local
 make sdk-example
 ```
 
@@ -75,7 +74,7 @@ If you are...
 - Operating the runtime: start with [playbooks/operator-quickstart.md](playbooks/operator-quickstart.md)
 - Integrating through supported surfaces: start with [api/PUBLIC_API_V1.md](api/PUBLIC_API_V1.md) and [sdk/README.md](sdk/README.md)
 - Extending the runtime: start with [docs/EXTENSION_CONTRACTS.md](docs/EXTENSION_CONTRACTS.md) and [docs/PARTNER_ONBOARDING.md](docs/PARTNER_ONBOARDING.md)
-- Exploring the public adapter portfolio: start with [docs/what-you-can-build.md](docs/what-you-can-build.md) and [adapters/README.md](adapters/README.md)
+- Planning adapter work: start with [adapters/STATUS.md](adapters/STATUS.md)
 
 ## Core Concepts
 
@@ -91,15 +90,19 @@ For the full system model, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Release Snapshot
 
-- Current phase: **v1.0 GA**
-- Current release: `v1.0.0` (2026-03-22)
-- Repository package version: `VERSION` -> `1.0.0`
+- Current phase: **v1.1 GA**
+- Current release: `v1.1.0` (2026-04-23)
+- Repository package version: `VERSION` -> `1.1.0`
+
+For release narrative and checklist material, see [CHANGELOG.md](CHANGELOG.md), [docs/releases/1.1.0.md](docs/releases/1.1.0.md), and [docs/RELEASE_READINESS_CHECKLIST.md](docs/RELEASE_READINESS_CHECKLIST.md).
 
 ## Docs Map
 
 - Docs hub: [docs/README.md](docs/README.md)
 - Public adapter portfolio narrative: [docs/what-you-can-build.md](docs/what-you-can-build.md)
-- Adapter portfolio overview: [adapters/README.md](adapters/README.md)
+- Adapter series docs: [adapters/README.md](adapters/README.md), [adapters/ROADMAP.md](adapters/ROADMAP.md), [adapters/STATUS.md](adapters/STATUS.md)
+- Release narrative: [CHANGELOG.md](CHANGELOG.md)
+- Release notes: [docs/releases/1.1.0.md](docs/releases/1.1.0.md)
 - Operator runbooks: [playbooks/](playbooks/)
 - API and SDK: [api/PUBLIC_API_V1.md](api/PUBLIC_API_V1.md), [sdk/README.md](sdk/README.md)
 - Extension docs: [docs/EXTENSION_CONTRACTS.md](docs/EXTENSION_CONTRACTS.md), [docs/COMPATIBILITY_MATRIX.md](docs/COMPATIBILITY_MATRIX.md), [docs/PARTNER_ONBOARDING.md](docs/PARTNER_ONBOARDING.md)
@@ -119,7 +122,5 @@ For the full system model, see [ARCHITECTURE.md](ARCHITECTURE.md).
 - For support posture and stable vs experimental surfaces, see [docs/SUPPORT_POLICY.md](docs/SUPPORT_POLICY.md)
 - For security reporting, see [SECURITY.md](SECURITY.md)
 - For maintainer/community workflow expectations, see [docs/MAINTAINER_TRIAGE.md](docs/MAINTAINER_TRIAGE.md)
-
-Internal build-process files such as roadmap ledgers, changelogs, and thread handoff prompts are intentionally omitted from this public export.
 
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).

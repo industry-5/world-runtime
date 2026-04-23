@@ -1,0 +1,33 @@
+{
+  "provider_id": "reference-local-structured-extraction-balanced",
+  "display_name": "Reference Local Structured Extraction Balanced",
+  "description": "Balanced-cost fallback binding for the M30 local structured extraction reference stack.",
+  "provider_kind": "managed_model_service",
+  "service_dependency_ids": [
+    "reference-local-ai-extraction"
+  ],
+  "capability_tags": [
+    "extraction_reference_stack",
+    "local_only",
+    "sensitive_data_approved",
+    "structured_output",
+    "text_generation"
+  ],
+  "model_identifiers": [
+    "reference-local-structured-extraction-balanced-v1"
+  ],
+  "tool_identifiers": [],
+  "quality_tier": "balanced",
+  "latency_tier": "interactive",
+  "cost_tier": "low",
+  "determinism_tier": "high",
+  "structured_output": {
+    "mode": "json_schema",
+    "schema_guarantee": "strict"
+  },
+  "policy_scope_tags": [
+    "local_only",
+    "sensitive_data_approved"
+  ],
+  "health_dependency_mode": "all_ready"
+}

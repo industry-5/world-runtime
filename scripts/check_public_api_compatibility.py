@@ -7,13 +7,21 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from api.runtime_api import API_VERSION, PUBLIC_ENDPOINTS
-from sdk.python_client import DEFAULT_API_VERSION, WorldRuntimeSDKClient
+from world_runtime.sdk import DEFAULT_API_VERSION, WorldRuntimeSDKClient
 
 PUBLIC_API_DOC = REPO_ROOT / "api" / "PUBLIC_API_V1.md"
 SDK_DOC = REPO_ROOT / "sdk" / "README.md"
+CONSUMER_DOC = REPO_ROOT / "docs" / "CONSUMER_INTEGRATION.md"
 
 REQUIRED_SDK_METHODS = {
     "create_session",
+    "runtime_inventory",
+    "list_runtime_services",
+    "get_runtime_service",
+    "reconcile_runtime_services",
+    "list_runtime_providers",
+    "get_runtime_provider",
+    "resolve_runtime_task",
     "submit_proposal",
     "run_simulation",
     "respond_approval",
@@ -39,6 +47,14 @@ def check_docs() -> list[str]:
 
     if not SDK_DOC.exists():
         errors.append("missing sdk/README.md")
+    elif "from world_runtime.sdk import WorldRuntimeSDKClient" not in SDK_DOC.read_text(encoding="utf-8"):
+        errors.append("sdk/README.md missing supported world_runtime.sdk import example")
+
+    if "python -m world_runtime serve --profile local" not in text:
+        errors.append("api/PUBLIC_API_V1.md missing supported module serve entrypoint")
+
+    if not CONSUMER_DOC.exists():
+        errors.append("missing docs/CONSUMER_INTEGRATION.md")
 
     return errors
 

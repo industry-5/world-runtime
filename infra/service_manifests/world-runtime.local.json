@@ -1,0 +1,69 @@
+{
+  "service_id": "world-runtime-local",
+  "display_name": "World Runtime Local API",
+  "description": "Supported local runtime example supervised through the M27 managed-service host.",
+  "process": {
+    "executable": "${PYTHON}",
+    "arguments": [
+      "-m",
+      "world_runtime",
+      "serve",
+      "--profile",
+      "local",
+      "--host",
+      "${WORLD_RUNTIME_SERVICE_HOST}",
+      "--port",
+      "${WORLD_RUNTIME_SERVICE_PORT}",
+      "--examples-dir",
+      "${REPO_ROOT}/examples"
+    ],
+    "working_directory": "${REPO_ROOT}",
+    "environment": {}
+  },
+  "dependencies": [],
+  "readiness_probe": {
+    "type": "http",
+    "url": "http://${WORLD_RUNTIME_SERVICE_HOST}:${WORLD_RUNTIME_SERVICE_PORT}/health",
+    "expected_status": 200,
+    "interval_seconds": 0.25,
+    "timeout_seconds": 12.0,
+    "initial_delay_seconds": 0.0,
+    "success_contains": "\"status\": \"healthy\""
+  },
+  "health_probe": {
+    "type": "http",
+    "url": "http://${WORLD_RUNTIME_SERVICE_HOST}:${WORLD_RUNTIME_SERVICE_PORT}/health",
+    "expected_status": 200,
+    "interval_seconds": 0.25,
+    "timeout_seconds": 2.0,
+    "initial_delay_seconds": 0.0,
+    "success_contains": "\"status\": \"healthy\""
+  },
+  "restart_policy": {
+    "condition": "on_failure",
+    "max_attempts": 1,
+    "backoff_seconds": 0.25
+  },
+  "outputs": [
+    {
+      "name": "health",
+      "type": "url",
+      "value": "http://${WORLD_RUNTIME_SERVICE_HOST}:${WORLD_RUNTIME_SERVICE_PORT}/health"
+    },
+    {
+      "name": "meta",
+      "type": "url",
+      "value": "http://${WORLD_RUNTIME_SERVICE_HOST}:${WORLD_RUNTIME_SERVICE_PORT}/v1/meta"
+    },
+    {
+      "name": "port",
+      "type": "tcp_port",
+      "value": "${WORLD_RUNTIME_SERVICE_PORT}"
+    }
+  ],
+  "log_capture": {
+    "mode": "file",
+    "directory": "${REPO_ROOT}/tmp/service_logs",
+    "tail_lines": 80
+  }
+}

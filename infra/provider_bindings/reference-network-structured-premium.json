@@ -1,0 +1,29 @@
+{
+  "provider_id": "reference-network-structured-premium",
+  "display_name": "Reference Network Structured Premium",
+  "description": "Reference network-backed premium provider for high quality structured text work.",
+  "provider_kind": "network_model_service",
+  "service_dependency_ids": [],
+  "capability_tags": [
+    "network_required",
+    "streaming",
+    "structured_output",
+    "text_generation"
+  ],
+  "model_identifiers": [
+    "reference-structured-premium"
+  ],
+  "tool_identifiers": [],
+  "quality_tier": "premium",
+  "latency_tier": "interactive",
+  "cost_tier": "high",
+  "determinism_tier": "bounded",
+  "structured_output": {
+    "mode": "json_schema",
+    "schema_guarantee": "best_effort"
+  },
+  "policy_scope_tags": [
+    "network_required"
+  ],
+  "health_dependency_mode": "all_ready"
+}

@@ -1,0 +1,25 @@
+{
+  "schema_id": "reference.character-card.v1",
+  "source_id": "dossier-002",
+  "record_type": "character_card",
+  "character": {
+    "name": "Iven Ro",
+    "role": "courier",
+    "affiliation": "Ember Choir",
+    "origin_world": null
+  },
+  "artifacts": [],
+  "risk_flags": [
+    "fog exposure"
+  ],
+  "open_questions": [
+    "current station",
+    "legal surname",
+    "origin_world not confidently established"
+  ],
+  "ambiguities": [
+    "affiliation is uncertain",
+    "origin_world is uncertain",
+    "role is uncertain"
+  ]
+}

@@ -7,11 +7,12 @@ _Last updated: 2026-03-23 (America/Chicago)_
 ## Purpose
 
 - prove hard safety constraints, urgency, approvals, and simulation-before-action under operational pressure
+- keep package-local roadmap, status, and change history inside this package.
 - serve as one of the implemented public proof paths in the foundation trio
 
 ## Current State
 
-- current state: promotion-hardened public `AT-M4` slice with adapter contract, schemas, default/scenario policy, constrained-alternative review, replay/simulation artifacts, package-local docs, and playbook guidance
+- current state: released public adapter slice with adapter contract, schemas, default/scenario policy, constrained-alternative review, replay/simulation artifacts, package-local docs, and playbook guidance
 - package assets on disk include:
   - `adapter.py`
   - `schemas/`
@@ -20,12 +21,20 @@ _Last updated: 2026-03-23 (America/Chicago)_
   - `playbooks/adapter-air-traffic.md`
 - `conflicting_proposals.json` remains the package-local supplemental proof file on top of the shared bundle baseline
 
+## Package Docs
+
+- `README.md` - package overview and boundaries
+- `ROADMAP.md` - package direction and scope
+- `STATUS.md` - current execution ledger
+- `CHANGELOG.md` - package release and change history
+
+
 ## Working Defaults
 
 - adapter id: `adapter-air-traffic`
 - package path: `adapters/air_traffic`
 - scenario path: `examples/scenarios/air-traffic-mini`
-- milestone code: `AT`
+- track code: `AT`
 
 ## Contributor Validation Path
 
@@ -38,7 +47,7 @@ Use this package-local bundle when touching the air-traffic path:
 
 ## Boundaries
 
-- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- package-local roadmap and status live here
 - root docs should keep only rollup pointers for this track
 - adapter implementation stays inside the stable `adapters.base.DomainAdapter` contract
 - no stable App Server, HTTP API, or SDK surface is widened by this package

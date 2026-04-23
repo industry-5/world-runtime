@@ -1,7 +1,7 @@
 import json
 import os
 
-from sdk.python_client import WorldRuntimeSDKClient
+from world_runtime.sdk import WorldRuntimeSDKClient
 
 
 def main() -> None:
@@ -11,6 +11,8 @@ def main() -> None:
     )
 
     session = client.create_session()
+    runtime_inventory = client.runtime_inventory()
+    runtime_services = client.list_runtime_services()
 
     proposal = {
         "proposal_id": "proposal.public-api.0001",
@@ -47,7 +49,33 @@ def main() -> None:
         policies=[policy],
     )
 
-    print(json.dumps({"session": session, "proposal_result": proposal_result}, indent=2))
+    runtime_reconcile = client.reconcile_runtime_services(
+        actor={
+            "actor_id": "human.sdk-demo",
+            "actor_type": "human",
+            "roles": ["operator"],
+            "capabilities": ["runtime.service.reconcile"],
+        },
+        service_ids=["reference-http"],
+        session_id=session["session_id"],
+    )
+    runtime_resolution = client.resolve_runtime_task(
+        task_profile_id="structured-extraction.strict",
+    )
+
+    print(
+        json.dumps(
+            {
+                "session": session,
+                "runtime_inventory": runtime_inventory,
+                "runtime_services": runtime_services,
+                "proposal_result": proposal_result,
+                "runtime_reconcile": runtime_reconcile,
+                "runtime_resolution": runtime_resolution,
+            },
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":

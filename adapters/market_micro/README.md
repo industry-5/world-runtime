@@ -8,10 +8,11 @@ _Last updated: 2026-03-23 (America/Chicago)_
 
 - prove high event intensity, exposure limits, and multi-actor conflict behavior
 - exercise risk controls and policy-visible interventions in market-like conditions
+- keep package-local roadmap, status, and change history inside this package.
 
 ## Current State
 
-- current state: promotion-hardened public `MM-M4` slice with adapter contract, schemas, default/scenario policy, market-risk alternatives, replay/simulation artifacts, package-local docs, and playbook guidance
+- current state: released public adapter slice with adapter contract, schemas, default/scenario policy, market-risk alternatives, replay/simulation artifacts, package-local docs, and playbook guidance
 - package assets on disk include:
   - `adapter.py`
   - `schemas/`
@@ -21,12 +22,20 @@ _Last updated: 2026-03-23 (America/Chicago)_
 - `risk_options.json` preserves market-risk alternatives on top of the shared bundle baseline
 - the package is now registered in `adapters/public_program.py` and available through `AdapterRegistry.with_defaults()`
 
+## Package Docs
+
+- `README.md` - package overview and boundaries
+- `ROADMAP.md` - package direction and scope
+- `STATUS.md` - current execution ledger
+- `CHANGELOG.md` - package release and change history
+
+
 ## Working Defaults
 
 - adapter id: `adapter-market-micro`
 - package path: `adapters/market_micro`
 - scenario path: `examples/scenarios/market-micro-mini`
-- milestone code: `MM`
+- track code: `MM`
 
 ## Contributor Validation Path
 
@@ -39,7 +48,7 @@ Use this package-local bundle when touching the market-micro path:
 
 ## Boundaries
 
-- internal milestone ledgers and handoff prompts are intentionally not included in this public export
+- package-local roadmap and status live here
 - root docs should keep only rollup pointers for this track
 - adapter implementation stays inside the stable `adapters.base.DomainAdapter` contract
 - no stable App Server, HTTP API, or SDK surface is widened by this package

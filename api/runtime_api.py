@@ -7,6 +7,13 @@ API_VERSION = "v1"
 
 PUBLIC_ENDPOINTS = {
     "runtime_call": "/v1/runtime/call",
+    "runtime_inventory": "/v1/runtime/inventory",
+    "runtime_services": "/v1/runtime/services",
+    "runtime_service_get": "/v1/runtime/services/{service_id}",
+    "runtime_service_reconcile": "/v1/runtime/services/reconcile",
+    "runtime_providers": "/v1/runtime/providers",
+    "runtime_provider_get": "/v1/runtime/providers/{provider_id}",
+    "runtime_task_resolve": "/v1/runtime/tasks/resolve",
     "session_create": "/v1/sessions",
     "proposal_submit": "/v1/proposals/submit",
     "simulation_run": "/v1/simulations/run",
@@ -34,6 +41,67 @@ class PublicRuntimeAPI:
 
     def call_runtime(self, method: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         return self.app_server.handle_request(method, params)
+
+    def runtime_inventory(self) -> Dict[str, Any]:
+        return self._unwrap(self.app_server.handle_request("runtime.inventory.summary"))
+
+    def list_runtime_services(self) -> Dict[str, Any]:
+        return self._unwrap(self.app_server.handle_request("runtime.service.list"))
+
+    def get_runtime_service(self, service_id: str) -> Dict[str, Any]:
+        return self._unwrap(
+            self.app_server.handle_request(
+                "runtime.service.get",
+                {"service_id": service_id},
+            )
+        )
+
+    def reconcile_runtime_services(
+        self,
+        *,
+        actor: Dict[str, Any],
+        service_ids: Optional[List[str]] = None,
+        session_id: Optional[str] = None,
+        prune: bool = False,
+    ) -> Dict[str, Any]:
+        return self._unwrap(
+            self.app_server.handle_request(
+                "runtime.service.reconcile",
+                {
+                    "actor": deepcopy(actor),
+                    "service_ids": deepcopy(service_ids),
+                    "session_id": session_id,
+                    "prune": prune,
+                },
+            )
+        )
+
+    def list_runtime_providers(self) -> Dict[str, Any]:
+        return self._unwrap(self.app_server.handle_request("runtime.provider.list"))
+
+    def get_runtime_provider(self, provider_id: str) -> Dict[str, Any]:
+        return self._unwrap(
+            self.app_server.handle_request(
+                "runtime.provider.get",
+                {"provider_id": provider_id},
+            )
+        )
+
+    def resolve_runtime_task(
+        self,
+        *,
+        task_profile_id: str,
+        policy_input: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        return self._unwrap(
+            self.app_server.handle_request(
+                "runtime.task.resolve",
+                {
+                    "task_profile_id": task_profile_id,
+                    "policy_input": deepcopy(policy_input),
+                },
+            )
+        )
 
     def create_session(self) -> Dict[str, Any]:
         return self._unwrap(self.app_server.handle_request("session.create"))

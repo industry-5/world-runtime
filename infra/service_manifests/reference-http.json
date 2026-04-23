@@ -1,0 +1,60 @@
+{
+  "service_id": "reference-http",
+  "display_name": "Reference HTTP Helper",
+  "description": "Minimal managed HTTP helper used for runtime-host smoke validation.",
+  "process": {
+    "executable": "${PYTHON}",
+    "arguments": [
+      "scripts/reference_managed_service.py",
+      "--host",
+      "${REFERENCE_SERVICE_HOST}",
+      "--port",
+      "${REFERENCE_SERVICE_PORT}",
+      "--startup-delay-seconds",
+      "0.2"
+    ],
+    "working_directory": "${REPO_ROOT}",
+    "environment": {}
+  },
+  "dependencies": [],
+  "readiness_probe": {
+    "type": "http",
+    "url": "http://${REFERENCE_SERVICE_HOST}:${REFERENCE_SERVICE_PORT}/ready",
+    "expected_status": 200,
+    "interval_seconds": 0.2,
+    "timeout_seconds": 8.0,
+    "initial_delay_seconds": 0.0,
+    "success_contains": "\"ready\": true"
+  },
+  "health_probe": {
+    "type": "http",
+    "url": "http://${REFERENCE_SERVICE_HOST}:${REFERENCE_SERVICE_PORT}/health",
+    "expected_status": 200,
+    "interval_seconds": 0.2,
+    "timeout_seconds": 2.0,
+    "initial_delay_seconds": 0.0,
+    "success_contains": "\"status\": \"healthy\""
+  },
+  "restart_policy": {
+    "condition": "on_failure",
+    "max_attempts": 2,
+    "backoff_seconds": 0.2
+  },
+  "outputs": [
+    {
+      "name": "http",
+      "type": "url",
+      "value": "http://${REFERENCE_SERVICE_HOST}:${REFERENCE_SERVICE_PORT}"
+    },
+    {
+      "name": "port",
+      "type": "tcp_port",
+      "value": "${REFERENCE_SERVICE_PORT}"
+    }
+  ],
+  "log_capture": {
+    "mode": "file",
+    "directory": "${REPO_ROOT}/tmp/service_logs",
+    "tail_lines": 80
+  }
+}

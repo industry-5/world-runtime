@@ -10,10 +10,13 @@ from core.eval_harness import EvalHarness
 from core.observability import ObservabilityStore
 from core.persistence import build_event_store_from_config
 from core.policy_engine import DeterministicPolicyEngine
+from core.provider_registry import ProviderRegistryLoader
 from core.projector import SimpleProjector
 from core.reasoning_adapter import ReasoningAdapter
 from core.replay_engine import ReplayEngine
 from core.simulation_engine import SimulationEngine
+from core.task_profiles import TaskProfileLoader
+from core.task_router import TaskRouter
 
 
 @dataclass
@@ -66,6 +69,9 @@ class DeploymentLoader:
         reasoning = ReasoningAdapter(replay)
         policy = DeterministicPolicyEngine()
         observability = ObservabilityStore()
+        provider_registry = ProviderRegistryLoader(self.repo_root).load_all()
+        task_profiles = TaskProfileLoader(self.repo_root).load_all()
+        task_router = TaskRouter(provider_registry, task_profiles, observability=observability)
         eval_harness = EvalHarness(
             replay_engine=replay,
             simulation_engine=simulation,
@@ -94,6 +100,9 @@ class DeploymentLoader:
             "eval_harness": eval_harness,
             "app_server": app_server,
             "observability": observability,
+            "provider_registry": provider_registry,
+            "task_profiles": task_profiles,
+            "task_router": task_router,
             "persistence_config": persistence_config,
         }
 

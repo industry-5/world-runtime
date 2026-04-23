@@ -14,6 +14,13 @@ This is the supported external HTTP surface for World Runtime.
 - `GET /v1/meta` - API/protocol compatibility metadata
 - `POST /v1/runtime/call` - generic method bridge for advanced users
 - `POST /v1/sessions` - create runtime session
+- `GET /v1/runtime/inventory` - runtime inventory summary
+- `GET /v1/runtime/services` - managed runtime service inventory
+- `GET /v1/runtime/services/{service_id}` - inspect one managed runtime service
+- `POST /v1/runtime/services/reconcile` - bounded reconcile for managed services
+- `GET /v1/runtime/providers` - provider inventory summary
+- `GET /v1/runtime/providers/{provider_id}` - inspect one provider entry
+- `POST /v1/runtime/tasks/resolve` - resolve a task profile against eligible providers
 - `POST /v1/proposals/submit` - submit proposal + policy evaluation
 - `POST /v1/simulations/run` - create/run simulation with hypothetical events
 - `POST /v1/approvals/respond` - approve/reject/escalate/override an approval request
@@ -24,7 +31,7 @@ This is the supported external HTTP surface for World Runtime.
 For a first local API run:
 
 ```bash
-make api-server
+python -m world_runtime serve --profile local
 make sdk-example
 ```
 
